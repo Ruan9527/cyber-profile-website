@@ -61,6 +61,9 @@ export default function MessageBoard() {
       }
 
       try {
+        console.log('🔗 尝试连接 Supabase...')
+        console.log('🔗 Supabase URL:', process.env.NEXT_PUBLIC_SUPABASE_URL)
+        
         const { data, error } = await supabase
           .from('messages')
           .select('*')
@@ -68,12 +71,13 @@ export default function MessageBoard() {
           .order('created_at', { ascending: false })
 
         if (error) {
-          console.error('Error loading messages:', error)
+          console.error('❌ Supabase 连接失败:', error)
           // Fallback to mock data if Supabase fails
           setMessages(mockMessages.sort((a, b) => 
             new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
           ))
         } else {
+          console.log('✅ Supabase 连接成功! 获取到', data?.length || 0, '条留言')
           setMessages(data || [])
         }
       } catch (error) {
@@ -101,6 +105,7 @@ export default function MessageBoard() {
 
     try {
       if (isSupabaseConfigured) {
+        console.log('📝 正在提交留言到 Supabase...')
         // Insert message into Supabase
         const { error } = await supabase
           .from('messages')
@@ -111,10 +116,15 @@ export default function MessageBoard() {
             is_approved: true
           }])
 
-        if (error) throw error
+        if (error) {
+          console.error('❌ 留言提交失败:', error)
+          throw error
+        } else {
+          console.log('✅ 留言提交成功!')
+        }
       } else {
         // Mock submission if Supabase is not configured
-        console.log('Message submitted (mock mode):', formData)
+        console.log('📝 Mock 模式提交留言:', formData)
       }
 
       // Add message to local state
