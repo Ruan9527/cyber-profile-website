@@ -120,8 +120,10 @@ export default function MessageBoard() {
     try {
       if (isSupabaseConfigured) {
         console.log('📝 正在提交留言到 Supabase...')
+        console.log('📝 提交的数据:', formData)
+        
         // Insert message into Supabase
-        const { error } = await supabase
+        const { data, error } = await supabase
           .from('messages')
           .insert([{
             name: formData.name,
@@ -129,6 +131,7 @@ export default function MessageBoard() {
             content: formData.content,
             is_approved: true
           }])
+          .select() // 请求返回插入的数据
 
         if (error) {
           console.error('❌ 留言提交失败:', error)
@@ -141,6 +144,7 @@ export default function MessageBoard() {
           throw error
         } else {
           console.log('✅ 留言提交成功!')
+          console.log('📊 插入的数据:', data)
         }
       } else {
         // Mock submission if Supabase is not configured
