@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { Send, MessageCircle, User, Mail, Clock } from 'lucide-react'
 import { Message } from '@/types'
-// import { supabase } from '@/lib/supabase'
+import { supabase } from '@/lib/supabase'
 
 export default function MessageBoard() {
   const [messages, setMessages] = useState<Message[]>([])
@@ -44,10 +44,34 @@ export default function MessageBoard() {
   ]
 
   useEffect(() => {
-    // Load messages from Supabase or use mock data
-    setMessages(mockMessages.sort((a, b) => 
-      new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
-    ))
+    // Load messages from Supabase
+    const loadMessages = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('messages')
+          .select('*')
+          .eq('is_approved', true)
+          .order('created_at', { ascending: false })
+
+        if (error) {
+          console.error('Error loading messages:', error)
+          // Fallback to mock data if Supabase fails
+          setMessages(mockMessages.sort((a, b) => 
+            new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+          ))
+        } else {
+          setMessages(data || [])
+        }
+      } catch (error) {
+        console.error('Error:', error)
+        // Fallback to mock data
+        setMessages(mockMessages.sort((a, b) => 
+          new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+        ))
+      }
+    }
+
+    loadMessages()
   }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -56,20 +80,19 @@ export default function MessageBoard() {
     setSubmitStatus('idle')
 
     try {
-      // TODO: Replace with actual Supabase insert
-      // const { error } = await supabase
-      //   .from('messages')
-      //   .insert([{
-      //     name: formData.name,
-      //     email: formData.email,
-      //     content: formData.content,
-      //     is_approved: true
-      //   }])
+      // Insert message into Supabase
+      const { error } = await supabase
+        .from('messages')
+        .insert([{
+          name: formData.name,
+          email: formData.email,
+          content: formData.content,
+          is_approved: true
+        }])
 
-      // if (error) throw error
-      console.log('Message submitted (mock):', formData)
+      if (error) throw error
 
-      // Add message to local state (temporary)
+      // Add message to local state
       const newMessage: Message = {
         id: messages.length + 1,
         ...formData,
