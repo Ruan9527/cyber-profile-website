@@ -80,6 +80,12 @@ export default function MessageBoard() {
 
         if (error) {
           console.error('❌ Supabase 连接失败:', error)
+          console.error('❌ 错误详情:', {
+            message: error.message,
+            details: error.details,
+            hint: error.hint,
+            code: error.code
+          })
           // Fallback to mock data if Supabase fails
           setMessages(mockMessages.sort((a, b) => 
             new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
@@ -126,6 +132,12 @@ export default function MessageBoard() {
 
         if (error) {
           console.error('❌ 留言提交失败:', error)
+          console.error('❌ 提交错误详情:', {
+            message: error.message,
+            details: error.details,
+            hint: error.hint,
+            code: error.code
+          })
           throw error
         } else {
           console.log('✅ 留言提交成功!')
