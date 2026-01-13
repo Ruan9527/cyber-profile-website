@@ -44,8 +44,22 @@ export default function MessageBoard() {
   ]
 
   useEffect(() => {
-    // Load messages from Supabase
+    // Load messages from Supabase or fallback to mock data
     const loadMessages = async () => {
+      // Check if Supabase is properly configured
+      const isSupabaseConfigured = 
+        process.env.NEXT_PUBLIC_SUPABASE_URL && 
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY &&
+        process.env.NEXT_PUBLIC_SUPABASE_URL !== 'https://placeholder.supabase.co'
+
+      if (!isSupabaseConfigured) {
+        // Use mock data if Supabase is not configured
+        setMessages(mockMessages.sort((a, b) => 
+          new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+        ))
+        return
+      }
+
       try {
         const { data, error } = await supabase
           .from('messages')
@@ -79,18 +93,29 @@ export default function MessageBoard() {
     setIsSubmitting(true)
     setSubmitStatus('idle')
 
-    try {
-      // Insert message into Supabase
-      const { error } = await supabase
-        .from('messages')
-        .insert([{
-          name: formData.name,
-          email: formData.email,
-          content: formData.content,
-          is_approved: true
-        }])
+    // Check if Supabase is properly configured
+    const isSupabaseConfigured = 
+      process.env.NEXT_PUBLIC_SUPABASE_URL && 
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY &&
+      process.env.NEXT_PUBLIC_SUPABASE_URL !== 'https://placeholder.supabase.co'
 
-      if (error) throw error
+    try {
+      if (isSupabaseConfigured) {
+        // Insert message into Supabase
+        const { error } = await supabase
+          .from('messages')
+          .insert([{
+            name: formData.name,
+            email: formData.email,
+            content: formData.content,
+            is_approved: true
+          }])
+
+        if (error) throw error
+      } else {
+        // Mock submission if Supabase is not configured
+        console.log('Message submitted (mock mode):', formData)
+      }
 
       // Add message to local state
       const newMessage: Message = {
