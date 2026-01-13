@@ -1,7 +1,8 @@
 'use client'
 
 import { useEffect } from 'react'
-import { usePathname, useSearchParams } from 'next/navigation'
+import { usePathname } from 'next/navigation'
+import { Suspense } from 'react'
 
 declare global {
   interface Window {
@@ -17,17 +18,24 @@ interface GoogleAnalyticsProps {
   GA_ID: string
 }
 
-export default function GoogleAnalytics({ GA_ID }: GoogleAnalyticsProps) {
+function GoogleAnalyticsInner({ GA_ID }: GoogleAnalyticsProps) {
   const pathname = usePathname()
-  const searchParams = useSearchParams()
 
   useEffect(() => {
     if (window.gtag && GA_ID) {
       window.gtag('config', GA_ID, {
-        page_path: pathname + searchParams.toString(),
+        page_path: pathname,
       })
     }
-  }, [pathname, searchParams, GA_ID])
+  }, [pathname, GA_ID])
 
   return null
+}
+
+export default function GoogleAnalytics({ GA_ID }: GoogleAnalyticsProps) {
+  return (
+    <Suspense>
+      <GoogleAnalyticsInner GA_ID={GA_ID} />
+    </Suspense>
+  )
 }
