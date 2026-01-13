@@ -1,0 +1,252 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --cyber-yellow: #fcee0a;
+  --cyber-cyan: #00f0ff;
+  --cyber-red: #ff003c;
+  --cyber-black: #050505;
+  --cyber-gray: #2d2d2d;
+}
+
+/* Universal Font Enforcement */
+* {
+  font-family: 'Microsoft YaHei', 'Heiti SC', sans-serif !important;
+}
+
+/* Cyberpunk Vector Cursors */
+body {
+  background-color: var(--cyber-black);
+  color: #e0e0e0;
+  overflow-x: hidden;
+  cursor: url('data:image/svg+xml;utf8,<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 2L14 28L18 18L28 14L2 2Z" fill="%2300f0ff" stroke="black" stroke-width="1.5"/><circle cx="2" cy="2" r="1" fill="white"/></svg>'), auto;
+}
+
+a,
+button,
+[role="button"],
+input,
+select,
+textarea,
+.cursor-pointer {
+  cursor: url('data:image/svg+xml;utf8,<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 2L11 26L15 16L25 12L2 2Z" fill="%23ff003c" stroke="white" stroke-width="1.5"/><path d="M15 16L28 28" stroke="%23ff003c" stroke-width="2"/><rect x="26" y="26" width="4" height="4" fill="%23fcee0a" stroke="black"/></svg>'), pointer;
+}
+
+/* Override specific font classes to ensure YaHei prevails for Chinese text */
+.font-display {
+  font-family: 'Orbitron', 'Microsoft YaHei', sans-serif !important;
+}
+
+.font-mono-tech {
+  font-family: 'Share Tech Mono', 'Microsoft YaHei', monospace !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #111;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--cyber-red);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cyber-yellow);
+}
+
+/* Glitch Animation Keyframes for Text */
+@keyframes glitch {
+  0% {
+    clip-path: inset(80% 0 0 0);
+    transform: translate(-2px, 2px);
+  }
+
+  20% {
+    clip-path: inset(10% 0 60% 0);
+    transform: translate(2px, -2px);
+  }
+
+  40% {
+    clip-path: inset(40% 0 40% 0);
+    transform: translate(-2px, 2px);
+  }
+
+  60% {
+    clip-path: inset(80% 0 5% 0);
+    transform: translate(2px, -2px);
+  }
+
+  80% {
+    clip-path: inset(10% 0 70% 0);
+    transform: translate(-2px, 2px);
+  }
+
+  100% {
+    clip-path: inset(30% 0 30% 0);
+    transform: translate(0);
+  }
+}
+
+.glitch-effect::before,
+.glitch-effect::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--cyber-black);
+}
+
+.glitch-effect::before {
+  left: 2px;
+  text-shadow: -1px 0 var(--cyber-red);
+  animation: glitch 2s infinite linear alternate-reverse;
+}
+
+.glitch-effect::after {
+  left: -2px;
+  text-shadow: -1px 0 var(--cyber-cyan);
+  animation: glitch 3s infinite linear alternate-reverse;
+}
+
+/* Image Glitch Animations */
+@keyframes glitch-anim-1 {
+  0% {
+    clip-path: inset(20% 0 80% 0);
+    transform: translate(-2px, 1px);
+  }
+
+  20% {
+    clip-path: inset(60% 0 10% 0);
+    transform: translate(2px, -1px);
+  }
+
+  40% {
+    clip-path: inset(40% 0 50% 0);
+    transform: translate(-2px, 2px);
+  }
+
+  60% {
+    clip-path: inset(80% 0 5% 0);
+    transform: translate(2px, -2px);
+  }
+
+  80% {
+    clip-path: inset(10% 0 70% 0);
+    transform: translate(-1px, 1px);
+  }
+
+  100% {
+    clip-path: inset(30% 0 30% 0);
+    transform: translate(1px, -1px);
+  }
+}
+
+@keyframes glitch-anim-2 {
+  0% {
+    clip-path: inset(10% 0 60% 0);
+    transform: translate(2px, -1px);
+  }
+
+  20% {
+    clip-path: inset(80% 0 5% 0);
+    transform: translate(-2px, 2px);
+  }
+
+  40% {
+    clip-path: inset(30% 0 20% 0);
+    transform: translate(1px, 1px);
+  }
+
+  60% {
+    clip-path: inset(15% 0 80% 0);
+    transform: translate(-1px, -2px);
+  }
+
+  80% {
+    clip-path: inset(55% 0 10% 0);
+    transform: translate(2px, 1px);
+  }
+
+  100% {
+    clip-path: inset(40% 0 30% 0);
+    transform: translate(-2px, -1px);
+  }
+}
+
+.group:hover .glitch-img-1 {
+  animation: glitch-anim-1 2.5s infinite linear alternate-reverse;
+  display: block;
+}
+
+.group:hover .glitch-img-2 {
+  animation: glitch-anim-2 3s infinite linear alternate-reverse;
+  display: block;
+}
+
+/* Scanline Overlay */
+.scanlines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(to bottom,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 0) 50%,
+      rgba(0, 0, 0, 0.2) 50%,
+      rgba(0, 0, 0, 0.2));
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0.6;
+}
+
+.cyber-clip {
+  clip-path: polygon(0 0,
+      100% 0,
+      100% calc(100% - 20px),
+      calc(100% - 20px) 100%,
+      0 100%);
+}
+
+.cyber-clip-inverse {
+  clip-path: polygon(20px 0,
+      100% 0,
+      100% 100%,
+      0 100%,
+      0 20px);
+}
+
+/* Custom component styles */
+.cyber-button {
+  @apply relative px-6 py-3 font-bold text-cyber-black bg-cyber-cyan border-2 border-cyber-cyan transition-all duration-300;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
+}
+
+.cyber-button:hover {
+  @apply bg-cyber-yellow text-cyber-black border-cyber-yellow;
+  transform: translate(-2px, -2px);
+  box-shadow: 2px 2px 0 var(--cyber-red);
+}
+
+.cyber-input {
+  @apply w-full px-4 py-3 bg-cyber-black/50 border-2 border-cyber-cyan text-cyber-cyan placeholder-cyber-gray focus:outline-none focus:border-cyber-yellow transition-colors;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 100%, 10px 100%);
+}
+
+.cyber-card {
+  @apply p-6 bg-cyber-black/80 border border-cyber-cyan/30 backdrop-blur-sm transition-all duration-300;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%);
+}
+
+.cyber-card:hover {
+  @apply border-cyber-cyan/60 shadow-lg shadow-cyber-cyan/20;
+  transform: translateY(-2px);
+}
