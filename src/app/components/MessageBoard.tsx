@@ -61,17 +61,6 @@ export default function MessageBoard() {
       }
 
       try {
-        console.log('🔗 尝试连接 Supabase...')
-        console.log('🔗 Supabase URL:', process.env.NEXT_PUBLIC_SUPABASE_URL)
-        
-        console.log('🔍 查询所有留言（包括未批准的）...')
-        const { data: allData, error: allError } = await supabase
-          .from('messages')
-          .select('*')
-          .order('created_at', { ascending: false })
-          
-        console.log('📊 所有数据:', allData)
-        
         const { data, error } = await supabase
           .from('messages')
           .select('*')
@@ -79,19 +68,11 @@ export default function MessageBoard() {
           .order('created_at', { ascending: false })
 
         if (error) {
-          console.error('❌ Supabase 连接失败:', error)
-          console.error('❌ 错误详情:', {
-            message: error.message,
-            details: error.details,
-            hint: error.hint,
-            code: error.code
-          })
           // Fallback to mock data if Supabase fails
           setMessages(mockMessages.sort((a, b) => 
             new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
           ))
         } else {
-          console.log('✅ Supabase 连接成功! 获取到', data?.length || 0, '条留言')
           setMessages(data || [])
         }
       } catch (error) {
@@ -119,11 +100,8 @@ export default function MessageBoard() {
 
     try {
       if (isSupabaseConfigured) {
-        console.log('📝 正在提交留言到 Supabase...')
-        console.log('📝 提交的数据:', formData)
-        
         // Insert message into Supabase
-        const { data, error } = await supabase
+        const { error } = await supabase
           .from('messages')
           .insert([{
             name: formData.name,
@@ -131,24 +109,13 @@ export default function MessageBoard() {
             content: formData.content,
             is_approved: true
           }])
-          .select() // 请求返回插入的数据
 
         if (error) {
-          console.error('❌ 留言提交失败:', error)
-          console.error('❌ 提交错误详情:', {
-            message: error.message,
-            details: error.details,
-            hint: error.hint,
-            code: error.code
-          })
           throw error
-        } else {
-          console.log('✅ 留言提交成功!')
-          console.log('📊 插入的数据:', data)
         }
       } else {
         // Mock submission if Supabase is not configured
-        console.log('📝 Mock 模式提交留言:', formData)
+        // (this case should not happen in production)
       }
 
       // Add message to local state
