@@ -64,6 +64,14 @@ export default function MessageBoard() {
         console.log('🔗 尝试连接 Supabase...')
         console.log('🔗 Supabase URL:', process.env.NEXT_PUBLIC_SUPABASE_URL)
         
+        console.log('🔍 查询所有留言（包括未批准的）...')
+        const { data: allData, error: allError } = await supabase
+          .from('messages')
+          .select('*')
+          .order('created_at', { ascending: false })
+          
+        console.log('📊 所有数据:', allData)
+        
         const { data, error } = await supabase
           .from('messages')
           .select('*')
