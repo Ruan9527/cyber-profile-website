@@ -79,7 +79,7 @@ export default function StatsSection() {
   return (
     <section className="py-20 px-4 relative">
       <div className="max-w-6xl mx-auto">
-        <h2 className="font-display text-4xl md:text-5xl font-bold text-center mb-16 glitch-effect" data-text="ANALYTICS DASHBOARD">
+        <h2 className="font-display text-4xl md:text-5xl font-bold text-center mb-16">
           <span className="text-cyber-cyan">ANALYTICS DASHBOARD</span>
         </h2>
 
@@ -108,7 +108,7 @@ export default function StatsSection() {
                   </div>
                   
                   <div className="mb-2">
-                    <div className="text-3xl font-bold text-cyber-cyan glitch-effect" data-text={stat.value}>
+                    <div className="text-3xl font-bold text-cyber-cyan mb-2">
                       {stat.value}
                     </div>
                   </div>
@@ -117,7 +117,7 @@ export default function StatsSection() {
                     {stat.title}
                   </div>
                   
-                  <div className="text-xs text-cyber-gray uppercase tracking-wider">
+                  <div className="text-xs text-white/70 uppercase tracking-wider">
                     {stat.description}
                   </div>
                 </div>
@@ -142,7 +142,7 @@ export default function StatsSection() {
               {activityData.map((data, index) => (
                 <div key={data.time} className="relative">
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-xs text-cyber-gray font-mono-tech uppercase">
+                    <span className="text-xs text-white/70 font-mono-tech uppercase">
                       {data.time}
                     </span>
                     <div className="flex items-center gap-4">
@@ -192,10 +192,10 @@ export default function StatsSection() {
                     {activity.type === 'project' && <Activity className={`w-4 h-4 text-${activity.color}`} />}
                   </div>
                   <div className="flex-1">
-                    <p className="text-sm text-cyber-gray group-hover:text-cyber-cyan transition-colors">
+                    <p className="text-sm text-white/70 group-hover:text-cyber-cyan transition-colors">
                       {activity.message}
                     </p>
-                    <p className="text-xs text-cyber-gray/60 flex items-center gap-1 mt-1">
+                    <p className="text-xs text-white/60 flex items-center gap-1 mt-1">
                       <Clock className="w-3 h-3" />
                       {activity.time}
                     </p>
@@ -213,7 +213,7 @@ export default function StatsSection() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="text-center">
               <div className="text-2xl font-bold text-green-500 mb-2">99.9%</div>
-              <div className="text-sm text-cyber-gray uppercase tracking-wider">Uptime</div>
+              <div className="text-sm text-white/70 uppercase tracking-wider">Uptime</div>
               <div className="mt-2 h-2 bg-cyber-black/50 border border-green-500/30 overflow-hidden">
                 <div className="h-full bg-gradient-to-r from-green-500 to-green-400" style={{ width: '99.9%' }} />
               </div>
@@ -221,7 +221,7 @@ export default function StatsSection() {
             
             <div className="text-center">
               <div className="text-2xl font-bold text-cyber-cyan mb-2">1.2s</div>
-              <div className="text-sm text-cyber-gray uppercase tracking-wider">Avg Load Time</div>
+              <div className="text-sm text-white/70 uppercase tracking-wider">Avg Load Time</div>
               <div className="mt-2 h-2 bg-cyber-black/50 border border-cyber-cyan/30 overflow-hidden">
                 <div className="h-full bg-gradient-to-r from-cyber-cyan to-cyber-yellow" style={{ width: '20%' }} />
               </div>
@@ -229,7 +229,7 @@ export default function StatsSection() {
             
             <div className="text-center">
               <div className="text-2xl font-bold text-cyber-yellow mb-2">A+</div>
-              <div className="text-sm text-cyber-gray uppercase tracking-wider">Performance Grade</div>
+              <div className="text-sm text-white/70 uppercase tracking-wider">Performance Grade</div>
               <div className="mt-2 h-2 bg-cyber-black/50 border border-cyber-yellow/30 overflow-hidden">
                 <div className="h-full bg-gradient-to-r from-cyber-yellow to-cyber-red" style={{ width: '95%' }} />
               </div>

@@ -59,7 +59,7 @@ export default function ContactSection() {
   return (
     <section className="py-20 px-4 relative bg-gradient-to-b from-cyber-black to-cyber-gray/10">
       <div className="max-w-6xl mx-auto">
-        <h2 className="font-display text-4xl md:text-5xl font-bold text-center mb-16 glitch-effect" data-text="CONNECT">
+        <h2 className="font-display text-4xl md:text-5xl font-bold text-center mb-16">
           <span className="text-cyber-cyan">CONNECT</span>
         </h2>
 
@@ -101,7 +101,7 @@ export default function ContactSection() {
                           <div className="text-cyber-cyan font-bold group-hover:text-cyber-yellow transition-colors">
                             {contact.value}
                           </div>
-                          <div className="text-xs text-cyber-gray mt-1">
+                          <div className="text-xs text-white/60 mt-1">
                             {contact.description}
                           </div>
                         </div>
@@ -120,7 +120,7 @@ export default function ContactSection() {
                   <h3 className="font-display text-xl font-bold text-cyber-yellow mb-2">
                     Download Resume
                   </h3>
-                  <p className="text-cyber-gray">
+                  <p className="text-white/70">
                     Get my complete resume in PDF format with detailed work experience and skills.
                   </p>
                 </div>
@@ -148,15 +148,10 @@ export default function ContactSection() {
                     <QrCode className="w-16 h-16 text-cyber-cyan" />
                   </div>
                 </div>
-                {/* Glitch effect on hover */}
-                <div className="absolute inset-0 w-32 h-32 bg-cyber-red/20 border-4 border-cyber-red rounded-lg p-2 opacity-0 group-hover:opacity-50 animate-glitch-img-1 pointer-events-none">
-                  <div className="w-full h-full bg-gradient-to-br from-cyber-red/20 to-cyber-yellow/20 flex items-center justify-center">
-                    <QrCode className="w-16 h-16 text-cyber-red" />
-                  </div>
-                </div>
+
               </div>
               
-              <p className="text-sm text-cyber-gray mb-2">
+              <p className="text-sm text-white/70 mb-2">
                 Scan to connect on WeChat
               </p>
               <div className="text-xs text-cyber-yellow font-mono-tech uppercase tracking-wider">
@@ -179,7 +174,7 @@ export default function ContactSection() {
                       <div className="text-cyber-cyan font-bold">
                         {location.city}
                       </div>
-                      <div className="text-sm text-cyber-gray">
+                      <div className="text-sm text-white/70">
                         {location.country}
                       </div>
                       <div className="text-xs text-cyber-gray/60">
@@ -209,7 +204,7 @@ export default function ContactSection() {
           <form className="max-w-2xl mx-auto space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-cyber-gray text-sm font-bold mb-2 uppercase tracking-wider">
+                <label className="block text-white/70 text-sm font-bold mb-2 uppercase tracking-wider">
                   Name
                 </label>
                 <input
@@ -220,7 +215,7 @@ export default function ContactSection() {
               </div>
               
               <div>
-                <label className="block text-cyber-gray text-sm font-bold mb-2 uppercase tracking-wider">
+                <label className="block text-white/70 text-sm font-bold mb-2 uppercase tracking-wider">
                   Email
                 </label>
                 <input
@@ -232,9 +227,9 @@ export default function ContactSection() {
             </div>
             
             <div>
-              <label className="block text-cyber-gray text-sm font-bold mb-2 uppercase tracking-wider">
-                Subject
-              </label>
+                <label className="block text-white/70 text-sm font-bold mb-2 uppercase tracking-wider">
+                  Subject
+                </label>
               <input
                 type="text"
                 className="cyber-input"
@@ -243,9 +238,9 @@ export default function ContactSection() {
             </div>
             
             <div>
-              <label className="block text-cyber-gray text-sm font-bold mb-2 uppercase tracking-wider">
-                Message
-              </label>
+                <label className="block text-white/70 text-sm font-bold mb-2 uppercase tracking-wider">
+                  Message
+                </label>
               <textarea
                 rows={6}
                 className="cyber-input resize-none"

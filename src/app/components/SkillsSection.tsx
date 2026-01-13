@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+
 import { Code, Database, Palette, Cpu } from 'lucide-react'
 import { Skill } from '@/types'
 
@@ -32,7 +32,7 @@ const categoryColors = {
 }
 
 export default function SkillsSection() {
-  const [hoveredSkill, setHoveredSkill] = useState<string | null>(null)
+
 
   const skillsByCategory = skills.reduce((acc, skill) => {
     if (!acc[skill.category]) {
@@ -45,7 +45,7 @@ export default function SkillsSection() {
   return (
     <section className="py-20 px-4 relative">
       <div className="max-w-6xl mx-auto">
-        <h2 className="font-display text-4xl md:text-5xl font-bold text-center mb-16 glitch-effect" data-text="TECH SKILLS">
+        <h2 className="font-display text-4xl md:text-5xl font-bold text-center mb-16">
           <span className="text-cyber-cyan">TECH SKILLS</span>
         </h2>
 
@@ -70,13 +70,11 @@ export default function SkillsSection() {
                     <div
                       key={skill.name}
                       className="relative"
-                      onMouseEnter={() => setHoveredSkill(skill.name)}
-                      onMouseLeave={() => setHoveredSkill(null)}
                     >
                       <div className="flex justify-between items-center mb-2">
-                        <span className="font-mono-tech text-cyber-gray text-sm uppercase tracking-wider">
-                          {skill.name}
-                        </span>
+                      <span className="font-mono-tech text-white/70 text-sm uppercase tracking-wider">
+                        {skill.name}
+                      </span>
                         <span className="font-bold text-cyber-yellow">
                           {skill.level}%
                         </span>
@@ -85,19 +83,13 @@ export default function SkillsSection() {
                       <div className="relative h-3 bg-cyber-black/50 border border-cyber-cyan/30 overflow-hidden cyber-clip">
                         <div
                           className={`h-full bg-gradient-to-r from-cyber-cyan to-cyber-yellow transition-all duration-1000 ease-out relative overflow-hidden`}
-                          style={{
-                            width: hoveredSkill === skill.name ? `${skill.level}%` : '0%',
-                          }}
+                           style={{ width: `${skill.level}%` }}
                         >
                           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse" />
                         </div>
                       </div>
                       
-                      {hoveredSkill === skill.name && (
-                        <div className="absolute -top-8 right-0 bg-cyber-cyan text-cyber-black px-2 py-1 text-xs font-bold cyber-clip z-10">
-                          EXPERT LEVEL
-                        </div>
-                      )}
+
                     </div>
                   ))}
                 </div>
@@ -109,34 +101,34 @@ export default function SkillsSection() {
         {/* Skill Stats */}
         <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
           <div className="cyber-card text-center group">
-            <div className="text-3xl font-bold text-cyber-cyan mb-2 glitch-effect" data-text="10+">
+            <div className="text-3xl font-bold text-cyber-cyan mb-2">
               10+
             </div>
-            <div className="text-sm text-cyber-gray uppercase tracking-wider">
+            <div className="text-sm text-white/70 uppercase tracking-wider">
               Years Experience
             </div>
           </div>
           <div className="cyber-card text-center group">
-            <div className="text-3xl font-bold text-cyber-yellow mb-2 glitch-effect" data-text="50+">
+            <div className="text-3xl font-bold text-cyber-yellow mb-2">
               50+
             </div>
-            <div className="text-sm text-cyber-gray uppercase tracking-wider">
+            <div className="text-sm text-white/70 uppercase tracking-wider">
               Projects Completed
             </div>
           </div>
           <div className="cyber-card text-center group">
-            <div className="text-3xl font-bold text-cyber-red mb-2 glitch-effect" data-text="30+">
+            <div className="text-3xl font-bold text-cyber-red mb-2">
               30+
             </div>
-            <div className="text-sm text-cyber-gray uppercase tracking-wider">
+            <div className="text-sm text-white/70 uppercase tracking-wider">
               Happy Clients
             </div>
           </div>
           <div className="cyber-card text-center group">
-            <div className="text-3xl font-bold text-cyber-gray mb-2 glitch-effect" data-text="15+">
+            <div className="text-3xl font-bold text-cyber-gray mb-2">
               15+
             </div>
-            <div className="text-sm text-cyber-gray uppercase tracking-wider">
+            <div className="text-sm text-white/70 uppercase tracking-wider">
               Technologies
             </div>
           </div>

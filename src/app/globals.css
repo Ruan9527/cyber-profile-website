@@ -18,7 +18,7 @@
 /* Cyberpunk Vector Cursors */
 body {
   background-color: var(--cyber-black);
-  color: #e0e0e0;
+  color: white;
   overflow-x: hidden;
   cursor: url('data:image/svg+xml;utf8,<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 2L14 28L18 18L28 14L2 2Z" fill="%2300f0ff" stroke="black" stroke-width="1.5"/><circle cx="2" cy="2" r="1" fill="white"/></svg>'), auto;
 }
@@ -59,136 +59,7 @@ textarea,
   background: var(--cyber-yellow);
 }
 
-/* Glitch Animation Keyframes for Text */
-@keyframes glitch {
-  0% {
-    clip-path: inset(80% 0 0 0);
-    transform: translate(-2px, 2px);
-  }
 
-  20% {
-    clip-path: inset(10% 0 60% 0);
-    transform: translate(2px, -2px);
-  }
-
-  40% {
-    clip-path: inset(40% 0 40% 0);
-    transform: translate(-2px, 2px);
-  }
-
-  60% {
-    clip-path: inset(80% 0 5% 0);
-    transform: translate(2px, -2px);
-  }
-
-  80% {
-    clip-path: inset(10% 0 70% 0);
-    transform: translate(-2px, 2px);
-  }
-
-  100% {
-    clip-path: inset(30% 0 30% 0);
-    transform: translate(0);
-  }
-}
-
-.glitch-effect::before,
-.glitch-effect::after {
-  content: attr(data-text);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--cyber-black);
-}
-
-.glitch-effect::before {
-  left: 2px;
-  text-shadow: -1px 0 var(--cyber-red);
-  animation: glitch 2s infinite linear alternate-reverse;
-}
-
-.glitch-effect::after {
-  left: -2px;
-  text-shadow: -1px 0 var(--cyber-cyan);
-  animation: glitch 3s infinite linear alternate-reverse;
-}
-
-/* Image Glitch Animations */
-@keyframes glitch-anim-1 {
-  0% {
-    clip-path: inset(20% 0 80% 0);
-    transform: translate(-2px, 1px);
-  }
-
-  20% {
-    clip-path: inset(60% 0 10% 0);
-    transform: translate(2px, -1px);
-  }
-
-  40% {
-    clip-path: inset(40% 0 50% 0);
-    transform: translate(-2px, 2px);
-  }
-
-  60% {
-    clip-path: inset(80% 0 5% 0);
-    transform: translate(2px, -2px);
-  }
-
-  80% {
-    clip-path: inset(10% 0 70% 0);
-    transform: translate(-1px, 1px);
-  }
-
-  100% {
-    clip-path: inset(30% 0 30% 0);
-    transform: translate(1px, -1px);
-  }
-}
-
-@keyframes glitch-anim-2 {
-  0% {
-    clip-path: inset(10% 0 60% 0);
-    transform: translate(2px, -1px);
-  }
-
-  20% {
-    clip-path: inset(80% 0 5% 0);
-    transform: translate(-2px, 2px);
-  }
-
-  40% {
-    clip-path: inset(30% 0 20% 0);
-    transform: translate(1px, 1px);
-  }
-
-  60% {
-    clip-path: inset(15% 0 80% 0);
-    transform: translate(-1px, -2px);
-  }
-
-  80% {
-    clip-path: inset(55% 0 10% 0);
-    transform: translate(2px, 1px);
-  }
-
-  100% {
-    clip-path: inset(40% 0 30% 0);
-    transform: translate(-2px, -1px);
-  }
-}
-
-.group:hover .glitch-img-1 {
-  animation: glitch-anim-1 2.5s infinite linear alternate-reverse;
-  display: block;
-}
-
-.group:hover .glitch-img-2 {
-  animation: glitch-anim-2 3s infinite linear alternate-reverse;
-  display: block;
-}
 
 /* Scanline Overlay */
 .scanlines {

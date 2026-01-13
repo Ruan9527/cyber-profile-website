@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import Image from 'next/image'
 import { ExternalLink, Github, Code, Zap, Database, Palette } from 'lucide-react'
 import { Project } from '@/types'
 
@@ -8,21 +8,21 @@ const projects: Project[] = [
   {
     title: "AI Chat Application",
     description: "Real-time chat application with AI integration and cyberpunk UI design. Features include real-time messaging, AI-powered responses, and a futuristic interface.",
-    image: "/placeholder-project1.jpg",
+    image: "/placeholder-project1.jpg.svg",
     tech: ["React", "Node.js", "OpenAI", "Tailwind CSS"],
     link: "https://github.com/project1"
   },
   {
     title: "E-commerce Platform",
     description: "Full-stack online shopping platform with modern design, secure payments, inventory management, and analytics dashboard for sellers.",
-    image: "/placeholder-project2.jpg",
+    image: "/placeholder-project2.jpg.svg",
     tech: ["Next.js", "Stripe", "PostgreSQL", "Supabase"],
     link: "https://github.com/project2"
   },
   {
     title: "Data Visualization Dashboard",
     description: "Interactive data visualization tool with real-time updates, custom charts, and predictive analytics for business intelligence.",
-    image: "/placeholder-project3.jpg",
+    image: "/placeholder-project3.jpg.svg",
     tech: ["D3.js", "Python", "FastAPI", "WebSocket"],
     link: "https://github.com/project3"
   },
@@ -76,12 +76,11 @@ const getTechColor = (tech: string) => {
 }
 
 export default function ProjectsSection() {
-  const [hoveredProject, setHoveredProject] = useState<string | null>(null)
 
   return (
     <section className="py-20 px-4 relative bg-gradient-to-b from-cyber-black to-cyber-gray/5">
       <div className="max-w-6xl mx-auto">
-        <h2 className="font-display text-4xl md:text-5xl font-bold text-center mb-16 glitch-effect" data-text="FEATURED PROJECTS">
+        <h2 className="font-display text-4xl md:text-5xl font-bold text-center mb-16">
           <span className="text-cyber-cyan">FEATURED PROJECTS</span>
         </h2>
 
@@ -90,30 +89,18 @@ export default function ProjectsSection() {
             <div
               key={project.title}
               className="cyber-card group relative overflow-hidden cursor-pointer"
-              onMouseEnter={() => setHoveredProject(project.title)}
-              onMouseLeave={() => setHoveredProject(null)}
+
             >
               {/* Project Image */}
               <div className="relative h-48 mb-6 overflow-hidden cyber-clip bg-cyber-gray/20">
-                <img
+                 <Image
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  width={400}
+                  height={300}
+                  className="w-full h-full object-cover transition-transform duration-500"
                 />
-                {hoveredProject === project.title && (
-                  <>
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="absolute inset-0 w-full h-full object-cover opacity-50 animate-glitch-img-1"
-                    />
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="absolute inset-0 w-full h-full object-cover opacity-30 animate-glitch-img-2"
-                    />
-                  </>
-                )}
+
                 <div className="absolute inset-0 bg-gradient-to-t from-cyber-black/80 to-transparent" />
                 <div className="absolute top-4 right-4 flex gap-2">
                   <a
@@ -136,7 +123,7 @@ export default function ProjectsSection() {
                   {project.title}
                 </h3>
                 
-                <p className="text-sm text-cyber-gray leading-relaxed line-clamp-3">
+                <p className="text-sm text-white/70 leading-relaxed line-clamp-3">
                   {project.description}
                 </p>
 
@@ -158,10 +145,7 @@ export default function ProjectsSection() {
                 </div>
               </div>
 
-              {/* Hover Effect */}
-              {hoveredProject === project.title && (
-                <div className="absolute inset-0 bg-cyber-cyan/5 border border-cyber-cyan/20 pointer-events-none" />
-              )}
+
             </div>
           ))}
         </div>

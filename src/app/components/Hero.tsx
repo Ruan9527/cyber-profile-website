@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import Image from 'next/image'
 import { Github, Linkedin, Twitter, Mail, Download } from 'lucide-react'
 import { PersonalInfo } from '@/types'
 
@@ -8,7 +8,7 @@ const personalInfo: PersonalInfo = {
   name: "Your Name",
   title: "Full Stack Developer",
   bio: "Passionate about creating amazing web experiences with cyberpunk aesthetics and cutting-edge technology.",
-  avatar: "/placeholder-avatar.jpg",
+  avatar: "/placeholder-avatar.svg",
   email: "your.email@example.com",
   github: "https://github.com/yourusername",
   linkedin: "https://linkedin.com/in/yourprofile",
@@ -16,7 +16,7 @@ const personalInfo: PersonalInfo = {
 }
 
 export default function Hero() {
-  const [isHovered, setIsHovered] = useState(false)
+
 
   return (
     <section className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden">
@@ -31,27 +31,14 @@ export default function Hero() {
       <div className="relative z-10 max-w-6xl mx-auto text-center">
         <div className="mb-8">
           <div className="relative inline-block group">
-            <img
+            <Image
               src={personalInfo.avatar}
               alt={personalInfo.name}
-              className="w-40 h-40 rounded-full border-4 border-cyber-cyan shadow-2xl shadow-cyber-cyan/50 transition-transform duration-300 group-hover:scale-110"
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
+              width={160}
+              height={160}
+              className="w-40 h-40 rounded-full border-4 border-cyber-cyan shadow-2xl shadow-cyber-cyan/50 transition-transform duration-300"
             />
-            {isHovered && (
-              <>
-                <img
-                  src={personalInfo.avatar}
-                  alt={personalInfo.name}
-                  className="absolute inset-0 w-40 h-40 rounded-full border-4 border-cyber-red opacity-50 animate-glitch-img-1"
-                />
-                <img
-                  src={personalInfo.avatar}
-                  alt={personalInfo.name}
-                  className="absolute inset-0 w-40 h-40 rounded-full border-4 border-cyber-yellow opacity-50 animate-glitch-img-2"
-                />
-              </>
-            )}
+
           </div>
         </div>
 
@@ -63,7 +50,7 @@ export default function Hero() {
           {personalInfo.title}
         </h2>
 
-        <p className="text-lg md:text-xl text-cyber-gray mb-12 max-w-3xl mx-auto leading-relaxed">
+        <p className="text-lg md:text-xl text-white mb-12 max-w-3xl mx-auto leading-relaxed">
           {personalInfo.bio}
         </p>
 
