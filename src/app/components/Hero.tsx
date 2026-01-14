@@ -5,11 +5,11 @@ import { Github, Linkedin, Twitter, Mail, Download } from 'lucide-react'
 import { PersonalInfo } from '@/types'
 
 const personalInfo: PersonalInfo = {
-  name: "Your Name",
-  title: "Full Stack Developer",
+  name: "圆周率的达",
+  title: "Bunny Developer",
   bio: "Passionate about creating amazing web experiences with cyberpunk aesthetics and cutting-edge technology.",
-  avatar: "/placeholder-avatar.svg",
-  email: "your.email@example.com",
+  avatar: "/avatar.jpg",
+  email: "ruanlong9527@gmail.com",
   github: "https://github.com/yourusername",
   linkedin: "https://linkedin.com/in/yourprofile",
   twitter: "https://twitter.com/yourusername"

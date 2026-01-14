@@ -47,10 +47,7 @@ export default function MessageBoard() {
     // Load messages from Supabase or fallback to mock data
     const loadMessages = async () => {
       // Check if Supabase is properly configured
-      const isSupabaseConfigured = 
-        process.env.NEXT_PUBLIC_SUPABASE_URL && 
-        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY &&
-        process.env.NEXT_PUBLIC_SUPABASE_URL !== 'https://placeholder.supabase.co'
+      const isSupabaseConfigured = supabase !== null
 
       if (!isSupabaseConfigured) {
         // Use mock data if Supabase is not configured
@@ -93,10 +90,7 @@ export default function MessageBoard() {
     setSubmitStatus('idle')
 
     // Check if Supabase is properly configured
-    const isSupabaseConfigured = 
-      process.env.NEXT_PUBLIC_SUPABASE_URL && 
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY &&
-      process.env.NEXT_PUBLIC_SUPABASE_URL !== 'https://placeholder.supabase.co'
+    const isSupabaseConfigured = supabase !== null
 
     try {
       if (isSupabaseConfigured) {
