@@ -3,6 +3,7 @@
 
 import { Code, Database, Palette, Cpu } from 'lucide-react'
 import { Skill } from '@/types'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 const skills: Skill[] = [
   { name: "JavaScript", level: 90, category: "frontend" },
@@ -32,7 +33,7 @@ const categoryColors = {
 }
 
 export default function SkillsSection() {
-
+  const { t } = useLanguage()
 
   const skillsByCategory = skills.reduce((acc, skill) => {
     if (!acc[skill.category]) {
@@ -47,7 +48,7 @@ export default function SkillsSection() {
       <div className="max-w-6xl mx-auto">
         <h2 className="font-display text-4xl md:text-5xl font-bold text-center mb-16"
             style={{ textShadow: '0 0 20px rgba(0, 240, 255, 0.5)' }}>
-          <span className="text-cyber-cyan">TECH SKILLS</span>
+          <span className="text-cyber-cyan">{t('skills.title')}</span>
         </h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -113,7 +114,7 @@ export default function SkillsSection() {
               10+
             </div>
             <div className="text-sm text-white/70 uppercase tracking-wider">
-              Years Experience
+              {t('skills.years_experience')}
             </div>
           </div>
           <div className="cyber-card text-center group hover:scale-105 transition-transform">
@@ -122,7 +123,7 @@ export default function SkillsSection() {
               50+
             </div>
             <div className="text-sm text-white/70 uppercase tracking-wider">
-              Projects Completed
+              {t('skills.projects_completed')}
             </div>
           </div>
           <div className="cyber-card text-center group hover:scale-105 transition-transform">
@@ -131,7 +132,7 @@ export default function SkillsSection() {
               30+
             </div>
             <div className="text-sm text-white/70 uppercase tracking-wider">
-              Happy Clients
+              {t('skills.happy_clients')}
             </div>
           </div>
           <div className="cyber-card text-center group hover:scale-105 transition-transform">
@@ -140,7 +141,7 @@ export default function SkillsSection() {
               15+
             </div>
             <div className="text-sm text-white/70 uppercase tracking-wider">
-              Technologies
+              {t('skills.technologies')}
             </div>
           </div>
         </div>

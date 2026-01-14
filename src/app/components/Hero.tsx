@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { Github, Linkedin, Twitter, Mail, Download } from 'lucide-react'
 import { PersonalInfo } from '@/types'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 const personalInfo: PersonalInfo = {
   name: "圆周率的达",
@@ -16,7 +17,7 @@ const personalInfo: PersonalInfo = {
 }
 
 export default function Hero() {
-
+  const { t } = useLanguage()
 
   return (
     <section className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden">
@@ -60,14 +61,14 @@ export default function Hero() {
             style={{
               textShadow: '0 0 15px rgba(252, 238, 10, 0.5)'
             }}>
-          {personalInfo.title}
+          {t('hero.title')}
         </h2>
 
         <p className="text-lg md:text-xl text-white mb-12 max-w-3xl mx-auto leading-relaxed"
            style={{
              textShadow: '0 0 10px rgba(255, 255, 255, 0.3)'
            }}>
-          {personalInfo.bio}
+          {t('hero.bio')}
         </p>
 
         {/* Social Links */}
@@ -79,7 +80,7 @@ export default function Hero() {
             className="cyber-button flex items-center gap-2 group"
           >
             <Github className="w-5 h-5 group-hover:animate-pulse" />
-            GitHub
+            {t('hero.github')}
           </a>
           <a
             href={personalInfo.linkedin}
@@ -88,7 +89,7 @@ export default function Hero() {
             className="cyber-button flex items-center gap-2 group"
           >
             <Linkedin className="w-5 h-5 group-hover:animate-pulse" />
-            LinkedIn
+            {t('hero.linkedin')}
           </a>
           <a
             href={personalInfo.twitter}
@@ -97,21 +98,21 @@ export default function Hero() {
             className="cyber-button flex items-center gap-2 group"
           >
             <Twitter className="w-5 h-5 group-hover:animate-pulse" />
-            Twitter
+            {t('hero.twitter')}
           </a>
           <a
             href={`mailto:${personalInfo.email}`}
             className="cyber-button flex items-center gap-2 group"
           >
             <Mail className="w-5 h-5 group-hover:animate-pulse" />
-            Contact
+            {t('hero.contact')}
           </a>
         </div>
 
         {/* Download Resume Button */}
         <button className="cyber-button bg-cyber-red border-cyber-red hover:bg-cyber-yellow hover:border-cyber-yellow flex items-center gap-3 mx-auto text-lg px-8">
           <Download className="w-6 h-6" />
-          Download Resume
+          {t('hero.download_resume')}
         </button>
       </div>
 

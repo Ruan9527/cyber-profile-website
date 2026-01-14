@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { ExternalLink, Github, Code, Zap, Database, Palette } from 'lucide-react'
 import { Project } from '@/types'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 const projects: Project[] = [
   {
@@ -76,13 +77,14 @@ const getTechColor = (tech: string) => {
 }
 
 export default function ProjectsSection() {
+  const { t } = useLanguage()
 
   return (
     <section className="py-20 px-4 relative bg-gradient-to-b from-cyber-black via-cyber-gray/10 to-cyber-black">
       <div className="max-w-6xl mx-auto">
         <h2 className="font-display text-4xl md:text-5xl font-bold text-center mb-16"
             style={{ textShadow: '0 0 20px rgba(0, 240, 255, 0.5)' }}>
-          <span className="text-cyber-cyan">FEATURED PROJECTS</span>
+          <span className="text-cyber-cyan">{t('projects.title')}</span>
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -159,7 +161,7 @@ export default function ProjectsSection() {
         {/* View All Projects Button */}
         <div className="text-center mt-12">
           <button className="cyber-button bg-cyber-red border-cyber-red hover:bg-cyber-yellow hover:border-cyber-yellow">
-            View All Projects
+            {t('projects.view_all')}
           </button>
         </div>
       </div>

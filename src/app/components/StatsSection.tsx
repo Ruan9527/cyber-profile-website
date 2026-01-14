@@ -3,8 +3,10 @@
 import { useState, useEffect } from 'react'
 import { Users, MessageSquare, Download, TrendingUp, Eye, Activity, Zap, Clock } from 'lucide-react'
 import { Stats } from '@/types'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function StatsSection() {
+  const { t } = useLanguage()
   const [stats, setStats] = useState<Stats>({
     totalVisitors: 1247,
     totalMessages: 89,
@@ -81,7 +83,7 @@ export default function StatsSection() {
       <div className="max-w-6xl mx-auto">
         <h2 className="font-display text-4xl md:text-5xl font-bold text-center mb-16"
             style={{ textShadow: '0 0 20px rgba(0, 240, 255, 0.5)' }}>
-          <span className="text-cyber-cyan">ANALYTICS DASHBOARD</span>
+          <span className="text-cyber-cyan">{t('stats.title')}</span>
         </h2>
 
         {/* Main Stats Grid */}

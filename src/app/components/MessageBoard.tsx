@@ -4,8 +4,10 @@ import { useState, useEffect } from 'react'
 import { Send, MessageCircle, User, Mail, Clock } from 'lucide-react'
 import { Message } from '@/types'
 import { supabase } from '@/lib/supabase'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function MessageBoard() {
+  const { t } = useLanguage()
   const [messages, setMessages] = useState<Message[]>([])
   const [formData, setFormData] = useState({
     name: '',
@@ -159,22 +161,24 @@ export default function MessageBoard() {
   return (
     <section className="py-20 px-4 relative bg-gradient-to-b from-cyber-gray/5 to-cyber-black">
       <div className="max-w-4xl mx-auto">
-        <h2 className="font-display text-4xl md:text-5xl font-bold text-center mb-16">
-          <span className="text-cyber-cyan">GUEST BOOK</span>
+        <h2 className="font-display text-4xl md:text-5xl font-bold text-center mb-16"
+            style={{ textShadow: '0 0 20px rgba(0, 240, 255, 0.5)' }}>
+          <span className="text-cyber-cyan">{t('message_board.title')}</span>
         </h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Message Form */}
           <div className="cyber-card">
-            <h3 className="font-display text-2xl font-bold text-cyber-yellow mb-6 flex items-center gap-3">
+            <h3 className="font-display text-2xl font-bold text-cyber-yellow mb-6 flex items-center gap-3"
+                style={{ textShadow: '0 0 15px rgba(252, 238, 10, 0.4)' }}>
               <MessageCircle className="w-6 h-6" />
-              Leave a Message
+              {t('message_board.subtitle')}
             </h3>
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label className="block text-white/70 text-sm font-bold mb-2 uppercase tracking-wider">
-                  Name
+                  {t('message_board.name')}
                 </label>
                 <div className="relative">
                   <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-cyber-gray" />
@@ -184,14 +188,14 @@ export default function MessageBoard() {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className="cyber-input pl-10"
-                    placeholder="Your name"
+                    placeholder={t('message_board.placeholder_name')}
                   />
                 </div>
               </div>
 
               <div>
                 <label className="block text-white/70 text-sm font-bold mb-2 uppercase tracking-wider">
-                  Email
+                  {t('message_board.email')}
                 </label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-cyber-gray" />
@@ -201,14 +205,14 @@ export default function MessageBoard() {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className="cyber-input pl-10"
-                    placeholder="your.email@example.com"
+                    placeholder={t('message_board.placeholder_email')}
                   />
                 </div>
               </div>
 
               <div>
                 <label className="block text-white/70 text-sm font-bold mb-2 uppercase tracking-wider">
-                  Message
+                  {t('message_board.message')}
                 </label>
                 <textarea
                   required
@@ -216,7 +220,7 @@ export default function MessageBoard() {
                   onChange={(e) => setFormData({ ...formData, content: e.target.value })}
                   rows={4}
                   className="cyber-input resize-none"
-                  placeholder="Share your thoughts..."
+                  placeholder={t('message_board.placeholder_message')}
                 />
               </div>
 
@@ -226,18 +230,18 @@ export default function MessageBoard() {
                 className="cyber-button w-full flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Send className="w-5 h-5" />
-                {isSubmitting ? 'Sending...' : 'Send Message'}
+                {isSubmitting ? t('message_board.sending') : t('message_board.send')}
               </button>
 
               {submitStatus === 'success' && (
                 <div className="p-4 bg-cyber-cyan/10 border-2 border-cyber-cyan/50 text-cyber-cyan text-center font-bold">
-                  Message sent successfully! 🎉
+                  {t('message_board.success')}
                 </div>
               )}
-              
+
               {submitStatus === 'error' && (
                 <div className="p-4 bg-cyber-red/10 border-2 border-cyber-red/50 text-cyber-red text-center font-bold">
-                  Error sending message. Please try again.
+                  {t('message_board.error')}
                 </div>
               )}
             </form>
@@ -245,14 +249,15 @@ export default function MessageBoard() {
 
           {/* Messages Display */}
           <div className="space-y-4 max-h-96 overflow-y-auto pr-2">
-            <h3 className="font-display text-2xl font-bold text-cyber-yellow mb-6 flex items-center gap-3">
+            <h3 className="font-display text-2xl font-bold text-cyber-yellow mb-6 flex items-center gap-3"
+                style={{ textShadow: '0 0 15px rgba(252, 238, 10, 0.4)' }}>
               <Clock className="w-6 h-6" />
-              Recent Messages
+              {t('message_board.recent_messages')}
             </h3>
 
             {messages.length === 0 ? (
               <div className="cyber-card text-center py-8">
-                <p className="text-white/70">No messages yet. Be the first to leave one!</p>
+                <p className="text-white/70">{t('message_board.no_messages')}</p>
               </div>
             ) : (
               messages.map((message) => (
@@ -280,20 +285,22 @@ export default function MessageBoard() {
         <div className="mt-12 text-center">
           <div className="inline-flex items-center gap-8 cyber-card px-8 py-4">
             <div className="text-center">
-              <div className="text-2xl font-bold text-cyber-cyan mb-2">
+              <div className="text-2xl font-bold text-cyber-cyan mb-2"
+                  style={{ textShadow: '0 0 15px rgba(0, 240, 255, 0.5)' }}>
                 {messages.length}
               </div>
               <div className="text-xs text-white/60 uppercase tracking-wider">
-                Total Messages
+                {t('message_board.total_messages')}
               </div>
             </div>
             <div className="w-px h-8 bg-cyber-gray/30" />
             <div className="text-center">
-              <div className="text-2xl font-bold text-cyber-yellow">
+              <div className="text-2xl font-bold text-cyber-yellow"
+                  style={{ textShadow: '0 0 15px rgba(252, 238, 10, 0.5)' }}>
                 24/7
               </div>
               <div className="text-xs text-white/60 uppercase tracking-wider">
-                Active Monitor
+                {t('message_board.active_monitor')}
               </div>
             </div>
           </div>
