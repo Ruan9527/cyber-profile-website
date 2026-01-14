@@ -78,9 +78,10 @@ const getTechColor = (tech: string) => {
 export default function ProjectsSection() {
 
   return (
-    <section className="py-20 px-4 relative bg-gradient-to-b from-cyber-black to-cyber-gray/5">
+    <section className="py-20 px-4 relative bg-gradient-to-b from-cyber-black via-cyber-gray/10 to-cyber-black">
       <div className="max-w-6xl mx-auto">
-        <h2 className="font-display text-4xl md:text-5xl font-bold text-center mb-16">
+        <h2 className="font-display text-4xl md:text-5xl font-bold text-center mb-16"
+            style={{ textShadow: '0 0 20px rgba(0, 240, 255, 0.5)' }}>
           <span className="text-cyber-cyan">FEATURED PROJECTS</span>
         </h2>
 
@@ -92,38 +93,42 @@ export default function ProjectsSection() {
 
             >
               {/* Project Image */}
-              <div className="relative h-48 mb-6 overflow-hidden cyber-clip bg-cyber-gray/20">
+              <div className="relative h-64 mb-6 overflow-hidden cyber-clip bg-cyber-gray/20 group-hover:border-cyber-cyan/60 transition-all duration-300"
+                   style={{ boxShadow: '0 0 20px rgba(0, 240, 255, 0.1)' }}>
                  <Image
                   src={project.image}
                   alt={project.title}
                   width={400}
                   height={300}
-                  className="w-full h-full object-cover transition-transform duration-500"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
 
-                <div className="absolute inset-0 bg-gradient-to-t from-cyber-black/80 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-cyber-black/90 to-transparent" />
                 <div className="absolute top-4 right-4 flex gap-2">
                   <a
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 bg-cyber-cyan/20 border border-cyber-cyan/50 rounded-lg hover:bg-cyber-cyan/30 transition-colors"
+                    className="p-3 bg-cyber-cyan/30 border border-cyber-cyan/60 rounded-lg hover:bg-cyber-cyan/50 transition-all duration-300 hover:scale-110"
+                    style={{ boxShadow: '0 0 10px rgba(0, 240, 255, 0.3)' }}
                   >
-                    <Github className="w-4 h-4 text-cyber-cyan" />
+                    <Github className="w-5 h-5 text-cyber-cyan" />
                   </a>
-                  <div className="p-2 bg-cyber-yellow/20 border border-cyber-yellow/50 rounded-lg hover:bg-cyber-yellow/30 transition-colors">
-                    <ExternalLink className="w-4 h-4 text-cyber-yellow" />
+                  <div className="p-3 bg-cyber-yellow/30 border border-cyber-yellow/60 rounded-lg hover:bg-cyber-yellow/50 transition-all duration-300 hover:scale-110"
+                       style={{ boxShadow: '0 0 10px rgba(252, 238, 10, 0.3)' }}>
+                    <ExternalLink className="w-5 h-5 text-cyber-yellow" />
                   </div>
                 </div>
               </div>
 
               {/* Project Content */}
               <div className="space-y-4">
-                <h3 className="font-display text-xl font-bold text-cyber-cyan group-hover:text-cyber-yellow transition-colors">
+                <h3 className="font-display text-xl font-bold text-cyber-cyan group-hover:text-cyber-yellow transition-colors"
+                    style={{ textShadow: '0 0 10px rgba(0, 240, 255, 0.3)' }}>
                   {project.title}
                 </h3>
-                
-                <p className="text-sm text-white/70 leading-relaxed line-clamp-3">
+
+                <p className="text-sm text-white/80 leading-relaxed line-clamp-3">
                   {project.description}
                 </p>
 
@@ -132,11 +137,12 @@ export default function ProjectsSection() {
                   {project.tech.map((tech) => (
                     <span
                       key={tech}
-                      className={`px-3 py-1 text-xs font-bold text-cyber-black bg-cyber-cyan/10 border border-cyber-cyan/30 uppercase tracking-wider`}
+                      className={`px-3 py-1 text-xs font-bold bg-cyber-cyan/20 border border-cyber-cyan/50 uppercase tracking-wider hover:bg-cyber-cyan/30 transition-all duration-300`}
                       style={{
-                        backgroundColor: `var(--${getTechColor(tech)})20`,
-                        borderColor: `var(--${getTechColor(tech)})50`,
+                        backgroundColor: `var(--${getTechColor(tech)})25`,
+                        borderColor: `var(--${getTechColor(tech)})60`,
                         color: `var(--${getTechColor(tech)})`,
+                        boxShadow: `0 0 10px rgba(0, 240, 255, 0.1)`
                       }}
                     >
                       {tech}

@@ -77,9 +77,10 @@ export default function StatsSection() {
   ]
 
   return (
-    <section className="py-20 px-4 relative">
+    <section className="py-20 px-4 relative bg-gradient-to-b from-cyber-black to-cyber-gray/10">
       <div className="max-w-6xl mx-auto">
-        <h2 className="font-display text-4xl md:text-5xl font-bold text-center mb-16">
+        <h2 className="font-display text-4xl md:text-5xl font-bold text-center mb-16"
+            style={{ textShadow: '0 0 20px rgba(0, 240, 255, 0.5)' }}>
           <span className="text-cyber-cyan">ANALYTICS DASHBOARD</span>
         </h2>
 
@@ -93,37 +94,42 @@ export default function StatsSection() {
                 className={`cyber-card group relative overflow-hidden ${isAnimating ? 'animate-pulse' : ''}`}
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                {/* Glitch overlay on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-transparent via-cyber-cyan/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                
+                {/* Enhanced glitch overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-transparent via-cyber-cyan/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
                 <div className="relative z-10">
                   <div className="flex items-center justify-between mb-4">
-                    <div className={`p-3 bg-${stat.color}/10 border-2 border-${stat.color}/30 rounded-lg group-hover:scale-110 transition-transform`}>
-                      <Icon className={`w-6 h-6 text-${stat.color}`} />
+                    <div className={`p-4 bg-${stat.color}/15 border-2 border-${stat.color}/50 rounded-lg group-hover:scale-110 transition-transform`}
+                         style={{ boxShadow: `0 0 15px rgba(0, 240, 255, 0.3)` }}>
+                      <Icon className={`w-7 h-7 text-${stat.color}`} />
                     </div>
-                    <div className="flex items-center gap-1 text-xs font-bold text-green-500">
+                    <div className="flex items-center gap-1 text-xs font-bold text-green-500 bg-green-500/10 px-2 py-1 rounded"
+                         style={{ boxShadow: '0 0 10px rgba(34, 197, 94, 0.2)' }}>
                       <TrendingUp className="w-3 h-3" />
                       {stat.change}
                     </div>
                   </div>
-                  
+
                   <div className="mb-2">
-                    <div className="text-3xl font-bold text-cyber-cyan mb-2">
+                    <div className="text-4xl font-bold text-cyber-cyan mb-2 group-hover:scale-105 transition-transform"
+                        style={{ textShadow: '0 0 20px rgba(0, 240, 255, 0.5)' }}>
                       {stat.value}
                     </div>
                   </div>
-                  
-                  <div className="text-sm font-bold text-cyber-yellow mb-1">
+
+                  <div className="text-sm font-bold text-cyber-yellow mb-1"
+                      style={{ textShadow: '0 0 10px rgba(252, 238, 10, 0.3)' }}>
                     {stat.title}
                   </div>
-                  
+
                   <div className="text-xs text-white/70 uppercase tracking-wider">
                     {stat.description}
                   </div>
                 </div>
 
-                {/* Animated border effect */}
-                <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-cyber-cyan to-transparent animate-pulse" />
+                {/* Enhanced animated border effect */}
+                <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-cyber-cyan to-transparent animate-pulse"
+                     style={{ boxShadow: '0 0 10px rgba(0, 240, 255, 0.5)' }} />
               </div>
             )
           })}
@@ -133,11 +139,12 @@ export default function StatsSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Activity Chart */}
           <div className="cyber-card">
-            <h3 className="font-display text-xl font-bold text-cyber-yellow mb-6 flex items-center gap-3">
+            <h3 className="font-display text-xl font-bold text-cyber-yellow mb-6 flex items-center gap-3"
+                style={{ textShadow: '0 0 15px rgba(252, 238, 10, 0.4)' }}>
               <Activity className="w-6 h-6" />
               24-Hour Activity
             </h3>
-            
+
             <div className="space-y-4">
               {activityData.map((data, index) => (
                 <div key={data.time} className="relative">
@@ -147,19 +154,22 @@ export default function StatsSection() {
                     </span>
                     <div className="flex items-center gap-4">
                       <div className="flex items-center gap-1">
-                        <Eye className="w-3 h-3 text-cyber-cyan" />
+                        <Eye className="w-4 h-4 text-cyber-cyan" />
                         <span className="text-xs text-cyber-cyan font-bold">{data.visitors}</span>
                       </div>
                       <div className="flex items-center gap-1">
-                        <MessageSquare className="w-3 h-3 text-cyber-yellow" />
+                        <MessageSquare className="w-4 h-4 text-cyber-yellow" />
                         <span className="text-xs text-cyber-yellow font-bold">{data.messages}</span>
                       </div>
                     </div>
                   </div>
-                  
-                  <div className="relative h-2 bg-cyber-black/50 border border-cyber-cyan/30 overflow-hidden">
+
+                  <div className="relative h-3 bg-cyber-black/50 border border-cyber-cyan/40 overflow-hidden">
                     <div className="absolute inset-y-0 left-0 bg-gradient-to-r from-cyber-cyan to-cyber-yellow transition-all duration-1000"
-                         style={{ width: `${(data.visitors / 60) * 100}%` }} />
+                         style={{
+                           width: `${(data.visitors / 60) * 100}%`,
+                           boxShadow: '0 0 10px rgba(0, 240, 255, 0.5)'
+                         }} />
                   </div>
                 </div>
               ))}

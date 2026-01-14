@@ -43,9 +43,10 @@ export default function SkillsSection() {
   }, {} as Record<string, Skill[]>)
 
   return (
-    <section className="py-20 px-4 relative">
+    <section className="py-20 px-4 relative bg-gradient-to-b from-cyber-black to-cyber-gray/10">
       <div className="max-w-6xl mx-auto">
-        <h2 className="font-display text-4xl md:text-5xl font-bold text-center mb-16">
+        <h2 className="font-display text-4xl md:text-5xl font-bold text-center mb-16"
+            style={{ textShadow: '0 0 20px rgba(0, 240, 255, 0.5)' }}>
           <span className="text-cyber-cyan">TECH SKILLS</span>
         </h2>
 
@@ -57,10 +58,12 @@ export default function SkillsSection() {
             return (
               <div key={category} className="cyber-card group">
                 <div className="flex items-center gap-3 mb-6">
-                  <div className={`p-3 bg-${colorClass}/10 border-2 border-${colorClass}/50 rounded-lg`}>
-                    <Icon className={`w-6 h-6 text-${colorClass}`} />
+                  <div className={`p-4 bg-${colorClass}/15 border-2 border-${colorClass}/60 rounded-lg group-hover:scale-110 transition-transform`}
+                       style={{ boxShadow: `0 0 15px rgba(0, 240, 255, 0.3)` }}>
+                    <Icon className={`w-7 h-7 text-${colorClass}`} />
                   </div>
-                  <h3 className="font-display text-2xl font-bold text-cyber-cyan capitalize">
+                  <h3 className="font-display text-2xl font-bold text-cyber-cyan capitalize"
+                      style={{ textShadow: '0 0 15px rgba(0, 240, 255, 0.4)' }}>
                     {category}
                   </h3>
                 </div>
@@ -75,20 +78,24 @@ export default function SkillsSection() {
                       <span className="font-mono-tech text-white/70 text-sm uppercase tracking-wider">
                         {skill.name}
                       </span>
-                        <span className="font-bold text-cyber-yellow">
+                        <span className="font-bold text-cyber-yellow"
+                              style={{ textShadow: '0 0 10px rgba(252, 238, 10, 0.3)' }}>
                           {skill.level}%
                         </span>
                       </div>
-                      
-                      <div className="relative h-3 bg-cyber-black/50 border border-cyber-cyan/30 overflow-hidden cyber-clip">
+
+                      <div className="relative h-4 bg-cyber-black/50 border border-cyber-cyan/40 overflow-hidden cyber-clip">
                         <div
                           className={`h-full bg-gradient-to-r from-cyber-cyan to-cyber-yellow transition-all duration-1000 ease-out relative overflow-hidden`}
-                           style={{ width: `${skill.level}%` }}
+                           style={{
+                             width: `${skill.level}%`,
+                             boxShadow: '0 0 10px rgba(0, 240, 255, 0.5)'
+                           }}
                         >
                           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse" />
                         </div>
                       </div>
-                      
+
 
                     </div>
                   ))}
@@ -100,32 +107,36 @@ export default function SkillsSection() {
 
         {/* Skill Stats */}
         <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
-          <div className="cyber-card text-center group">
-            <div className="text-3xl font-bold text-cyber-cyan mb-2">
+          <div className="cyber-card text-center group hover:scale-105 transition-transform">
+            <div className="text-4xl font-bold text-cyber-cyan mb-2 group-hover:scale-110 transition-transform"
+                style={{ textShadow: '0 0 20px rgba(0, 240, 255, 0.6)' }}>
               10+
             </div>
             <div className="text-sm text-white/70 uppercase tracking-wider">
               Years Experience
             </div>
           </div>
-          <div className="cyber-card text-center group">
-            <div className="text-3xl font-bold text-cyber-yellow mb-2">
+          <div className="cyber-card text-center group hover:scale-105 transition-transform">
+            <div className="text-4xl font-bold text-cyber-yellow mb-2 group-hover:scale-110 transition-transform"
+                style={{ textShadow: '0 0 20px rgba(252, 238, 10, 0.6)' }}>
               50+
             </div>
             <div className="text-sm text-white/70 uppercase tracking-wider">
               Projects Completed
             </div>
           </div>
-          <div className="cyber-card text-center group">
-            <div className="text-3xl font-bold text-cyber-red mb-2">
+          <div className="cyber-card text-center group hover:scale-105 transition-transform">
+            <div className="text-4xl font-bold text-cyber-red mb-2 group-hover:scale-110 transition-transform"
+                style={{ textShadow: '0 0 20px rgba(255, 0, 60, 0.6)' }}>
               30+
             </div>
             <div className="text-sm text-white/70 uppercase tracking-wider">
               Happy Clients
             </div>
           </div>
-          <div className="cyber-card text-center group">
-            <div className="text-3xl font-bold text-cyber-gray mb-2">
+          <div className="cyber-card text-center group hover:scale-105 transition-transform">
+            <div className="text-4xl font-bold text-cyber-gray mb-2 group-hover:scale-110 transition-transform"
+                style={{ textShadow: '0 0 20px rgba(255, 255, 255, 0.4)' }}>
               15+
             </div>
             <div className="text-sm text-white/70 uppercase tracking-wider">

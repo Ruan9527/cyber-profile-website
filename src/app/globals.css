@@ -99,25 +99,33 @@ textarea,
 .cyber-button {
   @apply relative px-6 py-3 font-bold text-cyber-black bg-cyber-cyan border-2 border-cyber-cyan transition-all duration-300;
   clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.4), 0 0 30px rgba(0, 240, 255, 0.2);
 }
 
 .cyber-button:hover {
   @apply bg-cyber-yellow text-cyber-black border-cyber-yellow;
   transform: translate(-2px, -2px);
-  box-shadow: 2px 2px 0 var(--cyber-red);
+  box-shadow: 2px 2px 0 var(--cyber-red), 0 0 25px rgba(252, 238, 10, 0.5), 0 0 50px rgba(252, 238, 10, 0.3);
 }
 
 .cyber-input {
-  @apply w-full px-4 py-3 bg-cyber-black/50 border-2 border-cyber-cyan text-cyber-cyan placeholder-cyber-gray focus:outline-none focus:border-cyber-yellow transition-colors;
+  @apply w-full px-4 py-3 bg-cyber-black/70 border-2 border-cyber-cyan text-white placeholder-cyber-gray focus:outline-none focus:border-cyber-yellow transition-colors;
   clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 100%, 10px 100%);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.1);
+}
+
+.cyber-input:focus {
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.3), 0 0 40px rgba(0, 240, 255, 0.1);
 }
 
 .cyber-card {
-  @apply p-6 bg-cyber-black/80 border border-cyber-cyan/30 backdrop-blur-sm transition-all duration-300;
+  @apply p-6 bg-cyber-black/60 border border-cyber-cyan/40 backdrop-blur-sm transition-all duration-300;
   clip-path: polygon(0 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%);
+  box-shadow: 0 4px 20px rgba(0, 240, 255, 0.1), 0 0 30px rgba(0, 240, 255, 0.05);
 }
 
 .cyber-card:hover {
-  @apply border-cyber-cyan/60 shadow-lg shadow-cyber-cyan/20;
-  transform: translateY(-2px);
+  @apply border-cyber-cyan/80;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0, 240, 255, 0.25), 0 0 40px rgba(0, 240, 255, 0.15), 0 0 60px rgba(0, 240, 255, 0.08);
 }

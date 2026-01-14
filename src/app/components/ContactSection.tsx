@@ -57,9 +57,10 @@ export default function ContactSection() {
   ]
 
   return (
-    <section className="py-20 px-4 relative bg-gradient-to-b from-cyber-black to-cyber-gray/10">
+    <section className="py-20 px-4 relative bg-gradient-to-b from-cyber-black via-cyber-gray/10 to-cyber-black">
       <div className="max-w-6xl mx-auto">
-        <h2 className="font-display text-4xl md:text-5xl font-bold text-center mb-16">
+        <h2 className="font-display text-4xl md:text-5xl font-bold text-center mb-16"
+            style={{ textShadow: '0 0 20px rgba(0, 240, 255, 0.5)' }}>
           <span className="text-cyber-cyan">CONNECT</span>
         </h2>
 
@@ -72,45 +73,47 @@ export default function ContactSection() {
                 Get In Touch
               </h3>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {contacts.map((contact) => {
-                  const Icon = contact.icon
-                  return (
-                    <a
-                      key={contact.label}
-                      href={contact.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`cyber-card p-4 group relative overflow-hidden cursor-pointer ${
-                        hoveredContact === contact.label ? 'border-cyber-cyan/60' : ''
-                      }`}
-                      onMouseEnter={() => setHoveredContact(contact.label)}
-                      onMouseLeave={() => setHoveredContact(null)}
-                    >
-                      {/* Hover effect overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-transparent via-cyber-cyan/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      
-                      <div className="relative z-10 flex items-center gap-4">
-                        <div className={`p-3 bg-${contact.color}/10 border-2 border-${contact.color}/30 rounded-lg group-hover:scale-110 transition-transform group-hover:rotate-12`}>
-                          <Icon className={`w-5 h-5 text-${contact.color}`} />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {contacts.map((contact) => {
+                    const Icon = contact.icon
+                    return (
+                      <a
+                        key={contact.label}
+                        href={contact.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`cyber-card p-4 group relative overflow-hidden cursor-pointer ${
+                          hoveredContact === contact.label ? 'border-cyber-cyan/80' : ''
+                        }`}
+                        onMouseEnter={() => setHoveredContact(contact.label)}
+                        onMouseLeave={() => setHoveredContact(null)}
+                      >
+                        {/* Enhanced hover effect overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-cyber-cyan/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                        <div className="relative z-10 flex items-center gap-4">
+                          <div className={`p-4 bg-${contact.color}/15 border-2 border-${contact.color}/50 rounded-lg group-hover:scale-110 transition-transform group-hover:rotate-12`}
+                               style={{ boxShadow: `0 0 15px rgba(0, 240, 255, 0.3)` }}>
+                            <Icon className={`w-6 h-6 text-${contact.color}`} />
+                          </div>
+                          <div className="flex-1">
+                            <div className="text-sm text-cyber-gray uppercase tracking-wider mb-1">
+                              {contact.label}
+                            </div>
+                            <div className="text-cyber-cyan font-bold group-hover:text-cyber-yellow transition-colors"
+                                 style={{ textShadow: '0 0 10px rgba(0, 240, 255, 0.3)' }}>
+                              {contact.value}
+                            </div>
+                            <div className="text-xs text-white/60 mt-1">
+                              {contact.description}
+                            </div>
+                          </div>
+                          <ExternalLink className="w-5 h-5 text-cyber-gray group-hover:text-cyber-cyan transition-colors" />
                         </div>
-                        <div className="flex-1">
-                          <div className="text-sm text-cyber-gray uppercase tracking-wider mb-1">
-                            {contact.label}
-                          </div>
-                          <div className="text-cyber-cyan font-bold group-hover:text-cyber-yellow transition-colors">
-                            {contact.value}
-                          </div>
-                          <div className="text-xs text-white/60 mt-1">
-                            {contact.description}
-                          </div>
-                        </div>
-                        <ExternalLink className="w-4 h-4 text-cyber-gray group-hover:text-cyber-cyan transition-colors" />
-                      </div>
-                    </a>
-                  )
-                })}
-              </div>
+                      </a>
+                    )
+                  })}
+                </div>
             </div>
 
             {/* Resume Download */}
@@ -136,25 +139,29 @@ export default function ContactSection() {
           <div className="space-y-6">
             {/* QR Code Section */}
             <div className="cyber-card text-center">
-              <h3 className="font-display text-xl font-bold text-cyber-yellow mb-4 flex items-center justify-center gap-3">
+              <h3 className="font-display text-xl font-bold text-cyber-yellow mb-4 flex items-center justify-center gap-3"
+                  style={{ textShadow: '0 0 15px rgba(252, 238, 10, 0.4)' }}>
                 <QrCode className="w-6 h-6" />
                 WeChat
               </h3>
-              
+
               <div className="relative inline-block group mb-4">
-                <div className="w-32 h-32 bg-cyber-black border-4 border-cyber-cyan rounded-lg p-2 group-hover:border-cyber-yellow transition-colors">
+                <div className="w-40 h-40 bg-cyber-black border-4 border-cyber-cyan rounded-lg p-2 group-hover:border-cyber-yellow transition-all duration-300 group-hover:scale-105"
+                     style={{ boxShadow: '0 0 20px rgba(0, 240, 255, 0.4), 0 0 40px rgba(0, 240, 255, 0.2)' }}>
                   {/* Placeholder for QR Code */}
                   <div className="w-full h-full bg-gradient-to-br from-cyber-cyan/20 to-cyber-yellow/20 flex items-center justify-center">
-                    <QrCode className="w-16 h-16 text-cyber-cyan" />
+                    <QrCode className="w-20 h-20 text-cyber-cyan" />
                   </div>
                 </div>
-
+                {/* QR code glow ring */}
+                <div className="absolute inset-0 -m-2 rounded-lg border-2 border-cyber-yellow/30 animate-pulse" />
               </div>
-              
+
               <p className="text-sm text-white/70 mb-2">
                 Scan to connect on WeChat
               </p>
-              <div className="text-xs text-cyber-yellow font-mono-tech uppercase tracking-wider">
+              <div className="text-xs text-cyber-yellow font-mono-tech uppercase tracking-wider"
+                  style={{ textShadow: '0 0 10px rgba(252, 238, 10, 0.3)' }}>
                 @cyberdev
               </div>
             </div>
