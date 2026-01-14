@@ -3,8 +3,9 @@ import Hero from './components/Hero'
 import SkillsSection from './components/SkillsSection'
 import ProjectsSection from './components/ProjectsSection'
 import StatsSection from './components/StatsSection'
-import MessageBoard from './components/MessageBoard'
 import ContactSection from './components/ContactSection'
+import Footer from './components/Footer'
+import BackToTop from './components/BackToTop'
 
 export default function Home() {
   return (
@@ -14,8 +15,9 @@ export default function Home() {
       <SkillsSection />
       <ProjectsSection />
       <StatsSection />
-      <MessageBoard />
       <ContactSection />
+      <Footer />
+      <BackToTop />
     </main>
   )
 }

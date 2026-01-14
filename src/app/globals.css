@@ -2,12 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+ :root {
   --cyber-yellow: #fcee0a;
   --cyber-cyan: #00f0ff;
   --cyber-red: #ff003c;
+  --cyber-green: #00ff9d;
   --cyber-black: #050505;
   --cyber-gray: #2d2d2d;
+  /* Enhanced text colors for better readability */
+  --cyber-white: #e5e5e5;
+  --cyber-text-secondary: #a3a3a3;
+  --cyber-text-tertiary: #737373;
 }
 
 /* Universal Font Enforcement */
@@ -124,8 +129,114 @@ textarea,
   box-shadow: 0 4px 20px rgba(0, 240, 255, 0.1), 0 0 30px rgba(0, 240, 255, 0.05);
 }
 
-.cyber-card:hover {
-  @apply border-cyber-cyan/80;
-  transform: translateY(-3px);
-  box-shadow: 0 8px 30px rgba(0, 240, 255, 0.25), 0 0 40px rgba(0, 240, 255, 0.15), 0 0 60px rgba(0, 240, 255, 0.08);
+ .cyber-card:hover {
+   @apply border-cyber-cyan/80;
+   transform: translateY(-3px);
+   box-shadow: 0 8px 30px rgba(0, 240, 255, 0.25), 0 0 40px rgba(0, 240, 255, 0.15), 0 0 60px rgba(0, 240, 255, 0.08);
+ }
+
+/* Enhanced Text Readability */
+.text-readable {
+  color: var(--cyber-white);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.text-secondary {
+  color: var(--cyber-text-secondary);
+}
+
+.text-tertiary {
+  color: var(--cyber-text-tertiary);
+}
+
+/* Ensure headings have sufficient contrast */
+h1, h2, h3, h4, h5, h6 {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+/* Enhanced neon text readability */
+.text-cyber-cyan {
+  color: var(--cyber-cyan);
+  text-shadow: 
+    0 0 10px rgba(0, 240, 255, 0.5),
+    0 0 20px rgba(0, 240, 255, 0.3),
+    0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.text-cyber-yellow {
+  color: var(--cyber-yellow);
+  text-shadow: 
+    0 0 10px rgba(252, 238, 10, 0.5),
+    0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.text-cyber-red {
+  color: var(--cyber-red);
+  text-shadow: 
+    0 0 10px rgba(255, 0, 60, 0.5),
+    0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Performance Optimized Animations */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes gridMove {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 60px 60px;
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+  will-change: opacity, transform;
+}
+
+.animate-grid-move {
+  animation: gridMove 20s linear infinite;
+  will-change: background-position;
+}
+
+/* GPU Acceleration */
+.cyber-card {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.cyber-button {
+  transform: translateZ(0);
+  will-change: transform, box-shadow;
+}
+
+/* Optimized scanlines */
+.scanlines {
+  opacity: 0.3;
+  will-change: opacity;
+}
+
+/* Typewriter cursor */
+@keyframes blink-cursor {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.typewriter-cursor {
+  animation: blink-cursor 1s infinite;
+  background-color: var(--cyber-cyan);
+  display: inline-block;
+  width: 2px;
+  margin-left: 2px;
+  height: 1em;
+  vertical-align: middle;
 }

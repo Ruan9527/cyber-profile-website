@@ -7,13 +7,17 @@ module.exports = {
   ],
   theme: {
     extend: {
-      colors: {
-        'cyber-black': '#050505',
-        'cyber-gray': '#2d2d2d',
-        'cyber-yellow': '#fcee0a',
-        'cyber-cyan': '#00f0ff',
-        'cyber-red': '#ff003c',
-      },
+       colors: {
+         'cyber-black': '#050505',
+         'cyber-gray': '#2d2d2d',
+         'cyber-yellow': '#fcee0a',
+         'cyber-cyan': '#00f0ff',
+         'cyber-red': '#ff003c',
+         /* Enhanced text colors for better readability */
+         'cyber-white': '#e5e5e5',
+         'cyber-text-secondary': '#a3a3a3',
+         'cyber-text-tertiary': '#737373',
+       },
       fontFamily: {
         'cyber': ['Microsoft YaHei', 'Heiti SC', 'sans-serif'],
         'display': ['Orbitron', 'Microsoft YaHei', 'sans-serif'],

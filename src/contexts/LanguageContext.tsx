@@ -14,12 +14,12 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 
 const translations = {
   en: {
-    // Navigation
-    // Navigation
-    'nav.home': 'Home',
-    'nav.about': 'About',
-    'nav.projects': 'Projects',
-    'nav.contact': 'Contact',
+     // Navigation
+     // Navigation
+     'nav.home': 'Home',
+     'nav.skills': 'Skills',
+     'nav.projects': 'Projects',
+     'nav.contact': 'Contact',
 
     // Hero
     'hero.title': 'Bunny Developer',
@@ -113,11 +113,11 @@ const translations = {
     'footer.rights': 'All rights reserved.',
   },
   zh: {
-    // Navigation
-    'nav.home': '首页',
-    'nav.about': '关于',
-    'nav.projects': '项目',
-    'nav.contact': '联系',
+     // Navigation
+     'nav.home': '首页',
+     'nav.skills': '技能',
+     'nav.projects': '项目',
+     'nav.contact': '联系',
 
     // Hero
     'hero.title': 'Bunny Developer',
