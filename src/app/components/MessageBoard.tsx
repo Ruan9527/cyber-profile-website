@@ -58,6 +58,11 @@ export default function MessageBoard() {
       }
 
       try {
+        // TypeScript type guard - ensure supabase is not null
+        if (!supabase) {
+          throw new Error('Supabase client not initialized')
+        }
+
         const { data, error } = await supabase
           .from('messages')
           .select('*')
@@ -94,6 +99,11 @@ export default function MessageBoard() {
 
     try {
       if (isSupabaseConfigured) {
+        // TypeScript type guard - ensure supabase is not null
+        if (!supabase) {
+          throw new Error('Supabase client not initialized')
+        }
+
         // Insert message into Supabase
         const { error } = await supabase
           .from('messages')
