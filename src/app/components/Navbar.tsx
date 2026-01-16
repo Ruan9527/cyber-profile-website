@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { Languages, Menu, X } from 'lucide-react'
 import { useLanguage } from '@/contexts/LanguageContext'
+import WeatherBadge from './WeatherBadge'
 
 export default function Navbar() {
   const { language, setLanguage } = useLanguage()
@@ -74,7 +75,10 @@ export default function Navbar() {
               >
                 {language === 'en' ? link.label.split('.')[1] : link.label.split('.')[1]}
               </a>
-            ))}
+            )            )}
+            
+            {/* Weather Badge */}
+            <WeatherBadge />
             
             {/* Language Switcher */}
             <button
@@ -106,6 +110,9 @@ export default function Navbar() {
             >
               {language === 'en' ? '中文' : 'EN'}
             </button>
+
+            {/* Weather Badge - Mobile (Compact) */}
+            <WeatherBadge compact={true} />
 
             {/* Mobile Menu Button */}
             <button
