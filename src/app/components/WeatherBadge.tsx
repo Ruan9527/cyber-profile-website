@@ -252,16 +252,14 @@ export default function WeatherBadge({ className = '', compact = false }: Weathe
             </div>
 
             {/* 自动定位按钮 */}
-            <div className="mb-4">
+            <div className="mb-4 flex justify-center">
               <button
                 onClick={handleAutoLocation}
                 disabled={isLocating}
-                className="w-full cyber-button-sm flex items-center justify-center gap-2 py-2"
+                className="flex items-center justify-center p-2 rounded-full border border-cyber-cyan/30 hover:border-cyber-cyan hover:bg-cyber-cyan/10 transition-all duration-300 group"
+                title="my location"
               >
-                <Navigation className={`w-4 h-4 ${isLocating ? 'animate-spin' : ''}`} />
-                <span className="text-sm">
-                  {isLocating ? 'Locating...' : 'Use My Location'}
-                </span>
+                <Navigation className={`w-5 h-5 text-cyber-cyan group-hover:scale-110 transition-transform ${isLocating ? 'animate-spin' : ''}`} />
               </button>
               {locationError && (
                 <div className="mt-2 text-xs text-cyber-red text-center">

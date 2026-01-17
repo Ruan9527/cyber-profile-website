@@ -124,7 +124,7 @@ textarea,
 }
 
 .cyber-card {
-  @apply p-6 bg-cyber-black/60 border border-cyber-cyan/40 backdrop-blur-sm transition-all duration-300;
+  @apply p-6 bg-cyber-black/95 border border-cyber-cyan/40 backdrop-blur-sm transition-all duration-300;
   clip-path: polygon(0 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%);
   box-shadow: 0 4px 20px rgba(0, 240, 255, 0.1), 0 0 30px rgba(0, 240, 255, 0.05);
 }
