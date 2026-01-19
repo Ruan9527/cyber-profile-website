@@ -61,6 +61,7 @@ export interface Project {
   image: string;
   tech: string[];
   link: string;
+  category?: 'frontend' | 'backend' | 'fullstack' | 'ai' | 'design' | 'data' | 'blockchain' | 'game';
 }
 
 export interface Stats {
