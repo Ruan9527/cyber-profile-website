@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import GoogleAnalytics from './components/GoogleAnalytics'
 import { LanguageProvider } from '@/contexts/LanguageContext'
+import ErrorBoundary from '@/components/ErrorBoundary'
 
 export const metadata: Metadata = {
   title: 'Cyber Profile - Dynamic Personal Website',
@@ -43,13 +44,15 @@ export default function RootLayout({
         </>
       )}
       <body className="min-h-screen bg-cyber-black">
-        <LanguageProvider>
-          {process.env.NEXT_PUBLIC_GA_ID && (
-            <GoogleAnalytics GA_ID={process.env.NEXT_PUBLIC_GA_ID} />
-          )}
-          {children}
-          <div className="scanlines" />
-        </LanguageProvider>
+        <ErrorBoundary>
+          <LanguageProvider>
+            {process.env.NEXT_PUBLIC_GA_ID && (
+              <GoogleAnalytics GA_ID={process.env.NEXT_PUBLIC_GA_ID} />
+            )}
+            {children}
+            <div className="scanlines" />
+          </LanguageProvider>
+        </ErrorBoundary>
       </body>
     </html>
   )

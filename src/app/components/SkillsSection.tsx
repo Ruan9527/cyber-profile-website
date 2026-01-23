@@ -1,93 +1,58 @@
 'use client'
 
 
-import { Code, Database, Palette, Cpu } from 'lucide-react'
+import { Server, Brain } from 'lucide-react'
 import { Skill } from '@/types'
 import { useLanguage } from '@/contexts/LanguageContext'
+import { useSkills } from '@/hooks'
+import { SkillsSkeleton } from '@/components/Skeleton'
+import { SkillsError } from '@/components/SectionError'
 
-const skills: Skill[] = [
-  { name: "JavaScript", level: 90, category: "frontend" },
-  { name: "React", level: 85, category: "frontend" },
-  { name: "TypeScript", level: 80, category: "frontend" },
-  { name: "Next.js", level: 85, category: "frontend" },
-  { name: "Node.js", level: 75, category: "backend" },
-  { name: "Python", level: 70, category: "backend" },
-  { name: "Tailwind CSS", level: 85, category: "design" },
-  { name: "Framer Motion", level: 75, category: "design" },
-]
+
 
 const categoryIcons = {
-  frontend: Code,
-  backend: Database,
-  design: Palette,
-  other: Cpu,
+  it_ops: Server,
+  ai: Brain,
 }
 
 const categoryStyles = {
-  frontend: {
+  it_ops: {
     bg: 'bg-cyber-cyan/15',
     border: 'border-cyber-cyan/60',
     text: 'text-cyber-cyan',
     gradient: 'from-cyber-cyan to-cyber-cyan/80',
     iconBg: 'bg-cyber-cyan/15',
     iconBorder: 'border-cyber-cyan/60',
-    glowShadow: '0 0 15px rgba(0, 240, 255, 0.3)',
-    textGlow: '0 0 15px rgba(0, 240, 255, 0.4)',
+    glowShadow: '0 0 15px rgba(102, 224, 255, 0.3)',
+    textGlow: '0 0 15px rgba(102, 224, 255, 0.4)',
     progressBorder: 'border-cyber-cyan/40',
-    progressShadow: '0 0 10px rgba(0, 240, 255, 0.5)',
+    progressShadow: '0 0 10px rgba(102, 224, 255, 0.5)',
     cardVariant: 'cyber-card-variant-cyan',
   },
-  backend: {
-    bg: 'bg-cyber-red/15',
-    border: 'border-cyber-red/60',
-    text: 'text-cyber-red',
-    gradient: 'from-cyber-red to-cyber-red/80',
-    iconBg: 'bg-cyber-red/15',
-    iconBorder: 'border-cyber-red/60',
-    glowShadow: '0 0 15px rgba(255, 0, 60, 0.3)',
-    textGlow: '0 0 15px rgba(255, 0, 60, 0.4)',
-    progressBorder: 'border-cyber-red/40',
-    progressShadow: '0 0 10px rgba(255, 0, 60, 0.5)',
-    cardVariant: 'cyber-card-variant-red',
-  },
-  design: {
-    bg: 'bg-cyber-yellow/15',
-    border: 'border-cyber-yellow/60',
-    text: 'text-cyber-yellow',
-    gradient: 'from-cyber-yellow to-cyber-yellow/80',
-    iconBg: 'bg-cyber-yellow/15',
-    iconBorder: 'border-cyber-yellow/60',
-    glowShadow: '0 0 15px rgba(252, 238, 10, 0.3)',
-    textGlow: '0 0 15px rgba(252, 238, 10, 0.4)',
-    progressBorder: 'border-cyber-yellow/40',
-    progressShadow: '0 0 10px rgba(252, 238, 10, 0.5)',
-    cardVariant: 'cyber-card-variant-yellow',
-  },
-  other: {
-    bg: 'bg-cyber-gray/15',
-    border: 'border-cyber-gray/60',
-    text: 'text-cyber-gray',
-    gradient: 'from-cyber-gray to-cyber-gray/80',
-    iconBg: 'bg-cyber-gray/15',
-    iconBorder: 'border-cyber-gray/60',
-    glowShadow: '0 0 15px rgba(45, 45, 45, 0.3)',
-    textGlow: '0 0 15px rgba(45, 45, 45, 0.4)',
-    progressBorder: 'border-cyber-gray/40',
-    progressShadow: '0 0 10px rgba(45, 45, 45, 0.5)',
-    cardVariant: 'cyber-card-variant-gray',
+  ai: {
+    bg: 'bg-cyber-purple/15',
+    border: 'border-cyber-purple/60',
+    text: 'text-cyber-purple',
+    gradient: 'from-cyber-purple to-cyber-purple/80',
+    iconBg: 'bg-cyber-purple/15',
+    iconBorder: 'border-cyber-purple/60',
+    glowShadow: '0 0 15px rgba(209, 153, 255, 0.3)',
+    textGlow: '0 0 15px rgba(209, 153, 255, 0.4)',
+    progressBorder: 'border-cyber-purple/40',
+    progressShadow: '0 0 10px rgba(209, 153, 255, 0.5)',
+    cardVariant: 'cyber-card-variant-purple',
   },
 }
 
 export default function SkillsSection() {
+  console.log("SkillsSection component rendering");
   const { t } = useLanguage()
 
-  const skillsByCategory = skills.reduce((acc, skill) => {
-    if (!acc[skill.category]) {
-      acc[skill.category] = []
-    }
-    acc[skill.category].push(skill)
-    return acc
-  }, {} as Record<string, Skill[]>)
+  const { skills, skillsByCategory, loading, error, refetch } = useSkills({
+    autoFetch: true,
+    refetchOnWindowFocus: true,
+    refetchOnReconnect: true
+  })
 
   const getLevelDescription = (level: number) => {
     if (level >= 90) return 'Expert'
@@ -96,15 +61,32 @@ export default function SkillsSection() {
     return 'Beginner'
   }
 
+  const categoryLabels = {
+    it_ops: 'IT运维',
+    ai: '人工智能',
+  }
+
   return (
      <section id="skills" className="py-16 px-4 relative bg-gradient-to-b from-cyber-black to-cyber-gray/10">
       <div className="max-w-6xl mx-auto">
         <h2 className="font-display text-4xl md:text-5xl font-bold text-center mb-16"
             style={{ textShadow: '0 0 20px rgba(0, 240, 255, 0.5)' }}>
           <span className="text-cyber-cyan">{t('skills.title')}</span>
-        </h2>
+         </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+           {/* Loading State */}
+           {loading && <SkillsSkeleton />}
+          
+           {error && <SkillsError onRetry={() => refetch()} />}
+          
+          {!loading && !error && Object.keys(skillsByCategory).length === 0 && (
+            <div className="text-center py-12">
+              <p className="text-white/70">暂无技能数据</p>
+            </div>
+          )}
+
+          {!loading && !error && Object.keys(skillsByCategory).length > 0 && (
+           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {Object.entries(skillsByCategory).map(([category, categorySkills]) => {
             const Icon = categoryIcons[category as keyof typeof categoryIcons]
             const styles = categoryStyles[category as keyof typeof categoryStyles]
@@ -118,7 +100,7 @@ export default function SkillsSection() {
                    </div>
                     <h3 className={`font-display text-xl font-bold ${styles.text} capitalize`}
                         style={{ textShadow: styles.textGlow }}>
-                     {category}
+                      {categoryLabels[category as keyof typeof categoryLabels]}
                    </h3>
                  </div>
 
@@ -126,7 +108,7 @@ export default function SkillsSection() {
                     {categorySkills.map((skill, index) => (
                      <div
                        key={skill.name}
-                         className="relative cyber-tooltip animate-fade-in-up" data-tooltip={`${skill.name}: ${skill.level}% - ${getLevelDescription(skill.level)}`} style={{ animationDelay: `${index * 100}ms` }}
+                          className="relative cyber-tooltip animate-fade-in-up" data-tooltip={`${skill.name}: ${skill.level}% - ${getLevelDescription(skill.level)}${skill.description ? ` - ${skill.description}` : ''}`} style={{ animationDelay: `${index * 100}ms` }}
                      >
                        <div className="flex justify-between items-center mb-2">
                          <span className="font-mono-tech text-white/70 text-sm uppercase tracking-wider">
@@ -156,8 +138,9 @@ export default function SkillsSection() {
                 </div>
               </div>
             )
-          })}
-        </div>
+           })}
+         </div>
+          )}
 
          {/* Skill Stats */}
          <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">

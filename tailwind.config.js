@@ -9,47 +9,47 @@ module.exports = {
     extend: {
       // 扩展的赛博朋克色彩系统
       colors: {
-        // 核心颜色 - 保持现有
+        // 核心颜色 - 调整为更柔和的版本
         'cyber-black': '#050505',
         'cyber-gray': '#2d2d2d',
-        'cyber-yellow': '#fcee0a',
-        'cyber-cyan': '#00f0ff',
-        'cyber-red': '#ff003c',
+        'cyber-yellow': '#fff266', // 更柔和的黄色
+        'cyber-cyan': '#66e0ff',   // 更柔和的青色
+        'cyber-red': '#ff6680',    // 更柔和的红色
         
         // 增强的文字颜色
         'cyber-white': '#e5e5e5',
         'cyber-text-secondary': '#a3a3a3',
         'cyber-text-tertiary': '#737373',
         
-        // 新增辅助颜色 - 更丰富的赛博朋克调色板
-        'cyber-purple': '#b967ff',
-        'cyber-green': '#00ff9d',
-        'cyber-orange': '#ff6b35',
-        'cyber-pink': '#ff2d95',
-        'cyber-blue': '#2d7dff',
+        // 新增辅助颜色 - 调整为更柔和的版本
+        'cyber-purple': '#d199ff', // 更柔和的紫色
+        'cyber-green': '#66ffcc',  // 更柔和的绿色
+        'cyber-orange': '#ff9966', // 更柔和的橙色
+        'cyber-pink': '#ff99cc',   // 更柔和的粉色
+        'cyber-blue': '#6699ff',   // 更柔和的蓝色
         
-        // 透明度色系 - 用于层次和效果
-        'cyber-cyan-10': 'rgba(0, 240, 255, 0.1)',
-        'cyber-cyan-20': 'rgba(0, 240, 255, 0.2)',
-        'cyber-cyan-30': 'rgba(0, 240, 255, 0.3)',
-        'cyber-cyan-40': 'rgba(0, 240, 255, 0.4)',
-        'cyber-cyan-50': 'rgba(0, 240, 255, 0.5)',
-        'cyber-cyan-60': 'rgba(0, 240, 255, 0.6)',
-        'cyber-cyan-70': 'rgba(0, 240, 255, 0.7)',
-        'cyber-cyan-80': 'rgba(0, 240, 255, 0.8)',
-        'cyber-cyan-90': 'rgba(0, 240, 255, 0.9)',
+        // 透明度色系 - 使用新的柔和颜色
+        'cyber-cyan-10': 'rgba(102, 224, 255, 0.1)',
+        'cyber-cyan-20': 'rgba(102, 224, 255, 0.2)',
+        'cyber-cyan-30': 'rgba(102, 224, 255, 0.3)',
+        'cyber-cyan-40': 'rgba(102, 224, 255, 0.4)',
+        'cyber-cyan-50': 'rgba(102, 224, 255, 0.5)',
+        'cyber-cyan-60': 'rgba(102, 224, 255, 0.6)',
+        'cyber-cyan-70': 'rgba(102, 224, 255, 0.7)',
+        'cyber-cyan-80': 'rgba(102, 224, 255, 0.8)',
+        'cyber-cyan-90': 'rgba(102, 224, 255, 0.9)',
         
-        'cyber-yellow-10': 'rgba(252, 238, 10, 0.1)',
-        'cyber-yellow-20': 'rgba(252, 238, 10, 0.2)',
-        'cyber-yellow-30': 'rgba(252, 238, 10, 0.3)',
-        'cyber-yellow-40': 'rgba(252, 238, 10, 0.4)',
-        'cyber-yellow-50': 'rgba(252, 238, 10, 0.5)',
+        'cyber-yellow-10': 'rgba(255, 242, 102, 0.1)',
+        'cyber-yellow-20': 'rgba(255, 242, 102, 0.2)',
+        'cyber-yellow-30': 'rgba(255, 242, 102, 0.3)',
+        'cyber-yellow-40': 'rgba(255, 242, 102, 0.4)',
+        'cyber-yellow-50': 'rgba(255, 242, 102, 0.5)',
         
-        'cyber-red-10': 'rgba(255, 0, 60, 0.1)',
-        'cyber-red-20': 'rgba(255, 0, 60, 0.2)',
-        'cyber-red-30': 'rgba(255, 0, 60, 0.3)',
-        'cyber-red-40': 'rgba(255, 0, 60, 0.4)',
-        'cyber-red-50': 'rgba(255, 0, 60, 0.5)',
+        'cyber-red-10': 'rgba(255, 102, 128, 0.1)',
+        'cyber-red-20': 'rgba(255, 102, 128, 0.2)',
+        'cyber-red-30': 'rgba(255, 102, 128, 0.3)',
+        'cyber-red-40': 'rgba(255, 102, 128, 0.4)',
+        'cyber-red-50': 'rgba(255, 102, 128, 0.5)',
         
         // 渐变背景
         'cyber-gradient-start': '#050505',
@@ -130,31 +130,31 @@ module.exports = {
       
       // 背景图像扩展
       backgroundImage: {
-        'cyber-grid': 'linear-gradient(rgba(0, 240, 255, 0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 240, 255, 0.15) 1px, transparent 1px)',
-        'cyber-grid-dense': 'linear-gradient(rgba(0, 240, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 240, 255, 0.1) 1px, transparent 1px)',
-        'circuit-pattern': 'radial-gradient(circle at 25% 25%, rgba(0, 240, 255, 0.05) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(255, 0, 60, 0.05) 0%, transparent 50%)',
-        'data-stream': 'linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.2), transparent)',
+        'cyber-grid': 'linear-gradient(rgba(102, 224, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(102, 224, 255, 0.1) 1px, transparent 1px)',
+        'cyber-grid-dense': 'linear-gradient(rgba(102, 224, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(102, 224, 255, 0.05) 1px, transparent 1px)',
+        'circuit-pattern': 'radial-gradient(circle at 25% 25%, rgba(102, 224, 255, 0.03) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(255, 102, 128, 0.03) 0%, transparent 50%)',
+        'data-stream': 'linear-gradient(90deg, transparent, rgba(102, 224, 255, 0.15), transparent)',
         'noise-texture': 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 400 400\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\' opacity=\'0.1\'/%3E%3C/svg%3E")',
       },
       
       // 扩展的阴影效果
       boxShadow: {
-        'cyber-sm': '0 0 10px rgba(0, 240, 255, 0.3), 0 0 20px rgba(0, 240, 255, 0.1)',
-        'cyber': '0 0 20px rgba(0, 240, 255, 0.5), 0 0 40px rgba(0, 240, 255, 0.2)',
-        'cyber-lg': '0 0 30px rgba(0, 240, 255, 0.7), 0 0 60px rgba(0, 240, 255, 0.3)',
-        'cyber-xl': '0 0 40px rgba(0, 240, 255, 0.9), 0 0 80px rgba(0, 240, 255, 0.4)',
-        'cyber-red': '0 0 20px rgba(255, 0, 60, 0.5), 0 0 40px rgba(255, 0, 60, 0.2)',
-        'cyber-yellow': '0 0 20px rgba(252, 238, 10, 0.5), 0 0 40px rgba(252, 238, 10, 0.2)',
-        'cyber-purple': '0 0 20px rgba(185, 103, 255, 0.5), 0 0 40px rgba(185, 103, 255, 0.2)',
-        'inner-cyber': 'inset 0 0 20px rgba(0, 240, 255, 0.3), inset 0 0 40px rgba(0, 240, 255, 0.1)',
+        'cyber-sm': '0 0 8px rgba(102, 224, 255, 0.2), 0 0 15px rgba(102, 224, 255, 0.1)',
+        'cyber': '0 0 15px rgba(102, 224, 255, 0.3), 0 0 30px rgba(102, 224, 255, 0.15)',
+        'cyber-lg': '0 0 20px rgba(102, 224, 255, 0.4), 0 0 40px rgba(102, 224, 255, 0.2)',
+        'cyber-xl': '0 0 25px rgba(102, 224, 255, 0.5), 0 0 50px rgba(102, 224, 255, 0.25)',
+        'cyber-red': '0 0 15px rgba(255, 102, 128, 0.3), 0 0 30px rgba(255, 102, 128, 0.15)',
+        'cyber-yellow': '0 0 15px rgba(255, 242, 102, 0.3), 0 0 30px rgba(255, 242, 102, 0.15)',
+        'cyber-purple': '0 0 15px rgba(209, 153, 255, 0.3), 0 0 30px rgba(209, 153, 255, 0.15)',
+        'inner-cyber': 'inset 0 0 15px rgba(102, 224, 255, 0.2), inset 0 0 30px rgba(102, 224, 255, 0.1)',
       },
       
       // 文本阴影扩展
       textShadow: {
-        'cyber-sm': '0 0 10px rgba(0, 240, 255, 0.5), 0 2px 4px rgba(0, 0, 0, 0.8)',
-        'cyber': '0 0 20px rgba(0, 240, 255, 0.7), 0 0 40px rgba(0, 240, 255, 0.3), 0 2px 6px rgba(0, 0, 0, 0.9)',
-        'cyber-red': '0 0 20px rgba(255, 0, 60, 0.7), 0 0 40px rgba(255, 0, 60, 0.3), 0 2px 6px rgba(0, 0, 0, 0.9)',
-        'cyber-yellow': '0 0 20px rgba(252, 238, 10, 0.7), 0 0 40px rgba(252, 238, 10, 0.3), 0 2px 6px rgba(0, 0, 0, 0.9)',
+        'cyber-sm': '0 0 8px rgba(102, 224, 255, 0.4), 0 2px 4px rgba(0, 0, 0, 0.8)',
+        'cyber': '0 0 15px rgba(102, 224, 255, 0.5), 0 0 30px rgba(102, 224, 255, 0.2), 0 2px 6px rgba(0, 0, 0, 0.9)',
+        'cyber-red': '0 0 15px rgba(255, 102, 128, 0.5), 0 0 30px rgba(255, 102, 128, 0.2), 0 2px 6px rgba(0, 0, 0, 0.9)',
+        'cyber-yellow': '0 0 15px rgba(255, 242, 102, 0.5), 0 0 30px rgba(255, 242, 102, 0.2), 0 2px 6px rgba(0, 0, 0, 0.9)',
       },
       
       // 渐变扩展

@@ -1,6 +1,7 @@
 'use client'
 
-import { Github, Linkedin, Twitter, Mail, Heart } from 'lucide-react'
+import { Github, Mail, Heart } from 'lucide-react'
+import XiaohongshuIcon from '@/app/components/XiaohongshuIcon'
 import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function Footer() {
@@ -14,16 +15,10 @@ export default function Footer() {
       color: 'cyber-cyan'
     },
     {
-      name: 'LinkedIn',
-      href: 'https://linkedin.com/in/yourprofile',
-      icon: Linkedin,
-      color: 'cyber-blue'
-    },
-    {
-      name: 'Twitter',
-      href: 'https://twitter.com/yourusername',
-      icon: Twitter,
-      color: 'cyber-yellow'
+      name: '小红书',
+      href: 'https://www.xiaohongshu.com/user/profile/yourprofile',
+      icon: XiaohongshuIcon,
+      color: 'cyber-purple'
     },
     {
       name: 'Email',

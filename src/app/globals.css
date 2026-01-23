@@ -9,9 +9,9 @@
 :root {
   /* ========== COLOR SYSTEM ========== */
 
-  /* Core Colors */
-  --cyber-black: #050505;
-  --cyber-gray: #2d2d2d;
+  /* Core Colors - Brightened Cyberpunk Palette */
+  --cyber-black: #0f0f0f;
+  --cyber-gray: #404040;
   --cyber-yellow: #fcee0a;
   --cyber-cyan: #00f0ff;
   --cyber-red: #ff003c;
@@ -24,10 +24,10 @@
   --cyber-focus-ring-yellow: 0 0 0 3px rgba(252, 238, 10, 0.5);
   --cyber-focus-ring-red: 0 0 0 3px rgba(255, 0, 60, 0.5);
   
-  /* Enhanced Text Colors */
-  --cyber-white: #e5e5e5;
-  --cyber-text-secondary: #a3a3a3;
-  --cyber-text-tertiary: #737373;
+  /* Enhanced Text Colors - Brighter for Better Readability */
+  --cyber-white: #f5f5f5;
+  --cyber-text-secondary: #b8b8b8;
+  --cyber-text-tertiary: #808080;
   
   /* Extended Color Palette */
   --cyber-purple: #b967ff;
@@ -36,10 +36,10 @@
   --cyber-blue: #2d7dff;
   --cyber-teal: #00ffcc;
   
-  /* Gradient Colors */
-  --cyber-gradient-start: #050505;
-  --cyber-gradient-middle: #1a1a2e;
-  --cyber-gradient-end: #16213e;
+  /* Gradient Colors - Brighter Cyberpunk Gradients */
+  --cyber-gradient-start: #0f0f0f;
+  --cyber-gradient-middle: #252550;
+  --cyber-gradient-end: #2a2a5e;
   
   /* Transparency System */
   --cyber-cyan-10: rgba(0, 240, 255, 0.1);

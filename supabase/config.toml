@@ -1,0 +1,14 @@
+# Supabase project configuration
+[workspace]
+  [workspace.local]
+    enabled = true
+
+[auth]
+  enable_signup = false
+  enable_email_confirmations = false
+
+[storage]
+  enabled = false
+
+[realtime]
+  enabled = false

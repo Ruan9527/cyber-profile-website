@@ -1,12 +1,12 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Languages, Menu, X } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import { useLanguage } from '@/contexts/LanguageContext'
 import WeatherBadge from './WeatherBadge'
 
 export default function Navbar() {
-  const { language, setLanguage } = useLanguage()
+  const { language, setLanguage, t } = useLanguage()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
   const [scrolled, setScrolled] = useState(false)
@@ -82,68 +82,49 @@ export default function Navbar() {
         />
       </div>
       
-      <div className="max-w-6xl mx-auto px-4">
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center justify-between h-16">
-          {/* Logo/Brand */}
-          <div className="font-display font-bold text-cyber-cyan text-xl">
+       <div className="max-w-7xl mx-auto px-6">
+         {/* Desktop Navigation */}
+         <div className="hidden md:flex items-center justify-between h-20">
+           {/* Logo/Brand */}
+           <div className="font-display font-bold text-cyber-cyan text-2xl tracking-wider">
+             CYBER PROFILE
+           </div>
+
+           {/* Nav Links */}
+           <div className="flex items-center gap-10">
+             {navLinks.map((link) => (
+               <a
+                 key={link.id}
+                 href={link.href}
+                 onClick={(e) => handleNavClick(e, link.href)}
+                 className={`font-medium uppercase tracking-wider text-base transition-all duration-300 ${
+                   activeSection === link.id
+                     ? 'bg-cyber-cyan/20 text-cyber-cyan border-2 border-cyber-cyan/50 px-5 py-3 rounded-xl'
+                     : 'text-white/80 hover:text-cyber-cyan hover:bg-cyber-cyan/10 px-5 py-3 rounded-xl'
+                 }`}
+                 style={{
+                   boxShadow: activeSection === link.id ? '0 0 20px var(--cyber-cyan-70), 0 0 40px var(--cyber-cyan-50)' : 'none',
+                   textShadow: activeSection === link.id ? '0 0 15px var(--cyber-cyan), 0 0 30px var(--cyber-cyan-70)' : 'none'
+                 }}
+               >
+                 {t(link.label)}
+               </a>
+             )            )}
+             
+             {/* Weather Badge */}
+             <WeatherBadge />
+             
+
+           </div>
+         </div>
+
+         {/* Mobile Navigation */}
+        <div className="flex md:hidden items-center justify-between h-16">
+          <div className="font-display font-bold text-cyber-cyan text-xl tracking-wide">
             CYBER PROFILE
           </div>
 
-          {/* Nav Links */}
-          <div className="flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.id}
-                href={link.href}
-                onClick={(e) => handleNavClick(e, link.href)}
-                className={`font-medium uppercase tracking-wider text-sm transition-all duration-300 ${
-                  activeSection === link.id
-                    ? 'bg-cyber-cyan/20 text-cyber-cyan border border-cyber-cyan/50 px-3 py-2 rounded-lg'
-                    : 'text-white/70 hover:text-cyber-cyan hover:bg-cyber-cyan/10 px-3 py-2 rounded-lg'
-                }`}
-                style={{
-                  boxShadow: activeSection === link.id ? '0 0 15px var(--cyber-cyan-70), 0 0 30px var(--cyber-cyan-50)' : 'none',
-                  textShadow: activeSection === link.id ? '0 0 10px var(--cyber-cyan), 0 0 20px var(--cyber-cyan-70)' : 'none'
-                }}
-              >
-                {language === 'en' ? link.label.split('.')[1] : link.label.split('.')[1]}
-              </a>
-            )            )}
-            
-            {/* Weather Badge */}
-            <WeatherBadge />
-            
-            {/* Language Switcher */}
-            <button
-              onClick={() => setLanguage(language === 'en' ? 'zh' : 'en')}
-              className="cyber-button px-4 py-2 text-sm flex items-center gap-2"
-              style={{
-                boxShadow: '0 0 10px rgba(0, 240, 255, 0.3)'
-              }}
-            >
-              <Languages className="w-4 h-4" />
-              <span className="font-bold">
-                {language === 'en' ? '中文' : 'EN'}
-              </span>
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Navigation */}
-        <div className="flex md:hidden items-center justify-between h-14">
-          <div className="font-display font-bold text-cyber-cyan text-lg">
-            CYBER PROFILE
-          </div>
-
-          <div className="flex items-center gap-3">
-            {/* Language Switcher - Mobile */}
-            <button
-              onClick={() => setLanguage(language === 'en' ? 'zh' : 'en')}
-              className="px-3 py-1.5 text-xs font-bold text-cyber-cyan border border-cyber-cyan/50 rounded hover:bg-cyber-cyan/10 transition-colors"
-            >
-              {language === 'en' ? '中文' : 'EN'}
-            </button>
+          <div className="flex items-center gap-4">
 
             {/* Weather Badge - Mobile (Compact) */}
             <WeatherBadge compact={true} />
@@ -151,16 +132,16 @@ export default function Navbar() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-cyber-cyan hover:bg-cyber-cyan/10 rounded transition-colors"
+              className="p-3 text-cyber-cyan hover:bg-cyber-cyan/10 rounded-lg transition-colors"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
             </button>
           </div>
         </div>
 
-        {/* Mobile Menu Dropdown */}
+         {/* Mobile Menu Dropdown */}
         {mobileMenuOpen && (
-          <div className="md:hidden py-4 space-y-3 cyber-card mt-2">
+          <div className="md:hidden py-6 space-y-4 cyber-card mt-3">
             {navLinks.map((link) => (
               <a
                 key={link.id}
@@ -169,17 +150,17 @@ export default function Navbar() {
                   handleNavClick(e, link.href)
                   setMobileMenuOpen(false)
                 }}
-                className={`block px-4 py-3 font-medium uppercase tracking-wider text-sm transition-colors ${
+                className={`block px-6 py-4 font-medium uppercase tracking-wider text-base transition-colors ${
                   activeSection === link.id
-                    ? 'bg-cyber-cyan/20 text-cyber-cyan border border-cyber-cyan/50'
-                    : 'text-white/70 hover:text-cyber-cyan hover:bg-cyber-cyan/10'
+                    ? 'bg-cyber-cyan/20 text-cyber-cyan border-2 border-cyber-cyan/50 rounded-lg'
+                    : 'text-white/80 hover:text-cyber-cyan hover:bg-cyber-cyan/10 rounded-lg'
                 }`}
                 style={{
-                  boxShadow: activeSection === link.id ? '0 0 15px var(--cyber-cyan-70), 0 0 30px var(--cyber-cyan-50)' : 'none',
-                  textShadow: activeSection === link.id ? '0 0 10px var(--cyber-cyan), 0 0 20px var(--cyber-cyan-70)' : 'none'
+                  boxShadow: activeSection === link.id ? '0 0 20px var(--cyber-cyan-70), 0 0 40px var(--cyber-cyan-50)' : 'none',
+                  textShadow: activeSection === link.id ? '0 0 15px var(--cyber-cyan), 0 0 30px var(--cyber-cyan-70)' : 'none'
                 }}
               >
-                {language === 'en' ? link.label.split('.')[1] : link.label.split('.')[1]}
+                {t(link.label)}
               </a>
             ))}
           </div>
