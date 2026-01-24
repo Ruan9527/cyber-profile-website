@@ -223,9 +223,9 @@ export default function WeatherBadge({ className = '', compact = false }: Weathe
         )}
       </button>
 
-      {/* 详细信息弹出层 */}
-      {showDetails && (
-        <div className="absolute top-full right-0 mt-2 w-72 cyber-card z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+       {/* 详细信息弹出层 */}
+       {showDetails && (
+         <div className="fixed top-16 right-4 w-72 cyber-card z-[100] animate-in fade-in slide-in-from-top-2 duration-200 max-h-[calc(100vh-5rem)] overflow-y-auto">
           <div className="p-4">
             {/* 标题栏 */}
             <div className="flex items-center justify-between mb-4">

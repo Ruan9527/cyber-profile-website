@@ -983,46 +983,18 @@ h6 {
 
 .text-cyber-cyan {
   color: var(--cyber-cyan);
-  text-shadow: 
-    0 0 10px var(--cyber-cyan),
-    0 0 20px var(--cyber-cyan-70),
-    0 0 30px var(--cyber-cyan-50),
-    0 0 40px var(--cyber-cyan-30),
-    0 2px 4px var(--cyber-black-80);
-  animation: neonFlicker 2s ease-in-out infinite;
 }
 
 .text-cyber-yellow {
   color: var(--cyber-yellow);
-  text-shadow: 
-    0 0 10px var(--cyber-yellow),
-    0 0 20px var(--cyber-yellow-70),
-    0 0 30px var(--cyber-yellow-50),
-    0 0 40px var(--cyber-yellow-30),
-    0 2px 4px var(--cyber-black-80);
-  animation: neonFlicker 2.5s ease-in-out infinite;
 }
 
 .text-cyber-red {
   color: var(--cyber-red);
-  text-shadow: 
-    0 0 10px var(--cyber-red),
-    0 0 20px var(--cyber-red-70),
-    0 0 30px var(--cyber-red-50),
-    0 0 40px var(--cyber-red-30),
-    0 2px 4px var(--cyber-black-80);
-  animation: neonFlicker 3s ease-in-out infinite;
 }
 
 .text-cyber-purple {
   color: var(--cyber-purple);
-  text-shadow: 
-    0 0 10px var(--cyber-purple),
-    0 0 20px var(--cyber-purple-70),
-    0 0 30px var(--cyber-purple-50),
-    0 0 40px var(--cyber-purple-30),
-    0 2px 4px var(--cyber-black-80);
-  animation: neonFlicker 1.8s ease-in-out infinite;
 }
 
 .text-cyber-green {
@@ -1109,7 +1081,7 @@ h6 {
 }
 
 /* UI/UX Pro Max: Animation Performance Guidelines */
-@media (prefers-reduced-motion: reduce) {
+ @media (prefers-reduced-motion: reduce) {
   .animate-float,
   .animate-glitch,
   .animate-scan,
@@ -1691,38 +1663,39 @@ h6 {
 /* Text Effect Classes */
 .text-neon-cyan {
   color: var(--cyber-cyan);
-  text-shadow: 
-    0 0 10px var(--cyber-cyan),
-    0 0 20px var(--cyber-cyan-70),
-    0 0 30px var(--cyber-cyan-50),
-    0 0 40px var(--cyber-cyan-30);
 }
+
+/* Navigation link arrow indicator (shows on hover or active) */
+.nav-link { display: inline-flex; align-items: center; }
+.nav-arrow { display: inline-block; width: 12px; height: 12px; margin-right: 6px; opacity: 0; transition: opacity 0.2s; color: var(--cyber-red); }
+.nav-link:hover .nav-arrow, .nav-link.active .nav-arrow { opacity: 1; }
+
+@keyframes blink-arrow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.blink {
+  animation: blink-arrow 1.5s linear infinite;
+}
+
+@keyframes blink-arrow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Removed blinking navigation arrow animation to simplify active state */
 
 .text-neon-red {
   color: var(--cyber-red);
-  text-shadow: 
-    0 0 10px var(--cyber-red),
-    0 0 20px var(--cyber-red-70),
-    0 0 30px var(--cyber-red-50),
-    0 0 40px var(--cyber-red-30);
 }
 
 .text-neon-yellow {
   color: var(--cyber-yellow);
-  text-shadow: 
-    0 0 10px var(--cyber-yellow),
-    0 0 20px var(--cyber-yellow-70),
-    0 0 30px var(--cyber-yellow-50),
-    0 0 40px var(--cyber-yellow-30);
 }
 
 .text-neon-purple {
   color: var(--cyber-purple);
-  text-shadow: 
-    0 0 10px var(--cyber-purple),
-    0 0 20px var(--cyber-purple-70),
-    0 0 30px var(--cyber-purple-50),
-    0 0 40px var(--cyber-purple-30);
 }
 
 /* ============================================
@@ -1811,6 +1784,28 @@ h6 {
   outline: 3px solid var(--cyber-cyan);
   outline-offset: 4px;
   box-shadow: 0 0 20px var(--cyber-cyan-50);
+}
+
+/* Cyber Navigation Link Hover Effect */
+.hover-cyber-link {
+  position: relative;
+  overflow: hidden;
+}
+
+.hover-cyber-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--cyber-red), var(--cyber-red-70));
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.hover-cyber-link:hover::after {
+  transform: translateX(0);
 }
 
 /* Reduced Motion Support */
