@@ -24,7 +24,7 @@ export default function RootLayout({
   const gaId = process.env.NEXT_PUBLIC_GA_ID
 
   return (
-    <html lang="en" className="font-cyber scroll-smooth">
+    <html lang="en" dir="ltr" className="font-cyber scroll-smooth">
       {gaId && (
         <>
           <script

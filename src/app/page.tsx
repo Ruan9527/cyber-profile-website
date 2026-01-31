@@ -5,6 +5,7 @@ import ProjectsSection from './components/ProjectsSection'
 import ContactSection from './components/ContactSection'
 import Footer from './components/Footer'
 import BackToTop from './components/BackToTop'
+import ChatBot from './components/ChatBot'
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <ContactSection />
       <Footer />
       <BackToTop />
+      <ChatBot />
     </main>
   )
 }
