@@ -132,8 +132,8 @@ export default function ProjectsSection() {
   
   // Simple equal height grid - removed masonry layout to prevent overlapping
 
-  return (
-      <section className="py-16 pb-24 px-4 relative bg-gradient-to-b from-cyber-black via-cyber-gray/10 to-cyber-black border-b border-cyber-gray/30">
+   return (
+       <section id="projects" className="py-16 pb-24 px-4 relative bg-gradient-to-b from-cyber-black via-cyber-gray/10 to-cyber-black border-b border-cyber-gray/30">
        <div className="max-w-7xl mx-auto">
           <h2 className="font-display text-4xl md:text-5xl font-bold text-center mb-8"
               style={{ textShadow: '0 0 20px rgba(0, 240, 255, 0.5)' }}>

@@ -78,8 +78,8 @@ export default function Hero() {
          <div className="absolute inset-0 noise-overlay" />
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto w-full px-4">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 lg:gap-16 items-center">
             {/* Left Column - Avatar (mobile) */}
             <div className="flex justify-center lg:justify-end order-1 lg:order-1 md:hidden" onMouseMove={handleAvatarMove} onMouseLeave={handleAvatarLeave} style={{ transform: `rotateX(${avatarTilt.dx}deg) rotateY(${avatarTilt.dy}deg)` , transition: 'transform 0.1s' }}>
               <div className="relative group">
@@ -94,23 +94,23 @@ export default function Hero() {
               </div>
             </div>
             {/* Left Column - Avatar moved into standard left grid cell */}
-            <div className="flex justify-center lg:justify-start order-1 lg:order-1 md:order-1">
-              <ImageWithPlaceholder
-                src={personalInfo.avatar}
-                alt={personalInfo.name}
-                width={320}
-                height={320}
-                className="w-64 h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-none border-4 border-cyber-cyan/70 shadow-cyber-lg"
-              />
+            <div className="flex justify-center lg:justify-start order-1 lg:order-1 md:order-1 lg:col-span-4">
+               <ImageWithPlaceholder
+                 src={personalInfo.avatar}
+                 alt={personalInfo.name}
+                 width={320}
+                 height={320}
+                 className="w-64 h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-none border-4 border-cyber-cyan/70 shadow-cyber-lg"
+               />
             </div>
 
            {/* Right Column - Content with improved spacing */}
-            <div className="text-center lg:text-left order-2 lg:order-2 md:ml-[25%] text-right md:text-left">
+             <div className="text-center lg:text-left order-2 lg:order-2 md:ml-[25%] text-right md:text-left lg:col-span-8">
                {/* Main name */}
                <div className="relative mb-6 md:mb-8">
                  <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-black mb-4 stagger-1">
                     <div className="leading-tight">
-                      <div className="font-bold text-white text-2xl md:text-3xl lg:text-4xl">您好，我是</div>
+                      <div className="font-bold text-white text-2xl md:text-3xl lg:text-4xl mb-2 md:mb-3">您好，我是</div>
                       <div className="font-black text-white text-5xl md:text-6xl lg:text-7xl">圆周率的达</div>
                     </div>
                  </h1>

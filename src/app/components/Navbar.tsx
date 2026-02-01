@@ -82,7 +82,7 @@ export default function Navbar() {
         />
       </div>
       
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-6 relative">
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center justify-between h-20">
           {/* Logo/Brand */}
@@ -91,30 +91,37 @@ export default function Navbar() {
             <span className="text-cyber-yellow">PiPi</span>
           </div>
 
-          {/* Nav Links */}
-          <div className="flex items-center gap-10">
-            {navLinks.map((link) => (
-              <a
-                key={link.id}
-                href={link.href}
-                onClick={(e) => handleNavClick(e, link.href)}
-                className={`nav-link font-medium uppercase tracking-wider text-base transition-all duration-300 relative px-5 py-3 ${activeSection === link.id ? 'text-cyber-yellow' : 'text-white/80 hover:text-cyber-yellow'}`}
-                // Removed neon glow styles for active state
-              >
-                {activeSection === link.id && (
-                  <span className="nav-arrow inline-block mr-2 align-middle blink" aria-hidden="true">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--cyber-red)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="14 6 8 12 14 18" />
-                    </svg>
-                  </span>
-                )}
-                {t(link.label)}
-              </a>
-            ))}
-            
-            {/* Weather Badge */}
-            <WeatherBadge />
-          </div>
+           {/* Nav Links - Center */}
+           <div className="flex items-center gap-10 flex-1 justify-center">
+             {navLinks.map((link) => (
+               <a
+                 key={link.id}
+                 href={link.href}
+                 onClick={(e) => handleNavClick(e, link.href)}
+                 className={`nav-link font-medium uppercase tracking-wider text-base transition-all duration-300 relative px-5 py-3 ${activeSection === link.id ? 'text-cyber-yellow' : 'text-white/80 hover:text-cyber-yellow'}`}
+                 // Removed neon glow styles for active state
+               >
+                 <span className="relative inline-flex items-center">
+                   {activeSection === link.id && (
+                     <span className="nav-arrow inline-block mr-2 align-middle blink" aria-hidden="true">
+                       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--cyber-red)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                         <polyline points="10 6 16 12 10 18" />
+                       </svg>
+                     </span>
+                   )}
+                   {t(link.label)}
+                   {activeSection === link.id && (
+                     <span className="absolute -bottom-2 left-0 right-0 h-0.5 bg-cyber-red" />
+                   )}
+                 </span>
+               </a>
+             ))}
+           </div>
+
+           {/* Weather Badge - Right side in flex layout */}
+           <div className="flex-shrink-0">
+             <WeatherBadge />
+           </div>
         </div>
 
         {/* Mobile Navigation */}
