@@ -38,7 +38,7 @@ export class SkillService {
       const skills: Skill[] = data.map(item => ({
         name: item.name,
         level: item.level,
-        category: item.category as 'it_ops' | 'ai',
+        category: item.category as 'it_ops' | 'ai' | 'project_management',
         description: item.description || undefined
       }))
       console.log("SkillService mapped skills:", skills);
@@ -110,7 +110,7 @@ export class SkillService {
     }
   }
 
-  // 获取兜底数据（硬编码技能）
+      // 获取兜底数据（硬编码技能）
   private static getFallbackSkills(): Skill[] {
     console.log("SkillService.getFallbackSkills called");
     return [
@@ -132,6 +132,15 @@ export class SkillService {
       { name: "数据可视化", level: 80, category: "ai", description: "数据探索与可视化工具" },
       { name: "自然语言处理", level: 75, category: "ai", description: "NLP模型与文本分析" },
       { name: "计算机视觉", level: 70, category: "ai", description: "图像识别与处理" },
+      // 项目管理技能
+      { name: "敏捷/Scrum", level: 85, category: "project_management", description: "Sprint规划与迭代管理" },
+      { name: "进度管理", level: 85, category: "project_management", description: "里程碑规划与进度跟踪" },
+      { name: "需求分析", level: 80, category: "project_management", description: "PRD撰写与需求管理" },
+      { name: "跨团队协调", level: 80, category: "project_management", description: "跨部门协作与干系人管理" },
+      { name: "质量管理", level: 80, category: "project_management", description: "QA流程与测试策略" },
+      { name: "风险管理", level: 75, category: "project_management", description: "风险评估与应急预案" },
+      { name: "资源调配", level: 75, category: "project_management", description: "团队资源规划与分配" },
+      { name: "成本管理", level: 70, category: "project_management", description: "项目预算控制与成本分析" },
     ]
   }
 

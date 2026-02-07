@@ -4,7 +4,7 @@ import { Skill } from '@/types'
 export interface SkillCreateData {
   name: string
   level: number
-  category: 'it_ops' | 'ai'
+  category: 'it_ops' | 'ai' | 'project_management'
   description?: string
 }
 
@@ -28,11 +28,11 @@ export class SkillAdminService {
         throw new Error(`获取技能失败: ${error.message}`)
       }
 
-      return data?.map((item: any) => ({
+        return data?.map((item: any) => ({
         id: item.id,
         name: item.name,
         level: item.level,
-        category: item.category as 'it_ops' | 'ai',
+        category: item.category as 'it_ops' | 'ai' | 'project_management',
         description: item.description || undefined
       })) || []
     } catch (error) {
@@ -62,7 +62,7 @@ export class SkillAdminService {
         id: data.id,
         name: data.name,
         level: data.level,
-        category: data.category as 'it_ops' | 'ai',
+        category: data.category as 'it_ops' | 'ai' | 'project_management',
         description: data.description || undefined
       }
     } catch (error) {
@@ -97,7 +97,7 @@ export class SkillAdminService {
         id: data.id,
         name: data.name,
         level: data.level,
-        category: data.category as 'it_ops' | 'ai',
+        category: data.category as 'it_ops' | 'ai' | 'project_management',
         description: data.description || undefined
       }
     } catch (error) {
@@ -134,7 +134,7 @@ export class SkillAdminService {
         id: data.id,
         name: data.name,
         level: data.level,
-        category: data.category as 'it_ops' | 'ai',
+        category: data.category as 'it_ops' | 'ai' | 'project_management',
         description: data.description || undefined
       }
     } catch (error) {

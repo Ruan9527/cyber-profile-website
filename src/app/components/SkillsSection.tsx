@@ -1,204 +1,288 @@
 'use client'
 
-import { Server, Brain } from 'lucide-react'
-import { motion } from 'framer-motion'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { X, ChevronRight } from 'lucide-react'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { useSkills } from '@/hooks'
 import { SkillsSkeleton } from '@/components/Skeleton'
 import { SkillsError } from '@/components/SectionError'
 
-const categoryIcons = {
-  it_ops: Server,
-  ai: Brain,
+interface Skill {
+  name: string
+  level: number
+  category: 'it_ops' | 'ai' | 'project_management'
+  description?: string
 }
 
-const categoryStyles = {
+const categoryConfig = {
   it_ops: {
-    bg: 'bg-cyber-cyan/15',
-    border: 'border-cyber-cyan/60',
-    text: 'text-cyber-cyan',
-    gradient: 'from-cyber-cyan to-cyber-cyan/80',
-    cardVariant: 'cyber-card-variant-cyan',
+    name: 'IT运维',
+    subtitle: '基础设施与自动化',
+    color: 'cyan',
+    accent: 'cyber-cyan',
+    dim: 'cyber-cyan-40',
   },
   ai: {
-    bg: 'bg-cyber-purple/15',
-    border: 'border-cyber-purple/60',
-    text: 'text-cyber-purple',
-    gradient: 'from-cyber-purple to-cyber-purple/80',
-    cardVariant: 'cyber-card-variant-purple',
+    name: 'AI技能',
+    subtitle: '人工智能与机器学习',
+    color: 'purple',
+    accent: 'cyber-purple',
+    dim: 'cyber-purple-40',
+  },
+  project_management: {
+    name: '项目管理',
+    subtitle: '管理与协调',
+    color: 'orange',
+    accent: 'cyber-orange',
+    dim: 'cyber-orange-40',
   },
 }
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
+const getLevelBadge = (level: number) => {
+  if (level >= 90) return 'Expert'
+  if (level >= 70) return 'Advanced'
+  if (level >= 50) return 'Intermediate'
+  return 'Beginner'
 }
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      type: "spring" as const,
-      stiffness: 100,
-      damping: 20
-    }
-  }
+const getLevelColor = (level: number) => {
+  if (level >= 90) return 'text-cyber-cyan'
+  if (level >= 70) return 'text-cyber-green'
+  return 'text-cyber-yellow'
+}
+
+interface SkillsGridProps {
+  skills: Skill[]
+  color: string
+  accent: string
+  dim: string
+  maxItems?: number
+}
+
+function SkillsGrid({ skills, color, accent, dim, maxItems }: SkillsGridProps) {
+  const displaySkills = maxItems ? skills.slice(0, maxItems) : skills
+  const remaining = skills.length - (maxItems || 0)
+
+  return (
+    <>
+      <div className="grid grid-cols-2 gap-3">
+        {displaySkills.map((skill, index) => (
+          <motion.div
+            key={skill.name}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.05 }}
+            className={`group relative bg-cyber-black/40 border border-white/5 rounded-xl p-4 cursor-pointer transition-all duration-250 hover:border-${accent}/30 hover:bg-cyber-black/60 hover:-translate-y-0.5`}
+          >
+            <div className="flex justify-between items-start mb-3">
+              <span className="text-cyber-white text-sm font-medium">{skill.name}</span>
+              <span className={`${dim} text-xs font-semibold tabular-nums`}>{skill.level}%</span>
+            </div>
+            <div className="h-1 bg-white/5 rounded-full overflow-hidden">
+              <motion.div
+                initial={{ width: 0 }}
+                animate={{ width: `${skill.level}%` }}
+                transition={{ duration: 0.8, delay: 0.2 + index * 0.05 }}
+                className={`h-full bg-${accent} rounded-full`}
+              />
+            </div>
+            <div className="max-h-0 overflow-hidden transition-all duration-300 group-hover:max-h-20">
+              <div className="pt-3">
+                <p className="text-white/50 text-xs leading-relaxed">{skill.description}</p>
+                <span className={`inline-block mt-2 px-2 py-0.5 rounded text-[10px] uppercase tracking-wider font-medium bg-${accent}/10 text-${dim}`}>
+                  {getLevelBadge(skill.level)}
+                </span>
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </>
+  )
+}
+
+interface ModalProps {
+  isOpen: boolean
+  onClose: () => void
+  category: keyof typeof categoryConfig
+  skills: Skill[]
+}
+
+function SkillsModal({ isOpen, onClose, category, skills }: ModalProps) {
+  const config = categoryConfig[category]
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={onClose}
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
+          />
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-6"
+          >
+            <div className={`bg-cyber-gray/95 border border-${config.accent}/30 rounded-2xl w-full max-w-lg max-h-[80vh] overflow-hidden shadow-2xl shadow-${config.accent}/20`}>
+              <div className={`flex items-center justify-between p-5 border-b border-white/5`}>
+                <div className="flex items-center gap-3">
+                  <span className={`w-3 h-3 rounded-full bg-${config.accent}`} />
+                  <div>
+                    <h3 className="text-cyber-white font-medium">{config.name}</h3>
+                    <p className="text-white/50 text-xs">{config.subtitle}</p>
+                  </div>
+                </div>
+                <button
+                  onClick={onClose}
+                  className="text-white/50 hover:text-cyber-white transition-colors p-1"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+              <div className="p-5 overflow-y-auto max-h-[60vh]">
+                <div className="grid grid-cols-2 gap-3">
+                  {skills.map((skill, index) => (
+                    <motion.div
+                      key={skill.name}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.03 }}
+                      className={`bg-cyber-black/40 border border-white/5 rounded-xl p-4 hover:border-${config.accent}/30 transition-all`}
+                    >
+                      <div className="flex justify-between items-start mb-2">
+                        <span className="text-cyber-white text-sm font-medium">{skill.name}</span>
+                        <span className={`${config.dim} text-xs font-semibold`}>{skill.level}%</span>
+                      </div>
+                      <div className="h-1.5 bg-white/5 rounded-full overflow-hidden mb-3">
+                        <div
+                          className={`h-full bg-${config.accent} rounded-full transition-all duration-500`}
+                          style={{ width: `${skill.level}%` }}
+                        />
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <p className="text-white/45 text-xs leading-relaxed line-clamp-1">{skill.description}</p>
+                        <span className={`px-2 py-0.5 rounded text-[10px] uppercase tracking-wider font-medium bg-${config.accent}/10 text-${config.dim} ml-2 shrink-0`}>
+                          {getLevelBadge(skill.level)}
+                        </span>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
+  )
 }
 
 export default function SkillsSection() {
   const { t } = useLanguage()
-
-  const { skills, skillsByCategory, loading, error, refetch } = useSkills({
-    autoFetch: true,
-    refetchOnWindowFocus: true,
-    refetchOnReconnect: true
+  const { skillsByCategory, loading, error, refetch } = useSkills({ autoFetch: true })
+  const [modalState, setModalState] = useState<{ isOpen: boolean; category: keyof typeof categoryConfig }>({
+    isOpen: false,
+    category: 'it_ops',
   })
 
-  const getLevelDescription = (level: number) => {
-    if (level >= 90) return 'Expert'
-    if (level >= 70) return 'Advanced'
-    if (level >= 50) return 'Intermediate'
-    return 'Beginner'
+  const openModal = (category: keyof typeof categoryConfig) => {
+    setModalState({ isOpen: true, category })
   }
 
-  const categoryLabels = {
-    it_ops: 'IT运维',
-    ai: '人工智能',
+  const closeModal = () => {
+    setModalState((prev) => ({ ...prev, isOpen: false }))
   }
 
-  const stats = [
-    { value: '10+', label: t('skills.years_experience'), color: 'text-cyber-cyan' },
-    { value: '50+', label: t('skills.projects_completed'), color: 'text-cyber-yellow' },
-    { value: '30+', label: t('skills.happy_clients'), color: 'text-cyber-red' },
-    { value: '8+', label: t('skills.technologies'), color: 'text-cyber-purple' },
-  ]
+  const categories = ['it_ops', 'ai', 'project_management'] as const
 
   return (
     <section id="skills" className="py-20 px-4 relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-cyber-black via-cyber-gray/10 to-cyber-black" />
-      <div className="absolute inset-0 bg-cyber-grid opacity-10" />
+      <div className="absolute inset-0 bg-gradient-to-b from-cyber-black via-cyber-gray/5 to-cyber-black" />
+      <div className="absolute inset-0 bg-cyber-grid opacity-[0.03]" />
 
       <div className="relative z-10 max-w-6xl mx-auto">
-        <motion.h2
-          className="font-display text-4xl md:text-5xl font-bold text-center mb-4"
-          initial={{ opacity: 0, y: -30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-12"
         >
-          <span className="text-white">我的</span>
-          <span className="text-cyber-cyan">技能</span>
-        </motion.h2>
-
-        <motion.p
-          className="text-center text-gray-400 mb-12 max-w-2xl mx-auto"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-        >
-          专注于IT运维自动化和AI技术应用，持续学习和成长的技术专家
-        </motion.p>
+          <h2 className="font-display text-3xl font-bold text-cyber-white mb-2">
+            技能概览
+          </h2>
+          <p className="text-cyber-text-secondary text-sm">悬停卡片查看详情，点击查看更多</p>
+        </motion.div>
 
         {loading && <SkillsSkeleton />}
 
         {error && <SkillsError onRetry={() => refetch()} />}
 
-        {!loading && !error && Object.keys(skillsByCategory).length === 0 && (
-          <div className="text-center py-12">
-            <p className="text-white/70">暂无技能数据</p>
-          </div>
-        )}
-
-        {!loading && !error && Object.keys(skillsByCategory).length > 0 && (
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            {Object.entries(skillsByCategory).map(([category, categorySkills]) => {
-              const Icon = categoryIcons[category as keyof typeof categoryIcons]
-              const styles = categoryStyles[category as keyof typeof categoryStyles]
+        {!loading && !error && (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {categories.map((category, catIndex) => {
+              const config = categoryConfig[category]
+              const categorySkills = skillsByCategory[category] || []
+              const hasSkills = categorySkills.length > 0
 
               return (
                 <motion.div
                   key={category}
-                  variants={itemVariants}
-                  className={`cyber-card ${styles.cardVariant} group hover-lift`}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: catIndex * 0.1 }}
+                  className="bg-cyber-gray/20 border border-white/5 rounded-2xl p-5"
                 >
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className={`p-4 ${styles.bg} border-2 ${styles.border} rounded-xl group-hover:scale-110 transition-transform`}>
-                      <Icon className={`w-8 h-8 ${styles.text}`} />
+                  <div className="flex items-center gap-3 mb-5 pb-4 border-b border-white/5">
+                    <span className={`w-3 h-3 rounded-full bg-${config.accent}`} />
+                    <div>
+                      <h3 className="text-cyber-white font-medium">{config.name}</h3>
+                      <p className="text-white/45 text-xs">{config.subtitle}</p>
                     </div>
-                    <h3 className={`font-display text-xl font-bold ${styles.text}`}>
-                      {categoryLabels[category as keyof typeof categoryLabels]}
-                    </h3>
                   </div>
 
-                  <div className="space-y-4">
-                    {categorySkills.map((skill) => (
-                      <div key={skill.name}>
-                        <div className="flex justify-between items-center mb-2">
-                          <span className="font-mono-tech text-white/80 text-sm uppercase tracking-wider">
-                            {skill.name}
-                          </span>
-                          <span className={`font-bold ${styles.text}`}>
-                            {skill.level}%
-                          </span>
-                        </div>
-
-                        <div className="relative h-3 bg-cyber-black/50 border border-cyber-gray/30 rounded-full overflow-hidden">
-                          <motion.div
-                            className={`h-full bg-gradient-to-r ${styles.gradient} rounded-full relative overflow-hidden`}
-                            initial={{ width: 0 }}
-                            whileInView={{ width: `${skill.level}%` }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 1, delay: 0.5 }}
-                          >
-                            <div className="absolute inset-0 bg-white/20 animate-pulse" />
-                          </motion.div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+                  {hasSkills ? (
+                    <>
+                      <SkillsGrid
+                        skills={categorySkills}
+                        color={config.color}
+                        accent={config.accent}
+                        dim={config.dim}
+                        maxItems={4}
+                      />
+                      {categorySkills.length > 4 && (
+                        <button
+                          onClick={() => openModal(category)}
+                          className={`mt-4 w-full py-2.5 px-4 rounded-xl border border-dashed border-white/10 text-white/50 text-xs hover:text-cyber-white hover:border-${config.accent}/40 hover:bg-${config.accent}/5 transition-all flex items-center justify-center gap-1.5 group`}
+                        >
+                          <span>+{categorySkills.length - 4} 项</span>
+                          <ChevronRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
+                        </button>
+                      )}
+                    </>
+                  ) : (
+                    <div className="text-center py-8">
+                      <p className="text-white/40 text-sm">暂无技能数据</p>
+                    </div>
+                  )}
                 </motion.div>
               )
             })}
-          </motion.div>
+          </div>
         )}
-
-        <motion.div
-          className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4 }}
-        >
-          {stats.map((stat, index) => (
-            <motion.div
-              key={index}
-              className="cyber-card text-center group hover-lift"
-              whileHover={{ scale: 1.05 }}
-            >
-              <div className={`text-4xl font-bold mb-2 ${stat.color}`}>
-                {stat.value}
-              </div>
-              <div className="text-sm text-gray-400 uppercase tracking-wider">
-                {stat.label}
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
       </div>
+
+      <SkillsModal
+        isOpen={modalState.isOpen}
+        onClose={closeModal}
+        category={modalState.category}
+        skills={skillsByCategory[modalState.category] || []}
+      />
     </section>
   )
 }

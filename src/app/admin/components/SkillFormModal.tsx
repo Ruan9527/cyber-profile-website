@@ -15,7 +15,7 @@ export default function SkillFormModal({ skill, onClose, onSubmit }: SkillFormMo
   const [formData, setFormData] = useState({
     name: '',
     level: 50,
-    category: 'it_ops' as 'it_ops' | 'ai',
+    category: 'it_ops' as 'it_ops' | 'ai' | 'project_management',
     description: ''
   })
   const [loading, setLoading] = useState(false)
@@ -150,17 +150,18 @@ export default function SkillFormModal({ skill, onClose, onSubmit }: SkillFormMo
             <label htmlFor="category" className="block text-sm font-medium text-white/70 mb-2">
               分类 *
             </label>
-            <select
-              id="category"
-              name="category"
-              value={formData.category}
-              onChange={handleChange}
-              className="w-full px-4 py-3 bg-cyber-black/50 border border-cyber-cyan/30 rounded-lg text-white appearance-none focus:outline-none focus:ring-2 focus:ring-cyber-cyan focus:border-transparent"
-              disabled={loading}
-            >
-              <option value="it_ops">IT运维</option>
-              <option value="ai">人工智能</option>
-            </select>
+              <select
+                id="category"
+                name="category"
+                value={formData.category}
+                onChange={handleChange}
+                className="w-full px-4 py-3 bg-cyber-black/50 border border-cyber-cyan/30 rounded-lg text-white appearance-none focus:outline-none focus:ring-2 focus:ring-cyber-cyan focus:border-transparent"
+                disabled={loading}
+              >
+                <option value="it_ops">IT运维</option>
+                <option value="ai">人工智能</option>
+                <option value="project_management">项目管理</option>
+              </select>
           </div>
 
           {/* 熟练度 */}

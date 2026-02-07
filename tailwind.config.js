@@ -51,6 +51,18 @@ module.exports = {
         'cyber-red-40': 'rgba(255, 102, 128, 0.4)',
         'cyber-red-50': 'rgba(255, 102, 128, 0.5)',
         
+        'cyber-purple-10': 'rgba(185, 103, 255, 0.1)',
+        'cyber-purple-20': 'rgba(185, 103, 255, 0.2)',
+        'cyber-purple-30': 'rgba(185, 103, 255, 0.3)',
+        'cyber-purple-40': 'rgba(185, 103, 255, 0.4)',
+        'cyber-purple-50': 'rgba(185, 103, 255, 0.5)',
+        
+        'cyber-orange-10': 'rgba(255, 153, 102, 0.1)',
+        'cyber-orange-20': 'rgba(255, 153, 102, 0.2)',
+        'cyber-orange-30': 'rgba(255, 153, 102, 0.3)',
+        'cyber-orange-40': 'rgba(255, 153, 102, 0.4)',
+        'cyber-orange-50': 'rgba(255, 153, 102, 0.5)',
+        
         // 渐变背景
         'cyber-gradient-start': '#050505',
         'cyber-gradient-middle': '#1a1a2e',
