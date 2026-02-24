@@ -141,6 +141,7 @@ export class SkillAdminService {
       console.error('SkillAdminService错误:', error)
       throw error
     }
+  }
 
   // 删除技能
   static async deleteSkill(id: string): Promise<void> {
