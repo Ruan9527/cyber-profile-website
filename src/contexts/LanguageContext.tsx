@@ -54,10 +54,10 @@ const translations = {
   'contact.email_value': 'ruanlong9527@gmail.com',
   'contact.email_desc': '发送邮件',
   'contact.github_label': 'GitHub',
-  'contact.github_value': 'yourusername',
+  'contact.github_value': 'Ruan9527',
   'contact.github_desc': '查看代码',
   'contact.xiaohongshu_label': '小红书',
-  'contact.xiaohongshu_value': 'your-xiaohongshu-id',
+  'contact.xiaohongshu_value': '圆周率的达',
   'contact.xiaohongshu_desc': '分享日常',
 
   // Footer

@@ -7,15 +7,14 @@ import { motion } from 'framer-motion'
 import XiaohongshuIcon from './XiaohongshuIcon'
 import MagneticCard from './MagneticCard'
 
-
 const personalInfo = {
   name: "您好，我是圆周率的达",
   title: "IT运维 & AI开发者",
   bio: "专注于IT运维自动化和AI技术应用的现代个人展示网站",
   avatar: "/avatar.jpg",
   email: "ruanlong9527@gmail.com",
-  github: "https://github.com/yourusername",
-  xiaohongshu: "https://www.xiaohongshu.com/user/profile/your-xiaohongshu-id"
+  github: "https://github.com/Ruan9527",
+  xiaohongshu: "https://www.xiaohongshu.com/user/profile/60e30b3d0000000001008912"
 }
 
 const sentences = [
@@ -52,6 +51,17 @@ export default function Hero() {
   const [displayed, setDisplayed] = useState('')
   const [typeIdx, setTypeIdx] = useState(0)
   const [typing, setTyping] = useState(true)
+  const [emailCopied, setEmailCopied] = useState(false)
+
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText('ruanlong9527@gmail.com')
+      setEmailCopied(true)
+      setTimeout(() => setEmailCopied(false), 2000)
+    } catch (err) {
+      console.error('Failed to copy email:', err)
+    }
+  }
 
   useEffect(() => {
     const curr = sentences[typeIdx]
@@ -148,15 +158,30 @@ export default function Hero() {
                  小红书
                </motion.a>
 
-               <motion.a
-                 href={`mailto:${personalInfo.email}`}
-                 className="glass-card flex items-center gap-3 px-6 py-3 text-futuristic-text hover:bg-white/80 transition-all"
-                 whileHover={{ scale: 1.05 }}
-                 whileTap={{ scale: 0.98 }}
-               >
-                 <Mail className="w-5 h-5" />
-                 联系我
-               </motion.a>
+                <motion.button
+                  onClick={handleCopyEmail}
+                  className="glass-card flex items-center gap-3 px-6 py-3 text-futuristic-text hover:bg-white/80 transition-all relative group"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  {emailCopied ? (
+                    <>
+                      <div className="w-5 h-5 text-green-500 flex items-center justify-center">
+                        ✓
+                      </div>
+                      <span>已复制!</span>
+                    </>
+                  ) : (
+                    <>
+                      <Mail className="w-5 h-5" />
+                      <span>联系我</span>
+                    </>
+                  )}
+                  {/* Tooltip */}
+                  <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+                    {emailCopied ? '邮箱已复制到剪贴板!' : '点击复制邮箱地址'}
+                  </div>
+                </motion.button>
             </motion.div>
           </motion.div>
 
@@ -186,3 +211,5 @@ export default function Hero() {
     </section>
   )
 }
+
+

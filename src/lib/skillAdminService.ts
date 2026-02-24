@@ -4,8 +4,8 @@ import { Skill } from '@/types'
 export interface SkillCreateData {
   name: string
   level: number
-  category: 'it_ops' | 'ai' | 'project_management'
-  description?: string
+   category: 'it_ops' | 'ai' | 'project_management'
+   description?: string
 }
 
 export interface SkillUpdateData extends Partial<SkillCreateData> {}
@@ -28,13 +28,13 @@ export class SkillAdminService {
         throw new Error(`获取技能失败: ${error.message}`)
       }
 
-        return data?.map((item: any) => ({
-        id: item.id,
-        name: item.name,
-        level: item.level,
-        category: item.category as 'it_ops' | 'ai' | 'project_management',
-        description: item.description || undefined
-      })) || []
+       return data?.map((item: any) => ({
+         id: item.id,
+         name: item.name,
+         level: item.level,
+         category: item.category as 'it_ops' | 'ai' | 'project_management',
+         description: item.description || undefined
+       })) || []
     } catch (error) {
       console.error('SkillAdminService错误:', error)
       throw error
@@ -130,7 +130,7 @@ export class SkillAdminService {
         throw new Error(`更新技能失败: ${error.message}`)
       }
 
-      return {
+       return {
         id: data.id,
         name: data.name,
         level: data.level,
@@ -141,7 +141,6 @@ export class SkillAdminService {
       console.error('SkillAdminService错误:', error)
       throw error
     }
-  }
 
   // 删除技能
   static async deleteSkill(id: string): Promise<void> {

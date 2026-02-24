@@ -42,7 +42,7 @@ export default function RootLayout({
             }}
           />
         </>
-      )}
+       )}
        <body className="min-h-screen bg-futuristic-light-gray">
         <ErrorBoundary>
           <LanguageProvider>

@@ -1,27 +1,43 @@
 'use client'
 
-import { Github, Mail, Heart } from 'lucide-react'
+import { useState } from 'react'
+import { Github, Mail, Heart, Check } from 'lucide-react'
 import XiaohongshuIcon from '@/app/components/XiaohongshuIcon'
 
 export default function Footer() {
+  const [copied, setCopied] = useState(false)
+
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText('ruanlong9527@gmail.com')
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch (err) {
+      console.error('Failed to copy email:', err)
+    }
+  }
+
   const socialLinks = [
     {
       name: 'GitHub',
-      href: 'https://github.com/yourusername',
+      href: 'https://github.com/Ruan9527',
       icon: Github,
-      color: 'futuristic-blue'
+      color: 'futuristic-blue',
+      type: 'link' as const
     },
     {
       name: 'Xiaohongshu',
-      href: 'https://www.xiaohongshu.com/user/profile/yourprofile',
+      href: 'https://www.xiaohongshu.com/user/profile/60e30b3d0000000001008912',
       icon: XiaohongshuIcon,
-      color: 'futuristic-blue'
+      color: 'futuristic-blue',
+      type: 'link' as const
     },
     {
       name: 'Email',
-      href: 'mailto:ruanlong9527@gmail.com',
+      value: 'ruanlong9527@gmail.com',
       icon: Mail,
-      color: 'futuristic-blue'
+      color: 'futuristic-blue',
+      type: 'copy' as const
     }
   ]
 
@@ -43,6 +59,26 @@ export default function Footer() {
           <div className="flex justify-center gap-6">
             {socialLinks.map((link) => {
               const Icon = link.icon
+              if (link.type === 'copy') {
+                return (
+                  <button
+                    key={link.name}
+                    onClick={handleCopyEmail}
+                    className="p-3 bg-white border border-gray-200/60 rounded-xl hover:bg-futuristic-blue/5 hover:border-futuristic-blue/30 transition-all duration-300 hover:scale-110 shadow-sm hover:shadow-md relative group"
+                    title="点击复制邮箱地址"
+                  >
+                    {copied ? (
+                      <Check className="w-5 h-5 text-green-500" />
+                    ) : (
+                      <Icon className="w-5 h-5 text-gray-600 hover:text-futuristic-blue transition-colors" />
+                    )}
+                    {/* Tooltip */}
+                    <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+                      {copied ? '已复制!' : '点击复制邮箱'}
+                    </div>
+                  </button>
+                )
+              }
               return (
                 <a
                   key={link.name}

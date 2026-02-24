@@ -36,8 +36,8 @@ export class ChatService {
 - **姓名**：圆周率的达
 - **职业**：IT运维 & AI开发者
 - **邮箱**：ruanlong9527@gmail.com
-- **GitHub**：https://github.com/yourusername
-- **小红书**：https://www.xiaohongshu.com/user/profile/your-xiaohongshu-id
+ - **GitHub**：https://github.com/Ruan9527
+ - **小红书**：https://www.xiaohongshu.com/user/profile/60e30b3d0000000001008912
 - **专注领域**：IT运维自动化、AI技术应用
 
 ## 📋 你的技术栈

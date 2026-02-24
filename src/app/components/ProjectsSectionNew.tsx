@@ -15,7 +15,7 @@ const projects = [
     size: 'col-span-3 row-span-2',
     tags: ['Python', 'TensorFlow', 'Kubernetes', 'Prometheus'],
     links: {
-      github: 'https://github.com',
+      github: 'https://github.com/Ruan9527',
       demo: 'https://demo.example.com',
     },
   },
@@ -30,7 +30,7 @@ const projects = [
     size: 'col-span-3 row-span-1',
     tags: ['React', 'TypeScript', 'AWS', 'D3.js'],
     links: {
-      github: 'https://github.com',
+      github: 'https://github.com/Ruan9527',
       demo: 'https://demo.example.com',
     },
   },
@@ -45,7 +45,7 @@ const projects = [
     size: 'col-span-3 row-span-1',
     tags: ['Apache Airflow', 'Python', 'PostgreSQL', 'Snowflake'],
     links: {
-      github: 'https://github.com',
+      github: 'https://github.com/Ruan9527',
     },
   },
   {
@@ -59,7 +59,7 @@ const projects = [
     size: 'col-span-2 row-span-1',
     tags: ['Python', 'Terraform', 'AWS Security Hub', 'Ansible'],
     links: {
-      github: 'https://github.com',
+      github: 'https://github.com/Ruan9527',
     },
   },
   {
@@ -73,7 +73,7 @@ const projects = [
     size: 'col-span-2 row-span-1',
     tags: ['Go', 'Prometheus', 'Grafana', 'OpenTelemetry'],
     links: {
-      github: 'https://github.com',
+      github: 'https://github.com/Ruan9527',
       demo: 'https://demo.example.com',
     },
   },
@@ -88,7 +88,7 @@ const projects = [
     size: 'col-span-2 row-span-1',
     tags: ['GitLab CI', 'Docker', 'Kubernetes', 'Helm'],
     links: {
-      github: 'https://github.com',
+      github: 'https://github.com/Ruan9527',
     },
   },
 ]
