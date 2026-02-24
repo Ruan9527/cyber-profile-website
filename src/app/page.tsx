@@ -1,8 +1,7 @@
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import SkillsSection from './components/SkillsSection'
-import ProjectsSection from './components/ProjectsSection'
-import ContactSection from './components/ContactSection'
+import SkillsSectionNew from './components/SkillsSectionNew'
+import ProjectsSectionNew from './components/ProjectsSectionNew'
 import Footer from './components/Footer'
 import BackToTop from './components/BackToTop'
 import ChatBot from './components/ChatBot'
@@ -12,9 +11,8 @@ export default function Home() {
     <main className="min-h-screen">
       <Navbar />
       <Hero />
-      <SkillsSection />
-      <ProjectsSection />
-      <ContactSection />
+      <SkillsSectionNew />
+      <ProjectsSectionNew />
       <Footer />
       <BackToTop />
       <ChatBot />

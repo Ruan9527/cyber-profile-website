@@ -7,6 +7,7 @@ import { motion } from 'framer-motion'
 import XiaohongshuIcon from './XiaohongshuIcon'
 import MagneticCard from './MagneticCard'
 
+
 const personalInfo = {
   name: "您好，我是圆周率的达",
   title: "IT运维 & AI开发者",
@@ -75,10 +76,10 @@ export default function Hero() {
   }, [displayed, typeIdx, typing])
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center py-20 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-modern" />
-      <div className="absolute inset-0 bg-cyber-grid opacity-20" />
-      <div className="absolute inset-0 noise-overlay" />
+    <section id="home" className="relative min-h-screen flex items-center py-20 overflow-hidden bg-futuristic-light-gray">
+
+      <div className="absolute inset-0 bg-abstract-geometric opacity-50" />
+      <div className="absolute inset-0 bg-noise-texture opacity-[0.02]" />
 
       <motion.div
         className="relative z-10 max-w-7xl mx-auto px-4 w-full"
@@ -89,21 +90,21 @@ export default function Hero() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <motion.div variants={itemVariants} className="order-2 lg:order-1">
             <motion.div
-              className="mb-4 text-accent font-caveat text-xl"
+              className="mb-4 text-futuristic-blue font-space-grotesk text-lg font-medium"
               animate={{ opacity: [0.7, 1, 0.7] }}
               transition={{ duration: 2, repeat: Infinity }}
             >
-              欢迎来到我的世界
+              Welcome to my portfolio
             </motion.div>
 
-            <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-              <span className="text-white">您好，我是</span>
+            <h1 className="font-archivo text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+              <span className="text-futuristic-text">Hello, I'm</span>
               <br />
-              <span className="text-cyber-cyan text-neon-cyan">圆周率的达</span>
+              <span className="text-futuristic-blue">圆周率的达</span>
             </h1>
 
             <motion.h2
-              className="font-quicksand text-2xl md:text-3xl text-cyber-yellow mb-6 font-medium"
+              className="font-space-grotesk text-2xl md:text-3xl text-futuristic-text-muted mb-6 font-medium"
               variants={itemVariants}
             >
               {personalInfo.title}
@@ -113,7 +114,7 @@ export default function Hero() {
               className="text-lg text-gray-300 mb-8 leading-relaxed max-w-lg"
               variants={itemVariants}
             >
-              <span className="text-cyber-purple font-caveat text-xl block mb-2">
+              <span className="text-futuristic-blue font-space-grotesk text-lg block mb-2">
                 {displayed}
                 <span className="typewriter-cursor" />
               </span>
@@ -123,39 +124,39 @@ export default function Hero() {
               className="flex flex-wrap gap-4"
               variants={itemVariants}
             >
-              <motion.a
-                href={personalInfo.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="cyber-button cyber-button-variant-cyan flex items-center gap-3 hover-lift"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <Github className="w-5 h-5" />
-                GitHub
-              </motion.a>
+               <motion.a
+                 href={personalInfo.github}
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 className="glass-card flex items-center gap-3 px-6 py-3 text-futuristic-text hover:bg-white/80 transition-all"
+                 whileHover={{ scale: 1.05 }}
+                 whileTap={{ scale: 0.98 }}
+               >
+                 <Github className="w-5 h-5" />
+                 GitHub
+               </motion.a>
 
-              <motion.a
-                href={personalInfo.xiaohongshu}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="cyber-button cyber-button-variant-red flex items-center gap-3 hover-lift"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <XiaohongshuIcon className="w-5 h-5" />
-                小红书
-              </motion.a>
+               <motion.a
+                 href={personalInfo.xiaohongshu}
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 className="glass-card flex items-center gap-3 px-6 py-3 text-futuristic-text hover:bg-white/80 transition-all"
+                 whileHover={{ scale: 1.05 }}
+                 whileTap={{ scale: 0.98 }}
+               >
+                 <XiaohongshuIcon className="w-5 h-5" />
+                 小红书
+               </motion.a>
 
-              <motion.a
-                href={`mailto:${personalInfo.email}`}
-                className="cyber-button cyber-button-variant-yellow flex items-center gap-3 hover-lift"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <Mail className="w-5 h-5" />
-                联系我
-              </motion.a>
+               <motion.a
+                 href={`mailto:${personalInfo.email}`}
+                 className="glass-card flex items-center gap-3 px-6 py-3 text-futuristic-text hover:bg-white/80 transition-all"
+                 whileHover={{ scale: 1.05 }}
+                 whileTap={{ scale: 0.98 }}
+               >
+                 <Mail className="w-5 h-5" />
+                 联系我
+               </motion.a>
             </motion.div>
           </motion.div>
 
@@ -176,9 +177,9 @@ export default function Hero() {
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
         >
-          <div className="flex flex-col items-center gap-2 text-cyber-cyan/60">
-            <span className="text-xs font-mono-tech uppercase tracking-widest">Scroll</span>
-            <div className="w-px h-12 bg-gradient-to-b from-cyber-cyan to-transparent" />
+          <div className="flex flex-col items-center gap-2 text-futuristic-blue/60">
+            <span className="text-xs font-space-grotesk uppercase tracking-widest">Scroll</span>
+            <div className="w-px h-12 bg-gradient-to-b from-futuristic-blue to-transparent" />
           </div>
         </motion.div>
       </motion.div>

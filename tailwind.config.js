@@ -67,6 +67,16 @@ module.exports = {
         'cyber-gradient-start': '#050505',
         'cyber-gradient-middle': '#1a1a2e',
         'cyber-gradient-end': '#16213e',
+        
+        // Futuristic Minimal Portfolio Colors (Design System)
+        'futuristic-white': '#FFFFFF',
+        'futuristic-light-gray': '#F8FAFC',
+        'futuristic-text': '#0F172A',
+        'futuristic-text-muted': '#475569',
+        'futuristic-blue': '#007AFF',
+        'futuristic-blue-shadow': 'rgba(0, 122, 255, 0.08)',
+        'futuristic-cyan-shadow': 'rgba(0, 224, 255, 0.05)',
+        'futuristic-glass': 'rgba(255, 255, 255, 0.72)',
       },
       
       // 扩展的字体系统
@@ -80,6 +90,10 @@ module.exports = {
         'body-en': ['Exo 2', 'Segoe UI', 'sans-serif'],
         'mono-tech': ['Share Tech Mono', 'Cascadia Code', 'monospace'],
         'futuristic': ['Michroma', 'Rajdhani', 'sans-serif'],
+        
+        // Futuristic Minimal Portfolio Fonts (Design System)
+        'archivo': ['Archivo', 'sans-serif'],
+        'space-grotesk': ['Space Grotesk', 'monospace'],
       },
       
       // 光标系统
@@ -147,6 +161,10 @@ module.exports = {
         'circuit-pattern': 'radial-gradient(circle at 25% 25%, rgba(102, 224, 255, 0.03) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(255, 102, 128, 0.03) 0%, transparent 50%)',
         'data-stream': 'linear-gradient(90deg, transparent, rgba(102, 224, 255, 0.15), transparent)',
         'noise-texture': 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 400 400\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\' opacity=\'0.1\'/%3E%3C/svg%3E")',
+        
+        // Futuristic Minimal Portfolio Backgrounds
+        'abstract-geometric': 'radial-gradient(circle at 20% 30%, rgba(0, 122, 255, 0.02) 0%, transparent 40%), radial-gradient(circle at 80% 70%, rgba(0, 224, 255, 0.015) 0%, transparent 40%)',
+        'glass-gradient': 'linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.4) 100%)',
       },
       
       // 扩展的阴影效果
@@ -159,6 +177,11 @@ module.exports = {
         'cyber-yellow': '0 0 15px rgba(255, 242, 102, 0.3), 0 0 30px rgba(255, 242, 102, 0.15)',
         'cyber-purple': '0 0 15px rgba(209, 153, 255, 0.3), 0 0 30px rgba(209, 153, 255, 0.15)',
         'inner-cyber': 'inset 0 0 15px rgba(102, 224, 255, 0.2), inset 0 0 30px rgba(102, 224, 255, 0.1)',
+        
+        // Futuristic Minimal Portfolio Shadows
+        'glass-card': '0 10px 30px rgba(0, 122, 255, 0.08), 0 5px 15px rgba(0, 224, 255, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.6)',
+        'glass-card-hover': '0 16px 40px rgba(0, 122, 255, 0.12), 0 8px 20px rgba(0, 224, 255, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
+        'floating': '0 20px 60px rgba(0, 122, 255, 0.1), 0 10px 30px rgba(0, 224, 255, 0.05)',
       },
       
       // 文本阴影扩展

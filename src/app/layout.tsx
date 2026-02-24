@@ -43,7 +43,7 @@ export default function RootLayout({
           />
         </>
       )}
-      <body className="min-h-screen bg-cyber-black">
+       <body className="min-h-screen bg-futuristic-light-gray">
         <ErrorBoundary>
           <LanguageProvider>
             {process.env.NEXT_PUBLIC_GA_ID && (

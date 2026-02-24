@@ -1,4 +1,5 @@
-/* Google Fonts Import - Caveat + Quicksand */
+/* Google Fonts Import - Futuristic Minimal Portfolio Design System */
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Quicksand:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
@@ -26,6 +27,22 @@
   --color-success: #10B981;
   --color-warning: #F59E0B;
   --color-error: #EF4444;
+  
+  /* ========== FUTURISTIC MINIMAL PORTFOLIO DESIGN SYSTEM ========== */
+  
+  /* Core Colors - Light Theme */
+  --futuristic-white: #FFFFFF;
+  --futuristic-light-gray: #F8FAFC;
+  --futuristic-text: #0F172A;
+  --futuristic-text-muted: #475569;
+  --futuristic-blue: #007AFF;
+  --futuristic-blue-shadow: rgba(0, 122, 255, 0.08);
+  --futuristic-cyan-shadow: rgba(0, 224, 255, 0.05);
+  --futuristic-glass: rgba(255, 255, 255, 0.72);
+  
+  /* Typography */
+  --font-archivo: 'Archivo', sans-serif;
+  --font-space-grotesk: 'Space Grotesk', monospace;
   
   /* Legacy Cyberpunk Colors (for backward compatibility) */
   --cyber-black: #0f0f0f;
@@ -668,6 +685,42 @@ body {
 .card-interactive:hover {
   transform: translateY(-5px);
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================
+   FUTURISTIC GLASS CARDS - Design System
+   ============================================ */
+
+.glass-card {
+  background: var(--futuristic-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 20px;
+  box-shadow: 
+    0 10px 30px var(--futuristic-blue-shadow),
+    0 5px 15px var(--futuristic-cyan-shadow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  transition: all 300ms ease;
+  cursor: pointer;
+}
+
+.glass-card:focus-visible {
+  outline: 2px solid var(--futuristic-blue);
+  outline-offset: 2px;
+  box-shadow: 
+    0 10px 30px var(--futuristic-blue-shadow),
+    0 5px 15px var(--futuristic-cyan-shadow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    0 0 0 4px rgba(0, 122, 255, 0.2);
+}
+
+.glass-card:hover {
+  box-shadow: 
+    0 16px 40px rgba(0, 122, 255, 0.12),
+    0 8px 20px rgba(0, 224, 255, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  transform: translateY(-4px);
 }
 
 /* ============================================

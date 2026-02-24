@@ -17,12 +17,11 @@ export default function Navbar() {
     { id: 'home', label: '首页', href: '#home' },
     { id: 'skills', label: '技能', href: '#skills' },
     { id: 'projects', label: '项目', href: '#projects' },
-    { id: 'contact', label: '联系', href: '#contact' },
   ]
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'skills', 'projects', 'contact']
+      const sections = ['home', 'skills', 'projects']
       const scrollPosition = window.scrollY + 100
 
       for (const sectionId of sections) {
@@ -68,7 +67,7 @@ export default function Navbar() {
     <motion.nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-cyber-black/95 backdrop-blur-lg shadow-lg border-b border-cyber-gray/30'
+          ? 'bg-white/95 backdrop-blur-lg shadow-lg border-b border-gray-200/30'
           : 'bg-transparent'
       }`}
       initial={{ y: -100 }}
@@ -81,7 +80,7 @@ export default function Navbar() {
         animate={{ opacity: 1 }}
       >
         <motion.div
-          className="h-full bg-gradient-to-r from-cyber-cyan via-cyber-purple to-cyber-red"
+          className="h-full bg-gradient-to-r from-futuristic-blue via-futuristic-blue/70 to-futuristic-blue/40"
           style={{ width: `${scrollProgress}%` }}
           transition={{ duration: 0.1 }}
         />
@@ -97,9 +96,9 @@ export default function Navbar() {
           <motion.div
             className="font-display font-bold text-2xl tracking-wider cursor-pointer"
             whileHover={{ scale: 1.05 }}
-          >
-            <span className="text-cyber-cyan">Always</span>
-            <span className="text-cyber-yellow">PiPi</span>
+           >
+            <span className="text-futuristic-blue">Always</span>
+            <span className="text-futuristic-text">PiPi</span>
           </motion.div>
 
           <div className="flex items-center gap-8 flex-1 justify-center">
@@ -110,8 +109,8 @@ export default function Navbar() {
                 onClick={(e) => handleNavClick(e, link.href)}
                 className={`relative font-medium uppercase tracking-wider text-sm transition-all duration-300 px-4 py-2 ${
                   activeSection === link.id
-                    ? 'text-cyber-cyan'
-                    : 'text-white/70 hover:text-cyber-yellow'
+                    ? 'text-futuristic-blue'
+                    : 'text-futuristic-text-muted hover:text-futuristic-blue'
                 }`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.98 }}
@@ -120,7 +119,7 @@ export default function Navbar() {
                   {link.label}
                   {activeSection === link.id && (
                     <motion.span
-                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-cyber-cyan"
+                       className="absolute -bottom-1 left-0 right-0 h-0.5 bg-futuristic-blue"
                       layoutId="activeIndicator"
                       initial={{ scaleX: 0 }}
                       animate={{ scaleX: 1 }}
@@ -138,7 +137,7 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
           >
-            <WeatherBadge />
+            <WeatherBadge variant="minimal" />
           </motion.div>
         </motion.div>
 
@@ -148,15 +147,15 @@ export default function Navbar() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
         >
-          <div className="font-display font-bold text-xl tracking-wide">
-            <span className="text-cyber-cyan">Always</span>
-            <span className="text-cyber-yellow">PiPi</span>
-          </div>
+           <div className="font-display font-bold text-xl tracking-wide">
+             <span className="text-futuristic-blue">Always</span>
+             <span className="text-futuristic-text">PiPi</span>
+           </div>
           <div className="flex items-center gap-4">
-            <WeatherBadge compact={true} />
+            <WeatherBadge variant="minimal" compact={true} />
             <motion.button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-cyber-cyan hover:bg-cyber-cyan/10 rounded-lg transition-colors"
+               className="p-2 text-futuristic-blue hover:bg-futuristic-blue/10 rounded-lg transition-colors"
               whileTap={{ scale: 0.95 }}
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -181,11 +180,11 @@ export default function Navbar() {
                     handleNavClick(e, link.href)
                     setMobileMenuOpen(false)
                   }}
-                  className={`block px-6 py-3 font-medium uppercase tracking-wider text-sm transition-colors rounded-lg ${
-                    activeSection === link.id
-                      ? 'bg-cyber-cyan/20 text-cyber-cyan border border-cyber-cyan/50'
-                      : 'text-white/70 hover:text-cyber-cyan hover:bg-cyber-cyan/10'
-                  }`}
+               className={`block px-6 py-3 font-medium uppercase tracking-wider text-sm transition-colors rounded-lg ${
+                 activeSection === link.id
+                   ? 'bg-futuristic-blue/20 text-futuristic-blue border border-futuristic-blue/50'
+                   : 'text-futuristic-text-muted hover:text-futuristic-blue hover:bg-futuristic-blue/10'
+               }`}
                   whileTap={{ scale: 0.98 }}
                 >
                   {link.label}

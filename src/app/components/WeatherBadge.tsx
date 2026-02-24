@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { Cloud, AlertCircle, RefreshCw } from 'lucide-react'
+import { Cloud, Sun, AlertCircle, RefreshCw } from 'lucide-react'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { WeatherService } from '@/lib/weather'
 import WeatherDetailsPanel from './WeatherDetailsPanel'
@@ -10,6 +10,7 @@ import { WeatherData } from '@/types/weather'
 interface WeatherBadgeProps {
   className?: string
   compact?: boolean // 紧凑模式，用于移动端
+  variant?: 'default' | 'minimal' // 默认显示弹出框，minimal不显示弹出框
 }
 
 // 预定义城市列表（仅保留北京/武汉，定位为当前位置时作为辅助选项）
@@ -18,7 +19,7 @@ const PRESET_CITIES = [
   { name: 'Wuhan', nameZh: '武汉' },
 ]
 
-export default function WeatherBadge({ className = '', compact = false }: WeatherBadgeProps) {
+export default function WeatherBadge({ className = '', compact = false, variant = 'default' }: WeatherBadgeProps) {
   const { language, t } = useLanguage()
   const [weather, setWeather] = useState<WeatherData | null>(null)
   const [loading, setLoading] = useState(false)
@@ -178,6 +179,14 @@ export default function WeatherBadge({ className = '', compact = false }: Weathe
   }
 
   if (loading && !weather) {
+    if (variant === 'minimal') {
+      return (
+        <div className={`flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm border border-white/30 rounded-full shadow-sm ${className}`}>
+          <div className="w-5 h-5 bg-gray-200 rounded-full animate-pulse" />
+          <span className="font-space-grotesk text-futuristic-text text-sm font-medium">--</span>
+        </div>
+      )
+    }
     return (
       <div className={`flex items-center gap-2 px-3 py-1.5 bg-cyber-black/50 border border-cyber-cyan/30 rounded-lg ${className}`}>
         <div className="animate-spin">
@@ -191,6 +200,14 @@ export default function WeatherBadge({ className = '', compact = false }: Weathe
   }
 
   if (error && !weather) {
+    if (variant === 'minimal') {
+      return (
+        <div className={`flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm border border-white/30 rounded-full shadow-sm ${className}`}>
+          <AlertCircle className="w-5 h-5 text-red-500" />
+          <span className="font-space-grotesk text-futuristic-text text-sm font-medium">--</span>
+        </div>
+      )
+    }
     return (
       <div className={`flex items-center gap-2 px-3 py-1.5 bg-cyber-black/50 border border-cyber-red/30 rounded-lg ${className}`}>
         <AlertCircle className="w-4 h-4 text-cyber-red" />
@@ -206,6 +223,36 @@ export default function WeatherBadge({ className = '', compact = false }: Weathe
   const tempColorClass = WeatherService.getTempColorClass(weather.now.temp)
   const cityName = getSelectedCityName() || weather.city
 
+  // Minimal variant - no popup, glass style
+  if (variant === 'minimal') {
+    // Choose icon based on weather condition
+    const getWeatherIcon = () => {
+      const condition = weather.now.text.toLowerCase()
+      if (condition.includes('晴') || condition.includes('sun')) {
+        return <Sun className="w-5 h-5 text-yellow-500" />
+      } else if (condition.includes('云') || condition.includes('cloud')) {
+        return <Cloud className="w-5 h-5 text-gray-500" />
+      } else {
+        return <div className="text-lg leading-none">{weather.now.iconText}</div>
+      }
+    }
+
+    return (
+      <div className={`flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm border border-white/30 rounded-full shadow-sm ${className}`}>
+        {getWeatherIcon()}
+        <span className="font-space-grotesk text-gray-900 text-sm font-medium">
+          {weather.now.temp}°C
+        </span>
+        {!compact && (
+          <span className="font-space-grotesk text-gray-600 text-xs truncate max-w-[60px]">
+            {cityName}
+          </span>
+        )}
+      </div>
+    )
+  }
+
+  // Default variant - with popup and interactive features
   return (
     <div className="relative" ref={detailsRef}>
       {/* 天气徽章主体 */}
@@ -288,10 +335,10 @@ export default function WeatherBadge({ className = '', compact = false }: Weathe
               <button onClick={handleAutoLocation} className={`px-2 py-1.5 text-xs rounded border transition-colors ${locationResolved ? 'bg-cyber-yellow/20 text-cyber-yellow border-cyber-yellow/60' : 'border-cyber-cyan/20 bg-cyber-black/30 text-cyber-yellow/80 hover:bg-cyber-cyan/10'}`}>
                 当前位置
               </button>
-              <button onClick={() => handleSelectCity('Beijing')} className={`px-2 py-1.5 text-xs rounded border transition-colors ${selectedCity === 'Beijing' ? 'bg-cyber-cyan/20 text-cyber-cyan border-cyber-cyan' : 'bg-cyber-black/30 text-cyber-yellow/80 border-cyber-cyan/20 hover:bg-cyber-cyan/10'}`}>
+              <button onClick={() => handleSelectCity('Beijing')} className={`px-2 py-1.5 text-xs rounded border transition-colors ${selectedCity === 'Beijing' ? 'bg-cyber-cyan/20 text-cyber-cyan border-cyber-cyan' : 'border-cyber-cyan/20 bg-cyber-black/30 text-cyber-yellow/80 border-cyber-cyan/20 hover:bg-cyber-cyan/10'}`}>
                 北京
               </button>
-              <button onClick={() => handleSelectCity('Wuhan')} className={`px-2 py-1.5 text-xs rounded border transition-colors ${selectedCity === 'Wuhan' ? 'bg-cyber-cyan/20 text-cyber-cyan border-cyber-cyan' : 'bg-cyber-black/30 text-cyber-yellow/80 border-cyber-cyan/20 hover:bg-cyber-cyan/10'}`}>
+              <button onClick={() => handleSelectCity('Wuhan')} className={`px-2 py-1.5 text-xs rounded border transition-colors ${selectedCity === 'Wuhan' ? 'bg-cyber-cyan/20 text-cyber-cyan border-cyber-cyan' : 'border-cyber-cyan/20 bg-cyber-black/30 text-cyber-yellow/80 border-cyber-cyan/20 hover:bg-cyber-cyan/10'}`}>
                 武汉
               </button>
             </div>

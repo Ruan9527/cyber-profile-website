@@ -30,7 +30,7 @@ export default function ChatBot() {
       setMessages([{
         id: 'welcome',
         role: 'assistant',
-        content: '👋 嗨！我是圆周率的达的AI助手！\n\n问我任何关于我的技术栈、项目经验、或者合作意向的问题，我会用幽默风趣的语气回答你！\n\n准备好开始了吗？😄',
+        content: '👋 Hi! I\'m the AI assistant for this portfolio!\n\nAsk me anything about tech stack, project experience, or collaboration opportunities. I\'ll respond in a friendly tone!\n\nReady to get started? 😄',
         timestamp: Date.now()
       }])
     }
@@ -80,7 +80,7 @@ export default function ChatBot() {
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
-        content: '抱歉，我遇到了一些技术问题。请检查API配置或稍后再试试吧！🤖',
+        content: 'Sorry, I encountered a technical issue. Please check API configuration or try again later! 🤖',
         timestamp: Date.now()
       }
       setMessages(prev => [...prev, errorMessage])
@@ -97,12 +97,12 @@ export default function ChatBot() {
   }
 
   const handleClear = () => {
-    if (confirm('确定要清空对话历史吗？')) {
+     if (confirm('Are you sure you want to clear conversation history?')) {
       ChatService.clearChatHistory()
       setMessages([{
         id: 'welcome',
         role: 'assistant',
-        content: '👋 嗨！我是圆周率的达的AI助手！\n\n问我任何关于我的技术栈、项目经验、或者合作意向的问题，我会用幽默风趣的语气回答你！\n\n准备好开始了吗？😄',
+        content: '👋 Hi! I\'m the AI assistant for this portfolio!\n\nAsk me anything about tech stack, project experience, or collaboration opportunities. I\'ll respond in a friendly tone!\n\nReady to get started? 😄',
         timestamp: Date.now()
       }])
     }
@@ -121,52 +121,52 @@ export default function ChatBot() {
         className={`group transition-transform duration-300 ${isOpen ? 'translate-x-0' : 'translate-x-[1.5rem]'}`}
       >
         {/* 提示文本 */}
-        <div className="absolute right-full mr-2 top-1/2 -translate-y-1/2 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-          <div className="bg-gradient-to-r from-cyber-purple/98 to-cyber-pink/98 border border-cyber-purple/50 rounded-lg px-4 py-3 text-sm" style={{ boxShadow: '0 0 15px rgba(209, 153, 255, 0.3)' }}>
-            <div className="font-bold text-sm mb-1 flex items-center gap-2 text-white" style={{ textShadow: '0 1px 3px rgba(0,0,0,0.6)' }}>
-              <Bot className="w-4 h-4" />
-              AI 助手
-              <span className="w-2 h-2 bg-cyber-green rounded-full animate-pulse" />
+          <div className="absolute right-full mr-2 top-1/2 -translate-y-1/2 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+            <div className="bg-white border border-gray-200/80 rounded-lg px-4 py-3 text-sm shadow-lg">
+              <div className="font-bold text-sm mb-1 flex items-center gap-2 text-futuristic-dark">
+                <Bot className="w-4 h-4" />
+                AI Assistant
+                <span className="w-2 h-2 bg-futuristic-blue rounded-full animate-pulse" />
+              </div>
+              <div className="text-xs text-gray-600">Click to start conversation</div>
             </div>
-            <div className="text-xs text-white/90" style={{ textShadow: '0 1px 2px rgba(0,0,0,0.6)' }}>点击开始聊天对话</div>
           </div>
-        </div>
 
-        {/* 按钮 */}
+        {/* Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
           className={`w-16 h-16 rounded-l-2xl rounded-r-none transition-all duration-300 hover:scale-105 flex items-center justify-center relative overflow-hidden ${
             isOpen
-              ? 'bg-gradient-to-r from-cyber-red to-cyber-pink w-12 h-12 border-2 border-cyber-red'
-              : 'bg-gradient-to-r from-cyber-purple to-cyber-pink border-2 border-cyber-purple/50'
+              ? 'bg-white w-12 h-12 border-2 border-gray-300'
+              : 'bg-futuristic-blue border-2 border-futuristic-blue/80'
           }`}
           style={{
-            boxShadow: isOpen ? '0 0 15px rgba(255, 102, 128, 0.3)' : '0 0 15px rgba(209, 153, 255, 0.3)'
+            boxShadow: isOpen ? '0 4px 20px rgba(0, 0, 0, 0.1)' : '0 4px 20px rgba(0, 122, 255, 0.2)'
           }}
           aria-label={isOpen ? 'Close Chat' : 'Open Chat'}
         >
-          {/* 背景动画 - 降低不透明度 */}
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-gradient-shift" />
+          {/* Background animation */}
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-gradient-shift" />
 
-          {/* 在线状态指示灯 - 降低发光强度 */}
+          {/* Online indicator */}
           {!isOpen && (
-            <div className="absolute top-2 right-2 w-3 h-3 bg-cyber-green rounded-full animate-pulse shadow-[0_0_8px_rgba(102,255,204,0.6)]" />
+            <div className="absolute top-2 right-2 w-3 h-3 bg-futuristic-blue rounded-full animate-pulse" />
           )}
 
-          {/* 图标和文字 - 增加文字阴影提高可读性 */}
+          {/* Icon and text */}
           {isOpen ? (
-            <X className="w-5 h-5 text-white relative z-10" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.5)' }} />
+            <X className="w-5 h-5 text-gray-700 relative z-10" />
           ) : (
             <div className="flex flex-col items-center gap-1 relative z-10">
-              <Bot className="w-6 h-6 text-white" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.5)' }} />
-              <span className="text-[8px] font-bold text-white tracking-wider" style={{ textShadow: '0 1px 3px rgba(0,0,0,0.8)' }}>AI</span>
+              <Bot className="w-6 h-6 text-white" />
+              <span className="text-[8px] font-bold text-white tracking-wider">AI</span>
             </div>
           )}
 
-          {/* 对话气泡装饰 - 降低发光强度 */}
+          {/* Chat bubble decoration */}
           {!isOpen && (
-            <div className="absolute -top-1 -right-1 w-4 h-4 bg-cyber-cyan rounded-full flex items-center justify-center" style={{ boxShadow: '0 0 8px rgba(102,224,255,0.5)' }}>
-              <div className="w-2 h-2 bg-white rounded-full" />
+            <div className="absolute -top-1 -right-1 w-4 h-4 bg-white rounded-full flex items-center justify-center">
+              <div className="w-2 h-2 bg-futuristic-blue rounded-full" />
             </div>
           )}
         </button>
@@ -182,31 +182,31 @@ export default function ChatBot() {
             left: 'auto',
             zIndex: 1000
           }}
-          className="w-96 max-w-[calc(100vw-4rem)] bg-cyber-black/95 backdrop-blur-xl border border-cyber-cyan/30 rounded-2xl shadow-cyber-xl overflow-hidden animate-fade-in">
+          className="w-96 max-w-[calc(100vw-4rem)] bg-white/95 backdrop-blur-xl border border-gray-300/50 rounded-2xl shadow-xl overflow-hidden animate-fade-in">
           {/* Header */}
-          <div className="bg-gradient-to-r from-cyber-cyan/20 to-cyber-purple/20 px-5 py-4 border-b border-cyber-cyan/30">
+          <div className="bg-gradient-to-r from-futuristic-blue/10 to-futuristic-cyan/10 px-5 py-4 border-b border-gray-200">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-cyber-cyan/20 border-2 border-cyber-cyan flex items-center justify-center">
-                  <Bot className="w-6 h-6 text-cyber-cyan" />
+                 <div className="w-10 h-10 rounded-full bg-futuristic-blue/10 border-2 border-futuristic-blue flex items-center justify-center">
+                   <Bot className="w-6 h-6 text-futuristic-blue" />
                 </div>
                 <div>
-                  <h3 className="font-display font-bold text-white text-lg" style={{ textShadow: '0 1px 3px rgba(0,0,0,0.6)' }}>圆周率的达</h3>
-                  <p className="text-xs text-cyber-cyan" style={{ textShadow: '0 1px 2px rgba(0,0,0,0.5)' }}>AI助手 · 在线</p>
+                   <h3 className="font-archivo font-bold text-futuristic-dark text-lg">Futuristic AI</h3>
+                  <p className="text-xs text-futuristic-blue">AI Assistant · Online</p>
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <button
+                 <button
                   onClick={handleClear}
-                  className="p-2 rounded-lg hover:bg-cyber-cyan/10 text-cyber-gray hover:text-cyber-cyan transition-colors"
-                  title="清空对话"
+                  className="p-2 rounded-lg hover:bg-futuristic-blue/10 text-gray-500 hover:text-futuristic-blue transition-colors"
+                  title="Clear conversation"
                 >
                   <Trash2 className="w-4 h-4" />
                 </button>
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="p-2 rounded-lg hover:bg-cyber-red/10 text-cyber-gray hover:text-cyber-red transition-colors"
-                  title="关闭"
+                  className="p-2 rounded-lg hover:bg-gray-100 text-gray-500 hover:text-gray-700 transition-colors"
+                  title="Close"
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -219,14 +219,14 @@ export default function ChatBot() {
             {messages.map(message => (
               <ChatMessage key={message.id} message={message} />
             ))}
-            {isLoading && (
+             {isLoading && (
               <div className="flex justify-start mb-4">
                 <div className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-cyber-purple/20 border border-cyber-purple flex items-center justify-center">
-                    <Bot className="w-5 h-5 text-cyber-purple" />
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-futuristic-blue/20 border border-futuristic-blue flex items-center justify-center">
+                    <Bot className="w-5 h-5 text-futuristic-blue" />
                   </div>
-                  <div className="py-3 px-4 rounded-2xl bg-cyber-purple/10 border border-cyber-purple/30">
-                    <Loader2 className="w-5 h-5 text-cyber-purple animate-spin" />
+                  <div className="py-3 px-4 rounded-2xl bg-futuristic-blue/10 border border-futuristic-blue/30">
+                    <Loader2 className="w-5 h-5 text-futuristic-blue animate-spin" />
                   </div>
                 </div>
               </div>
@@ -235,25 +235,25 @@ export default function ChatBot() {
           </div>
 
           {/* Input */}
-          <div className="p-4 border-t border-cyber-cyan/30 bg-cyber-black/50">
+           <div className="p-4 border-t border-gray-200 bg-gray-50/50">
             <div className="flex items-end gap-3">
               <textarea
                 ref={textareaRef}
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder="输入消息... (Enter发送，Shift+Enter换行)"
-                className="flex-1 bg-cyber-gray/20 border border-cyber-cyan/30 rounded-xl px-4 py-3 text-white placeholder-white/40 resize-none focus:outline-none focus:border-cyber-cyan/60 focus:ring-1 focus:ring-cyber-cyan/20 transition-all"
+                 placeholder="Type a message... (Enter to send, Shift+Enter for new line)"
+                 className="flex-1 bg-white border border-gray-300 rounded-xl px-4 py-3 text-gray-900 placeholder-gray-500 resize-none focus:outline-none focus:border-futuristic-blue focus:ring-1 focus:ring-futuristic-blue/20 transition-all"
                 rows={1}
                 disabled={isLoading}
               />
               <button
                 onClick={handleSend}
                 disabled={!input.trim() || isLoading}
-                className={`p-3 rounded-xl transition-all ${
+                 className={`p-3 rounded-xl transition-all ${
                   input.trim() && !isLoading
-                    ? 'bg-cyber-cyan text-black hover:bg-cyber-cyan/80 hover:scale-105'
-                    : 'bg-cyber-gray/30 text-white/40 cursor-not-allowed'
+                    ? 'bg-futuristic-blue text-white hover:bg-futuristic-blue/80 hover:scale-105'
+                    : 'bg-gray-200 text-gray-400 cursor-not-allowed'
                 }`}
               >
                 {isLoading ? (
@@ -263,9 +263,9 @@ export default function ChatBot() {
                 )}
               </button>
             </div>
-            <p className="text-xs text-white/40 mt-2 text-center">
-              由 DeepSeek 驱动 · 对话历史保存在本地
-            </p>
+             <p className="text-xs text-gray-500 mt-2 text-center">
+               Powered by DeepSeek · Conversation history saved locally
+             </p>
           </div>
         </div>
       )}
