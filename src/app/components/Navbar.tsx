@@ -11,7 +11,6 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
   const [scrolled, setScrolled] = useState(false)
-  const [scrollProgress, setScrollProgress] = useState(0)
 
   const navLinks = [
     { id: 'home', label: '首页', href: '#home' },
@@ -43,10 +42,6 @@ export default function Navbar() {
   useEffect(() => {
     const handleScrollProgress = () => {
       const scrollY = window.scrollY
-      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight
-      const progress = scrollHeight > 0 ? Math.min(Math.round((scrollY / scrollHeight) * 100), 100) : 0
-
-      setScrollProgress(progress)
       setScrolled(scrollY > 50)
     }
 
@@ -74,18 +69,6 @@ export default function Navbar() {
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <motion.div
-        className="absolute top-0 left-0 right-0 h-1 overflow-hidden"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-      >
-        <motion.div
-          className="h-full bg-gradient-to-r from-futuristic-blue via-futuristic-blue/70 to-futuristic-blue/40"
-          style={{ width: `${scrollProgress}%` }}
-          transition={{ duration: 0.1 }}
-        />
-      </motion.div>
-
       <div className="max-w-7xl mx-auto px-6 relative">
         <motion.div
           className="hidden md:flex items-center justify-between h-20"

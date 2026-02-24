@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { MessageSquare, X, Bot, Loader2, Trash2 } from 'lucide-react'
+import { X, Send, MessageCircle, Trash2 } from 'lucide-react'
 import ChatMessage from './ChatMessage'
 import { ChatService } from '@/lib/chatService'
 import { Message } from '@/types/chat'
@@ -11,37 +11,50 @@ export default function ChatBot() {
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const [showTooltip, setShowTooltip] = useState(false)
 
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const textareaRef = useRef<HTMLTextAreaElement>(null)
+  const chatPanelRef = useRef<HTMLDivElement>(null)
+  const buttonRef = useRef<HTMLButtonElement>(null)
 
-  // 自动滚动到底部
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages, isLoading])
 
-  // 加载历史记录
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (isOpen && chatPanelRef.current && 
+          !chatPanelRef.current.contains(event.target as Node) &&
+          buttonRef.current && 
+          !buttonRef.current.contains(event.target as Node)) {
+        setIsOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [isOpen])
+
   useEffect(() => {
     const history = ChatService.getChatHistory()
     if (history.length > 0) {
       setMessages(history)
     } else {
-      // 添加欢迎消息
       setMessages([{
         id: 'welcome',
         role: 'assistant',
-        content: '👋 Hi! I\'m the AI assistant for this portfolio!\n\nAsk me anything about tech stack, project experience, or collaboration opportunities. I\'ll respond in a friendly tone!\n\nReady to get started? 😄',
+        content: '你好！👋 我是你的AI助手\n\n可以问我关于技术栈、项目经验或合作机会的问题，我很乐意为你解答！',
         timestamp: Date.now()
       }])
     }
   }, [])
 
-  // 自动调整输入框高度
   useEffect(() => {
     const textarea = textareaRef.current
     if (textarea) {
       textarea.style.height = 'auto'
-      const newHeight = Math.min(textarea.scrollHeight, 120)
+      const newHeight = Math.min(textarea.scrollHeight, 100)
       textarea.style.height = `${newHeight}px`
     }
   }, [input])
@@ -52,7 +65,6 @@ export default function ChatBot() {
     const userMessage = input.trim()
     setInput('')
 
-    // 添加用户消息
     const newUserMessage: Message = {
       id: Date.now().toString(),
       role: 'user',
@@ -66,7 +78,6 @@ export default function ChatBot() {
     try {
       const response = await ChatService.sendMessage(userMessage)
 
-      // 添加AI回复
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
@@ -80,7 +91,7 @@ export default function ChatBot() {
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
-        content: 'Sorry, I encountered a technical issue. Please check API configuration or try again later! 🤖',
+        content: '出错了，请稍后再试',
         timestamp: Date.now()
       }
       setMessages(prev => [...prev, errorMessage])
@@ -97,12 +108,12 @@ export default function ChatBot() {
   }
 
   const handleClear = () => {
-     if (confirm('Are you sure you want to clear conversation history?')) {
+    if (confirm('确定要清空对话历史吗？')) {
       ChatService.clearChatHistory()
       setMessages([{
         id: 'welcome',
         role: 'assistant',
-        content: '👋 Hi! I\'m the AI assistant for this portfolio!\n\nAsk me anything about tech stack, project experience, or collaboration opportunities. I\'ll respond in a friendly tone!\n\nReady to get started? 😄',
+        content: '你好！👋 我是你的AI助手\n\n可以问我关于技术栈、项目经验或合作机会的问题，我很乐意为你解答！',
         timestamp: Date.now()
       }])
     }
@@ -110,103 +121,83 @@ export default function ChatBot() {
 
   return (
     <>
-      {/* 悬浮按钮 */}
+      {/* Floating Button */}
       <div
         style={{
           position: 'fixed',
-          bottom: '6rem',
-          right: 0,
-          zIndex: 1000
+          top: '50%',
+          right: '1.5rem',
+          transform: 'translateY(-50%)',
+          zIndex: 999
         }}
-        className={`group transition-transform duration-300 ${isOpen ? 'translate-x-0' : 'translate-x-[1.5rem]'}`}
+        className="flex items-center gap-3"
+        onMouseEnter={() => setShowTooltip(true)}
+        onMouseLeave={() => setShowTooltip(false)}
       >
-        {/* 提示文本 */}
-          <div className="absolute right-full mr-2 top-1/2 -translate-y-1/2 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-            <div className="bg-white border border-gray-200/80 rounded-lg px-4 py-3 text-sm shadow-lg">
-              <div className="font-bold text-sm mb-1 flex items-center gap-2 text-futuristic-dark">
-                <Bot className="w-4 h-4" />
-                AI Assistant
-                <span className="w-2 h-2 bg-futuristic-blue rounded-full animate-pulse" />
-              </div>
-              <div className="text-xs text-gray-600">Click to start conversation</div>
+        {!isOpen && showTooltip && (
+          <div className="animate-in fade-in slide-in-from-right-2 duration-200 mr-2">
+            <div className="bg-white/90 backdrop-blur-sm px-3 py-2 rounded-full shadow-sm border border-gray-100 whitespace-nowrap">
+              <span className="text-sm text-gray-600 font-medium">AI分身</span>
             </div>
           </div>
+        )}
 
-        {/* Button */}
         <button
+          ref={buttonRef}
           onClick={() => setIsOpen(!isOpen)}
-          className={`w-16 h-16 rounded-l-2xl rounded-r-none transition-all duration-300 hover:scale-105 flex items-center justify-center relative overflow-hidden ${
-            isOpen
-              ? 'bg-white w-12 h-12 border-2 border-gray-300'
-              : 'bg-futuristic-blue border-2 border-futuristic-blue/80'
-          }`}
+          className="w-12 h-12 rounded-full bg-white/80 backdrop-blur-md border border-white/50 shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center hover:scale-105"
           style={{
-            boxShadow: isOpen ? '0 4px 20px rgba(0, 0, 0, 0.1)' : '0 4px 20px rgba(0, 122, 255, 0.2)'
+            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)'
           }}
           aria-label={isOpen ? 'Close Chat' : 'Open Chat'}
         >
-          {/* Background animation */}
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-gradient-shift" />
-
-          {/* Online indicator */}
-          {!isOpen && (
-            <div className="absolute top-2 right-2 w-3 h-3 bg-futuristic-blue rounded-full animate-pulse" />
-          )}
-
-          {/* Icon and text */}
           {isOpen ? (
-            <X className="w-5 h-5 text-gray-700 relative z-10" />
+            <X className="w-5 h-5 text-gray-600" />
           ) : (
-            <div className="flex flex-col items-center gap-1 relative z-10">
-              <Bot className="w-6 h-6 text-white" />
-              <span className="text-[8px] font-bold text-white tracking-wider">AI</span>
-            </div>
-          )}
-
-          {/* Chat bubble decoration */}
-          {!isOpen && (
-            <div className="absolute -top-1 -right-1 w-4 h-4 bg-white rounded-full flex items-center justify-center">
-              <div className="w-2 h-2 bg-futuristic-blue rounded-full" />
+            <div className="relative">
+              <MessageCircle className="w-5 h-5 text-blue-500" />
+              <div className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
             </div>
           )}
         </button>
       </div>
 
-      {/* 对话框 */}
+      {/* Chat Panel */}
       {isOpen && (
         <div
+          ref={chatPanelRef}
           style={{
             position: 'fixed',
-            bottom: '10rem',
-            right: '4rem',
-            left: 'auto',
-            zIndex: 1000
+            top: '50%',
+            right: '5rem',
+            transform: 'translateY(-50%)',
+            zIndex: 998
           }}
-          className="w-96 max-w-[calc(100vw-4rem)] bg-white/95 backdrop-blur-xl border border-gray-300/50 rounded-2xl shadow-xl overflow-hidden animate-fade-in">
+          className="w-80 md:w-96 max-h-[600px] bg-white/70 backdrop-blur-2xl border border-white/60 rounded-3xl shadow-2xl overflow-hidden animate-in slide-in-from-right-4 fade-in duration-300"
+        >
           {/* Header */}
-          <div className="bg-gradient-to-r from-futuristic-blue/10 to-futuristic-cyan/10 px-5 py-4 border-b border-gray-200">
+          <div className="px-5 py-4 border-b border-gray-100/50">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                 <div className="w-10 h-10 rounded-full bg-futuristic-blue/10 border-2 border-futuristic-blue flex items-center justify-center">
-                   <Bot className="w-6 h-6 text-futuristic-blue" />
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-100 to-cyan-100 flex items-center justify-center">
+                  <MessageCircle className="w-4 h-4 text-blue-500" />
                 </div>
                 <div>
-                   <h3 className="font-archivo font-bold text-futuristic-dark text-lg">Futuristic AI</h3>
-                  <p className="text-xs text-futuristic-blue">AI Assistant · Online</p>
+                  <h3 className="font-semibold text-gray-800 text-sm -mb-1">AI分身</h3>
+                  <p className="text-xs text-gray-400">随时为你服务</p>
                 </div>
               </div>
-              <div className="flex items-center gap-2">
-                 <button
+              <div className="flex items-center gap-1">
+                <button
                   onClick={handleClear}
-                  className="p-2 rounded-lg hover:bg-futuristic-blue/10 text-gray-500 hover:text-futuristic-blue transition-colors"
-                  title="Clear conversation"
+                  className="p-1.5 rounded-full hover:bg-gray-100 text-gray-400 hover:text-gray-500 transition-colors"
+                  title="清空对话"
                 >
                   <Trash2 className="w-4 h-4" />
                 </button>
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="p-2 rounded-lg hover:bg-gray-100 text-gray-500 hover:text-gray-700 transition-colors"
-                  title="Close"
+                  className="p-1.5 rounded-full hover:bg-gray-100 text-gray-400 hover:text-gray-500 transition-colors"
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -215,18 +206,22 @@ export default function ChatBot() {
           </div>
 
           {/* Messages */}
-          <div className="h-96 overflow-y-auto p-5 space-y-2 custom-scrollbar">
+          <div className="h-80 overflow-y-auto p-4 space-y-3">
             {messages.map(message => (
               <ChatMessage key={message.id} message={message} />
             ))}
-             {isLoading && (
-              <div className="flex justify-start mb-4">
-                <div className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-futuristic-blue/20 border border-futuristic-blue flex items-center justify-center">
-                    <Bot className="w-5 h-5 text-futuristic-blue" />
+            {isLoading && (
+              <div className="flex justify-start">
+                <div className="flex items-end gap-2">
+                  <div className="w-6 h-6 rounded-full bg-blue-50 flex items-center justify-center">
+                    <MessageCircle className="w-3 h-3 text-blue-400" />
                   </div>
-                  <div className="py-3 px-4 rounded-2xl bg-futuristic-blue/10 border border-futuristic-blue/30">
-                    <Loader2 className="w-5 h-5 text-futuristic-blue animate-spin" />
+                  <div className="px-4 py-2 rounded-2xl bg-gray-50 border border-gray-100">
+                    <div className="flex gap-1">
+                      <div className="w-1.5 h-1.5 bg-blue-300 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                      <div className="w-1.5 h-1.5 bg-blue-300 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+                      <div className="w-1.5 h-1.5 bg-blue-300 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -235,37 +230,30 @@ export default function ChatBot() {
           </div>
 
           {/* Input */}
-           <div className="p-4 border-t border-gray-200 bg-gray-50/50">
-            <div className="flex items-end gap-3">
+          <div className="p-3 border-t border-gray-100/50">
+            <div className="flex items-end gap-2 bg-gray-50/50 rounded-2xl p-1.5 border border-gray-100">
               <textarea
                 ref={textareaRef}
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
-                 placeholder="Type a message... (Enter to send, Shift+Enter for new line)"
-                 className="flex-1 bg-white border border-gray-300 rounded-xl px-4 py-3 text-gray-900 placeholder-gray-500 resize-none focus:outline-none focus:border-futuristic-blue focus:ring-1 focus:ring-futuristic-blue/20 transition-all"
+                placeholder="输入消息..."
+                className="flex-1 bg-transparent px-3 py-2 text-sm text-gray-700 placeholder-gray-400 resize-none focus:outline-none max-h-24"
                 rows={1}
                 disabled={isLoading}
               />
               <button
                 onClick={handleSend}
                 disabled={!input.trim() || isLoading}
-                 className={`p-3 rounded-xl transition-all ${
+                className={`p-2.5 rounded-xl transition-all duration-200 ${
                   input.trim() && !isLoading
-                    ? 'bg-futuristic-blue text-white hover:bg-futuristic-blue/80 hover:scale-105'
+                    ? 'bg-blue-500 text-white hover:bg-blue-600 shadow-md'
                     : 'bg-gray-200 text-gray-400 cursor-not-allowed'
                 }`}
               >
-                {isLoading ? (
-                  <Loader2 className="w-5 h-5 animate-spin" />
-                ) : (
-                  <span className="text-xl">↵</span>
-                )}
+                <Send className="w-4 h-4" />
               </button>
             </div>
-             <p className="text-xs text-gray-500 mt-2 text-center">
-               Powered by DeepSeek · Conversation history saved locally
-             </p>
           </div>
         </div>
       )}

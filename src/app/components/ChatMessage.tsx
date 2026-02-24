@@ -1,7 +1,7 @@
 'use client'
 
 import { Message } from '@/types/chat'
-import { User, Bot } from 'lucide-react'
+import { User, MessageCircle } from 'lucide-react'
 
 interface ChatMessageProps {
   message: Message
@@ -11,22 +11,27 @@ export default function ChatMessage({ message }: ChatMessageProps) {
   const isUser = message.role === 'user'
 
   return (
-    <div className={`flex ${isUser ? 'justify-end' : 'justify-start'} mb-4`}>
-      <div className={`flex items-start gap-3 max-w-[80%] ${isUser ? 'flex-row-reverse' : ''}`}>
+    <div className={`flex ${isUser ? 'justify-end' : 'justify-start'}`}>
+      <div className={`flex items-end gap-2 max-w-[85%] ${isUser ? 'flex-row-reverse' : ''}`}>
         {/* Avatar */}
-        <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${
-          isUser ? 'bg-futuristic-blue/20 border border-futuristic-blue' : 'bg-futuristic-cyan/20 border border-futuristic-cyan'
-        }`}>
-          {isUser ? <User className="w-5 h-5 text-futuristic-blue" /> : <Bot className="w-5 h-5 text-futuristic-cyan" />}
-        </div>
+        {!isUser && (
+          <div className="w-6 h-6 rounded-full bg-gradient-to-br from-blue-100 to-cyan-100 flex items-center justify-center flex-shrink-0">
+            <MessageCircle className="w-3 h-3 text-blue-500" />
+          </div>
+        )}
+        {isUser && (
+          <div className="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">
+            <User className="w-3 h-3 text-gray-500" />
+          </div>
+        )}
 
         {/* Message Bubble */}
-        <div className={`py-3 px-4 rounded-2xl ${
+        <div className={`px-4 py-2.5 rounded-2xl ${
           isUser
-            ? 'bg-futuristic-blue/10 border border-futuristic-blue/30 text-gray-800'
-            : 'bg-gray-100 border border-gray-300 text-gray-800'
+            ? 'bg-white border border-gray-100 text-gray-700 rounded-br-md'
+            : 'bg-gradient-to-br from-blue-50 to-cyan-50 border border-blue-100/50 text-gray-700 rounded-bl-md'
         }`}>
-          <p className="font-space-grotesk text-sm leading-relaxed whitespace-pre-wrap">{message.content}</p>
+          <p className="text-sm leading-relaxed whitespace-pre-wrap">{message.content}</p>
         </div>
       </div>
     </div>
