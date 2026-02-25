@@ -37,7 +37,7 @@ export class ProjectService {
         image: item.image,
         tech: item.tech || [],
         link: item.link,
-        category: item.category as ('it_ops' | 'ai' | 'data' | 'backend' | 'fullstack') || undefined
+        category: item.category as ('it_ops' | 'ai' | 'data' | 'backend' | 'fullstack' | 'healthcare_it') || undefined
       }))
 
       // 缓存数据
@@ -109,68 +109,28 @@ export class ProjectService {
   private static getFallbackProjects(): Project[] {
     return [
       {
-        title: "Kubernetes Cluster Management Platform",
-        description: "Enterprise-grade Kubernetes management platform with automated scaling, monitoring, and security compliance for cloud-native infrastructure.",
+        title: "麻城市公共卫生信息化补短板项目",
+        description: "负责麻城市卫健局直属区域内 4 家县级医院，24 个基层医院，536 个村卫生室的实名就医（电子健康卡）平台、县级健康门户（健康麻城小程序）、区域统一支付平台的建设落地。制定项目计划、资源调度、项目相关方协调推进；跟踪研发进度并组织项目实施、培训、验收等；推动医院端数据标准化落地与接口对接等。",
         image: "/placeholder-project1.jpg",
-        tech: ["Kubernetes", "Helm", "Prometheus", "Grafana", "AWS"],
-        link: "https://github.com/project1",
-        category: 'it_ops'
+        tech: ["微信小程序", "Java", "Spring Boot", "MySQL", "Redis", "HL7/FHIR", "微信支付", "支付宝支付"],
+        link: "#",
+        category: 'healthcare_it'
       },
       {
-        title: "AI-Powered Monitoring System",
-        description: "Intelligent monitoring system using machine learning to predict infrastructure failures and automate incident response.",
+        title: "联勤医院收费管理平台建设",
+        description: "负责全国十余家联勤医院收费管理平台项目实施落地工作。包括收费系统部署、医院业务流程梳理、第三方支付对接、医保支付接口集成、财务系统对接等。",
         image: "/placeholder-project2.jpg",
-        tech: ["Python", "TensorFlow", "FastAPI", "Docker", "Redis"],
-        link: "https://github.com/project2",
-        category: 'ai'
+        tech: ["Java", "Spring Boot", "Vue.js", "Oracle", "医保接口", "财务系统集成", "Redis", "Docker"],
+        link: "#",
+        category: 'healthcare_it'
       },
       {
-        title: "Data Pipeline Automation Platform",
-        description: "Automated data pipeline orchestration tool for ETL processes, real-time streaming, and data quality monitoring.",
+        title: "湖北省传染病监测预警与应急指挥能力提升项目包",
+        description: "负责武汉市三级、二级、一级医疗机构数据采集软件部署、实施工作，涉及数据清理、标准化、上报等。包括数据采集通路建设、医疗机构数据接口对接、数据质量监控、疫情预警分析等。",
         image: "/placeholder-project3.jpg",
-        tech: ["Apache Airflow", "Python", "PostgreSQL", "Kafka", "Snowflake"],
-        link: "https://github.com/project3",
-        category: 'data'
-      },
-      {
-        title: "Cloud Infrastructure as Code",
-        description: "Infrastructure automation using Terraform and Ansible for multi-cloud deployment, with CI/CD integration and compliance checks.",
-        image: "/placeholder-project4.jpg",
-        tech: ["Terraform", "Ansible", "AWS", "GitLab CI", "Python"],
-        link: "https://github.com/project4",
-        category: 'backend'
-      },
-      {
-        title: "Full-Stack DevOps Dashboard",
-        description: "Comprehensive DevOps dashboard providing real-time insights into deployments, system health, and team performance metrics.",
-        image: "/placeholder-project5.jpg",
-        tech: ["Next.js", "Supabase", "Tailwind CSS", "Docker", "GitHub Actions"],
-        link: "https://github.com/project5",
-        category: 'fullstack'
-      },
-      {
-        title: "ML Model Deployment Platform",
-        description: "End-to-end machine learning model deployment platform with version control, A/B testing, and performance monitoring.",
-        image: "/placeholder-project6.jpg",
-        tech: ["Python", "FastAPI", "Docker", "MLflow", "Kubernetes"],
-        link: "https://github.com/project6",
-        category: 'ai'
-      },
-      {
-        title: "Network Security Scanner",
-        description: "Automated network security scanner for vulnerability assessment, penetration testing, and compliance reporting.",
-        image: "/placeholder-project1.jpg",
-        tech: ["Python", "Nmap", "ELK Stack", "React", "PostgreSQL"],
-        link: "https://github.com/project7",
-        category: 'it_ops'
-      },
-      {
-        title: "Real-time Data Analytics Dashboard",
-        description: "Real-time analytics dashboard for business intelligence with interactive visualizations and predictive analytics.",
-        image: "/placeholder-project2.jpg",
-        tech: ["React", "D3.js", "WebSocket", "Node.js", "MongoDB"],
-        link: "https://github.com/project8",
-        category: 'data'
+        tech: ["Python", "ETL", "数据仓库", "PostgreSQL", "报表工具", "医院信息系统接口", "数据标准化", "数据可视化"],
+        link: "#",
+        category: 'healthcare_it'
       },
     ]
   }

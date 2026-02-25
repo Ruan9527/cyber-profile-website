@@ -68,6 +68,7 @@ export default function ProjectsManagementPage() {
     data: projects.filter(p => p.category === 'data').length,
     backend: projects.filter(p => p.category === 'backend').length,
     fullstack: projects.filter(p => p.category === 'fullstack').length,
+    healthcare_it: projects.filter(p => p.category === 'healthcare_it').length,
     total: projects.length
   }
 
@@ -113,6 +114,7 @@ export default function ProjectsManagementPage() {
       case 'data': return 'text-cyber-orange'
       case 'backend': return 'text-cyber-red'
       case 'fullstack': return 'text-cyber-yellow'
+      case 'healthcare_it': return 'text-cyber-pink'
       default: return 'text-cyber-gray'
     }
   }
@@ -125,6 +127,7 @@ export default function ProjectsManagementPage() {
       case 'data': return 'bg-cyber-orange/15'
       case 'backend': return 'bg-cyber-red/15'
       case 'fullstack': return 'bg-cyber-yellow/15'
+      case 'healthcare_it': return 'bg-cyber-pink/15'
       default: return 'bg-cyber-gray/15'
     }
   }
@@ -137,6 +140,7 @@ export default function ProjectsManagementPage() {
       case 'data': return '数据处理'
       case 'backend': return '后端开发'
       case 'fullstack': return '全栈开发'
+      case 'healthcare_it': return '医疗信息化'
       default: return '未分类'
     }
   }
@@ -165,7 +169,7 @@ export default function ProjectsManagementPage() {
       </div>
 
       {/* 统计数据 */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
         <div className="cyber-card border-cyber-cyan/30">
           <div className="text-center">
             <p className="text-sm text-white/70">IT运维</p>
@@ -194,6 +198,12 @@ export default function ProjectsManagementPage() {
           <div className="text-center">
             <p className="text-sm text-white/70">全栈开发</p>
             <p className="text-2xl font-bold text-cyber-yellow">{categoryStats.fullstack}</p>
+          </div>
+        </div>
+        <div className="cyber-card border-cyber-pink/30">
+          <div className="text-center">
+            <p className="text-sm text-white/70">医疗信息化</p>
+            <p className="text-2xl font-bold text-cyber-pink">{categoryStats.healthcare_it}</p>
           </div>
         </div>
         <div className="cyber-card border-cyber-green/30">
@@ -233,6 +243,7 @@ export default function ProjectsManagementPage() {
               <option value="data">数据处理</option>
               <option value="backend">后端开发</option>
               <option value="fullstack">全栈开发</option>
+              <option value="healthcare_it">医疗信息化</option>
             </select>
           </div>
 

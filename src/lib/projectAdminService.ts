@@ -7,7 +7,7 @@ export interface ProjectCreateData {
   image: string
   tech: string[]
   link: string
-  category?: 'it_ops' | 'ai' | 'data' | 'backend' | 'fullstack'
+  category?: 'it_ops' | 'ai' | 'data' | 'backend' | 'fullstack' | 'healthcare_it'
 }
 
 export interface ProjectUpdateData extends Partial<ProjectCreateData> {}
@@ -37,7 +37,7 @@ export class ProjectAdminService {
         image: item.image,
         tech: item.tech || [],
         link: item.link,
-        category: item.category as ('it_ops' | 'ai' | 'data' | 'backend' | 'fullstack') || undefined
+        category: item.category as ('it_ops' | 'ai' | 'data' | 'backend' | 'fullstack' | 'healthcare_it') || undefined
       }))
     } catch (error) {
       console.error('ProjectAdminService错误:', error)
@@ -69,7 +69,7 @@ export class ProjectAdminService {
         image: data.image,
         tech: data.tech || [],
         link: data.link,
-        category: data.category as ('it_ops' | 'ai' | 'data' | 'backend' | 'fullstack') || undefined
+        category: data.category as ('it_ops' | 'ai' | 'data' | 'backend' | 'fullstack' | 'healthcare_it') || undefined
       }
     } catch (error) {
       console.error('ProjectAdminService错误:', error)
@@ -108,7 +108,7 @@ export class ProjectAdminService {
         image: data.image,
         tech: data.tech || [],
         link: data.link,
-        category: data.category as ('it_ops' | 'ai' | 'data' | 'backend' | 'fullstack') || undefined
+        category: data.category as ('it_ops' | 'ai' | 'data' | 'backend' | 'fullstack' | 'healthcare_it') || undefined
       }
     } catch (error) {
       console.error('ProjectAdminService错误:', error)
@@ -151,7 +151,7 @@ export class ProjectAdminService {
         image: data.image,
         tech: data.tech || [],
         link: data.link,
-        category: data.category as ('it_ops' | 'ai' | 'data' | 'backend' | 'fullstack') || undefined
+        category: data.category as ('it_ops' | 'ai' | 'data' | 'backend' | 'fullstack' | 'healthcare_it') || undefined
       }
     } catch (error) {
       console.error('ProjectAdminService错误:', error)
@@ -204,7 +204,7 @@ export class ProjectAdminService {
         image: item.image,
         tech: item.tech || [],
         link: item.link,
-        category: item.category as ('it_ops' | 'ai' | 'data' | 'backend' | 'fullstack') || undefined
+        category: item.category as ('it_ops' | 'ai' | 'data' | 'backend' | 'fullstack' | 'healthcare_it') || undefined
       }))
     } catch (error) {
       console.error('ProjectAdminService错误:', error)
@@ -236,7 +236,7 @@ export class ProjectAdminService {
         image: item.image,
         tech: item.tech || [],
         link: item.link,
-        category: item.category as ('it_ops' | 'ai' | 'data' | 'backend' | 'fullstack') || undefined
+        category: item.category as ('it_ops' | 'ai' | 'data' | 'backend' | 'fullstack' | 'healthcare_it') || undefined
       }))
     } catch (error) {
       console.error('ProjectAdminService错误:', error)

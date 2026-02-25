@@ -19,7 +19,7 @@ export default function ProjectFormModal({ project, onClose, onSubmit }: Project
     image: '',
     link: '',
     tech: [''],
-    category: 'it_ops' as 'it_ops' | 'ai' | 'data' | 'backend' | 'fullstack'
+    category: 'it_ops' as 'it_ops' | 'ai' | 'data' | 'backend' | 'fullstack' | 'healthcare_it'
   })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -148,6 +148,7 @@ export default function ProjectFormModal({ project, onClose, onSubmit }: Project
       case 'data': return '数据处理'
       case 'backend': return '后端开发'
       case 'fullstack': return '全栈开发'
+      case 'healthcare_it': return '医疗信息化'
       default: return '未分类'
     }
   }
@@ -255,6 +256,7 @@ export default function ProjectFormModal({ project, onClose, onSubmit }: Project
                 <option value="data">数据处理</option>
                 <option value="backend">后端开发</option>
                 <option value="fullstack">全栈开发</option>
+                <option value="healthcare_it">医疗信息化</option>
               </select>
             </div>
           </div>

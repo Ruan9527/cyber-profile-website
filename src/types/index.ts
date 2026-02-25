@@ -23,7 +23,7 @@ export interface Project {
   image: string;
   tech: string[];
   link: string;
-  category?: 'it_ops' | 'ai' | 'data' | 'backend' | 'fullstack';
+  category?: 'it_ops' | 'ai' | 'data' | 'backend' | 'fullstack' | 'healthcare_it';
 }
 
 export interface Stats {

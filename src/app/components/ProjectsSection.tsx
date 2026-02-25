@@ -96,6 +96,14 @@ const categoryStyles = {
     cardVariant: 'cyber-card-variant-yellow',
     glowShadow: '0 0 15px rgba(255, 242, 102, 0.3)',
   },
+  healthcare_it: {
+    bg: 'bg-cyber-pink/15',
+    border: 'border-cyber-pink/60',
+    text: 'text-cyber-pink',
+    gradient: 'from-cyber-pink to-cyber-pink/80',
+    cardVariant: 'cyber-card-variant-pink',
+    glowShadow: '0 0 15px rgba(255, 102, 204, 0.3)',
+  },
 }
 
 const containerVariants = {
@@ -138,6 +146,7 @@ export default function ProjectsSection() {
     { id: 'data', label: t('projects.filter_data') || 'Data' },
     { id: 'backend', label: t('projects.filter_backend') || 'Backend' },
     { id: 'fullstack', label: t('projects.filter_fullstack') || '全栈' },
+    { id: 'healthcare_it', label: t('projects.filter_healthcare_it') || '医疗信息化' },
   ]
 
   const filteredProjects = allProjects.filter(project =>
