@@ -7,18 +7,14 @@ import { useLanguage } from '@/contexts/LanguageContext'
 import { useSkills } from '@/hooks'
 import { SkillsSkeleton } from '@/components/Skeleton'
 import { SkillsError } from '@/components/SectionError'
+import { Skill } from '@/types'
 
-interface Skill {
-  name: string
-  level: number
-  category: 'it_ops' | 'ai' | 'project_management'
-  description?: string
-}
+
 
 const categoryConfig = {
   it_ops: {
-    name: 'IT运维',
-    subtitle: '基础设施与自动化',
+    name: '技术基础',
+    subtitle: '数据库、Linux与开发基础',
     color: 'cyan',
     accent: 'cyber-cyan',
     dim: 'cyber-cyan-40',
@@ -32,18 +28,25 @@ const categoryConfig = {
   },
   project_management: {
     name: '项目管理',
-    subtitle: '管理与协调',
+    subtitle: 'PMP认证、团队与沟通',
     color: 'orange',
     accent: 'cyber-orange',
     dim: 'cyber-orange-40',
   },
+  healthcare_it: {
+    name: '医疗信息化',
+    subtitle: 'HIS/EMR、支付对接与线上服务',
+    color: 'green',
+    accent: 'cyber-green',
+    dim: 'cyber-green-40',
+  },
 }
 
 const getLevelBadge = (level: number) => {
-  if (level >= 90) return 'Expert'
-  if (level >= 70) return 'Advanced'
-  if (level >= 50) return 'Intermediate'
-  return 'Beginner'
+  if (level >= 90) return '专家'
+  if (level >= 70) return '高级'
+  if (level >= 50) return '中级'
+  return '初级'
 }
 
 const getLevelColor = (level: number) => {
@@ -199,7 +202,7 @@ export default function SkillsSection() {
     setModalState((prev) => ({ ...prev, isOpen: false }))
   }
 
-  const categories = ['it_ops', 'ai', 'project_management'] as const
+  const categories = ['it_ops', 'ai', 'project_management', 'healthcare_it'] as const
 
   return (
     <section id="skills" className="py-20 px-4 relative">

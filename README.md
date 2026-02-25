@@ -1,31 +1,96 @@
-🚀 实施阶段计划
-阶段一：基础改造 (1-2天)
-删除不需要的功能（StatsSection、简历部分）
-更新颜色主题为柔和版本
-简化ContactSection组件
-移除双语支持，只保留中文
-阶段二：数据库架构 (1天)
-创建Supabase表结构
-设置RLS（行级安全策略）
-创建数据迁移脚本（从硬编码数据迁移）
-测试数据连接
-阶段三：数据层实现 (2天)
-创建技能和项目的CRUD操作库
-实现数据获取Hooks
-添加数据缓存和重新验证
-错误处理和加载状态
-阶段四：管理后台 (2-3天)
-创建受保护路由和认证系统
-实现技能管理界面
-实现项目管理界面
-添加图片上传功能
-阶段五：前端集成 (2天)
-更新SkillsSection使用动态数据
-更新ProjectsSection使用动态数据
-添加小红书图标组件
-优化加载体验和错误边界
-阶段六：测试优化 (1天)
-功能完整性测试
-响应式设计验证
-性能优化（图片、包大小）
-SEO优化检查
+# Cyber Portfolio Website
+
+A futuristic cyberpunk-themed personal portfolio website built with Next.js 16, featuring dynamic content management via Supabase.
+
+## Features
+
+- **Cyberpunk Design** - Custom cyberpunk aesthetic with neon colors, glow effects, and futuristic UI
+- **Dynamic Content** - Skills and projects managed through Supabase database
+- **Admin Dashboard** - Protected admin area for managing content
+- **Chat Bot** - AI-powered chat functionality
+- **Weather Widget** - Real-time weather display
+- **Responsive Design** - Fully responsive across all devices
+- **i18n Ready** - Language context support
+
+## Tech Stack
+
+- **Framework**: Next.js 16.1.1 (App Router)
+- **Language**: TypeScript 5.9.3
+- **React**: 19.2.3
+- **Styling**: Tailwind CSS 3.4.19
+- **Database**: Supabase (PostgreSQL)
+- **Animations**: Framer Motion 12.26.1
+- **Icons**: Lucide React
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- npm or yarn
+- Supabase account
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone <repository-url>
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Set up environment variables:
+```bash
+cp .env.local.example .env.local
+```
+
+4. Configure your `.env.local` with Supabase credentials:
+```
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
+```
+
+5. Run the development server:
+```bash
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+### Build for Production
+
+```bash
+npm run build
+npm start
+```
+
+## Project Structure
+
+```
+src/
+├── app/                    # Next.js App Router pages
+│   ├── admin/             # Admin dashboard
+│   ├── api/               # API routes
+│   ├── components/        # Shared components
+│   ├── contexts/          # React contexts
+│   ├── hooks/             # Custom hooks
+│   ├── layout.tsx         # Root layout
+│   └── page.tsx           # Home page
+├── components/            # Shared non-page components
+├── lib/                   # Services (Supabase, API)
+└── types/                 # TypeScript definitions
+```
+
+## Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+
+## License
+
+MIT

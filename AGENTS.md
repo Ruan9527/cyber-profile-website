@@ -1,16 +1,42 @@
 # Agent Development Guidelines
 
-This document provides guidelines for AI agents working on this Next.js codebase.
+This document provides guidelines for AI agents working on this Next.js portfolio website.
 
 ## Project Overview
 
 - **Framework**: Next.js 16.1.1 with App Router
-- **Language**: TypeScript 5.9.3  
+- **Language**: TypeScript 5.9.3
 - **React**: 19.2.3
-- **Styling**: Tailwind CSS 3.4.19 with custom cyberpunk theme
+- **Styling**: Tailwind CSS 3.4.19 with custom cyberpunk + futuristic theme
 - **Database**: Supabase (PostgreSQL)
 - **Animations**: Framer Motion 12.26.1
 - **Icons**: Lucide React 0.562.0
+
+## Directory Structure
+
+```
+src/
+├── app/                    # Next.js App Router pages
+│   ├── admin/             # Admin dashboard pages
+│   │   ├── components/    # Admin-specific components
+│   │   │   └── ui/        # Reusable admin UI components
+│   │   ├── login/         # Admin login page
+│   │   ├── projects/      # Project management page
+│   │   ├── skills/        # Skill management page
+│   │   ├── layout.tsx    # Admin layout
+│   │   └── page.tsx      # Admin dashboard home
+│   ├── api/               # API routes
+│   │   └── chat/          # Chat API endpoint
+│   ├── components/        # Shared page components
+│   ├── admin/             # Admin login entry
+│   ├── layout.tsx        # Root layout
+│   └── page.tsx          # Home page
+├── components/           # Shared non-page components (ErrorBoundary, Skeleton)
+├── contexts/             # React contexts (LanguageContext)
+├── hooks/                # Custom hooks (useProjects, useSkills, useTypewriter)
+├── lib/                  # Services (Supabase client, API services)
+└── types/                # TypeScript type definitions
+```
 
 ## Build & Development Commands
 
@@ -41,7 +67,11 @@ cp .env.local.example .env.local
 - Pages: `src/app/[page]/page.tsx`
 - Layouts: `src/app/[page]/layout.tsx`
 - Components: `src/app/components/` or `src/app/[page]/components/`
-- Hooks: `src/app/hooks/` or `src/app/[page]/hooks/`
+- Shared components: `src/components/`
+- Hooks: `src/hooks/` or `src/app/[page]/hooks/`
+- Services: `src/lib/`
+- Types: `src/types/`
+- Contexts: `src/contexts/`
 - API routes: `src/app/api/[route]/route.ts`
 
 ### Imports Order
@@ -98,9 +128,12 @@ export default function ComponentName() {
 
 ### Styling with Tailwind
 - Custom cyberpunk palette: `text-cyber-cyan`, `bg-cyber-black`
-- Custom animations: `animate-pulse-glow`
-- Custom cursors: `cursor-tactical`
-- Custom shadows: `shadow-cyber`, `shadow-cyber-red`
+- Custom colors: cyber-yellow, cyber-red, cyber-purple, cyber-green, cyber-orange, cyber-pink, cyber-blue
+- Custom animations: `animate-pulse-glow`, `animate-float`, `animate-glitch`, `animate-scan`
+- Custom cursors: `cursor-tactical`, `cursor-target`, `cursor-hack`, `cursor-data`
+- Custom shadows: `shadow-cyber`, `shadow-cyber-red`, `shadow-cyber-yellow`, `shadow-cyber-purple`
+- Custom backgrounds: `bg-cyber-grid`, `bg-circuit-pattern`, `bg-noise-texture`
+- Glass effects: `shadow-glass-card`, `bg-glass-gradient`
 
 Example:
 ```tsx
@@ -126,7 +159,7 @@ try {
 ## Testing Guidelines
 
 ### Current Setup
-- **Playwright**: Installed but no config found
+- **Playwright**: Installed (v1.58.0) but no config found
 - **No unit test framework** configured
 - **Manual testing** scripts in Python (`test-*.py`)
 

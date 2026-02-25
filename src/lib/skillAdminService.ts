@@ -4,7 +4,7 @@ import { Skill } from '@/types'
 export interface SkillCreateData {
   name: string
   level: number
-   category: 'it_ops' | 'ai' | 'project_management'
+   category: 'it_ops' | 'ai' | 'project_management' | 'healthcare_it'
    description?: string
 }
 
@@ -32,7 +32,7 @@ export class SkillAdminService {
          id: item.id,
          name: item.name,
          level: item.level,
-         category: item.category as 'it_ops' | 'ai' | 'project_management',
+          category: item.category as 'it_ops' | 'ai' | 'project_management' | 'healthcare_it',
          description: item.description || undefined
        })) || []
     } catch (error) {
@@ -130,11 +130,11 @@ export class SkillAdminService {
         throw new Error(`更新技能失败: ${error.message}`)
       }
 
-       return {
+      return {
         id: data.id,
         name: data.name,
         level: data.level,
-        category: data.category as 'it_ops' | 'ai' | 'project_management',
+        category: data.category as 'it_ops' | 'ai' | 'project_management' | 'healthcare_it',
         description: data.description || undefined
       }
     } catch (error) {

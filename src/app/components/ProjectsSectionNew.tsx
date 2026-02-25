@@ -127,10 +127,10 @@ export default function ProjectsSectionNew() {
         className="mb-12 text-center"
       >
         <h2 className="font-archivo text-4xl md:text-5xl font-bold mb-4 text-futuristic-text">
-          Featured Projects
+          精选项目
         </h2>
         <p className="font-space-grotesk text-lg text-futuristic-text-muted max-w-2xl mx-auto">
-          Selected projects showcasing technical expertise and problem-solving capabilities
+          精选项目展示技术专长和解决问题的能力
         </p>
       </motion.div>
 
@@ -187,7 +187,7 @@ export default function ProjectsSectionNew() {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="p-2 rounded-lg bg-white/50 hover:bg-white/80 transition-colors"
-                        aria-label="GitHub repository"
+                         aria-label="GitHub仓库"
                       >
                         <Github className="w-4 h-4 text-futuristic-text-muted" />
                       </a>
@@ -198,14 +198,14 @@ export default function ProjectsSectionNew() {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="p-2 rounded-lg bg-white/50 hover:bg-white/80 transition-colors"
-                        aria-label="Live demo"
+                         aria-label="实时演示"
                       >
                         <ExternalLink className="w-4 h-4 text-futuristic-text-muted" />
                       </a>
                     )}
                   </div>
                   <div className="text-xs font-space-grotesk text-futuristic-text-muted">
-                    {project.size.includes('row-span-2') ? 'Major Project' : 'Side Project'}
+                    {project.size.includes('row-span-2') ? '主要项目' : '次要项目'}
                   </div>
                 </div>
               </div>
@@ -222,7 +222,7 @@ export default function ProjectsSectionNew() {
         className="mt-12 text-center"
       >
         <p className="font-space-grotesk text-futuristic-text-muted max-w-3xl mx-auto">
-          Each project represents practical application of skills to solve real-world problems and deliver value.
+          每个项目都代表实际技能应用，解决现实问题并创造价值。
         </p>
       </motion.div>
     </section>

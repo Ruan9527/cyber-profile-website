@@ -1,79 +1,70 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Server, Cpu, Database, Cloud, Terminal, Shield, Zap, BarChart3 } from 'lucide-react'
+import { Database, Users, HeartPulse, MessageSquare, CreditCard, Smartphone, BarChart3 } from 'lucide-react'
 
 const skills = [
   {
-    id: 1,
-    title: 'IT Operations',
-    description: 'Infrastructure automation, monitoring, and system administration',
-    icon: Server,
-    color: 'text-futuristic-blue',
-    bgColor: 'bg-futuristic-blue/10',
+    id: 3,
+    title: '项目管理',
+    description: 'PMP认证、项目规划、进度控制与风险管理',
+    icon: Users,
+    color: 'text-cyan-500',
+    bgColor: 'bg-cyan-100',
     size: 'col-span-2 row-span-1',
   },
   {
-    id: 2,
-    title: 'AI Development',
-    description: 'Machine learning models, NLP, and predictive analytics',
-    icon: Cpu,
-    color: 'text-purple-500',
-    bgColor: 'bg-purple-100',
-    size: 'col-span-1 row-span-1',
-  },
-  {
-    id: 3,
-    title: 'Cloud Infrastructure',
-    description: 'AWS, Kubernetes, Docker, and scalable architectures',
-    icon: Cloud,
-    color: 'text-cyan-500',
-    bgColor: 'bg-cyan-100',
-    size: 'col-span-1 row-span-1',
+    id: 5,
+    title: '团队与沟通',
+    description: '跨部门协调、需求分析、干系人管理',
+    icon: MessageSquare,
+    color: 'text-orange-500',
+    bgColor: 'bg-orange-100',
+    size: 'col-span-2 row-span-1',
   },
   {
     id: 4,
-    title: 'Data Engineering',
-    description: 'Data pipelines, ETL processes, and data warehousing',
-    icon: Database,
+    title: '医疗信息化',
+    description: 'HIS/EMR/LIS系统、医疗数据流转与集成',
+    icon: HeartPulse,
     color: 'text-green-500',
     bgColor: 'bg-green-100',
     size: 'col-span-2 row-span-1',
   },
   {
-    id: 5,
-    title: 'DevOps',
-    description: 'CI/CD, infrastructure as code, and automation',
-    icon: Terminal,
-    color: 'text-orange-500',
-    bgColor: 'bg-orange-100',
-    size: 'col-span-1 row-span-2',
-  },
-  {
     id: 6,
-    title: 'Security',
-    description: 'Network security, compliance, and threat detection',
-    icon: Shield,
+    title: '支付对接',
+    description: '微信/支付宝支付平台、线上医保支付业务',
+    icon: CreditCard,
     color: 'text-red-500',
     bgColor: 'bg-red-100',
     size: 'col-span-1 row-span-1',
   },
   {
     id: 7,
-    title: 'Performance',
-    description: 'System optimization, latency reduction, and scaling',
-    icon: Zap,
+    title: '线上服务',
+    description: '微信小程序、公众号应用设计与上线',
+    icon: Smartphone,
     color: 'text-yellow-500',
     bgColor: 'bg-yellow-100',
     size: 'col-span-1 row-span-1',
   },
   {
     id: 8,
-    title: 'Analytics',
-    description: 'Business intelligence, metrics, and reporting',
+    title: '数据分析',
+    description: 'SQL查询、数据可视化、问题排查与优化',
     icon: BarChart3,
     color: 'text-indigo-500',
     bgColor: 'bg-indigo-100',
+    size: 'col-span-2 row-span-1',
+  },
+  {
+    id: 1,
+    title: '技术基础',
+    description: '数据库管理、SQL查询优化、Linux系统运维',
+    icon: Database,
+    color: 'text-futuristic-blue',
+    bgColor: 'bg-futuristic-blue/10',
     size: 'col-span-2 row-span-1',
   },
 ]
@@ -112,10 +103,10 @@ export default function SkillsSectionNew() {
         className="mb-12 text-center"
       >
         <h2 className="font-archivo text-4xl md:text-5xl font-bold mb-4 text-futuristic-text">
-          Technical Skills
+          技术技能
         </h2>
         <p className="font-space-grotesk text-lg text-futuristic-text-muted max-w-2xl mx-auto">
-          A comprehensive overview of my technical expertise across multiple domains
+            涵盖PMP项目管理、医疗信息化及专业技术的综合能力
         </p>
       </motion.div>
 
@@ -139,9 +130,9 @@ export default function SkillsSectionNew() {
                 <div className={`p-3 rounded-xl ${skill.bgColor} ${skill.color}`}>
                   <Icon className="w-6 h-6" />
                 </div>
-                <div className="text-xs font-space-grotesk font-medium px-3 py-1 bg-white/50 rounded-full text-futuristic-text-muted">
-                  {skill.size.includes('row-span-2') ? 'Advanced' : 'Core'}
-                </div>
+                  <div className="text-xs font-space-grotesk font-medium px-3 py-1 bg-white/50 rounded-full text-futuristic-text-muted">
+                    {skill.size.includes('row-span-2') ? '高级' : '核心'}
+                  </div>
               </div>
               
               <h3 className="font-archivo text-xl font-bold mb-2 text-futuristic-text">
@@ -151,26 +142,7 @@ export default function SkillsSectionNew() {
               <p className="font-space-grotesk text-futuristic-text-muted text-sm leading-relaxed flex-grow">
                 {skill.description}
               </p>
-              
-              <div className="mt-6 pt-4 border-t border-white/30">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-space-grotesk text-futuristic-text-muted">
-                    Proficiency
-                  </span>
-                  <div className="flex items-center gap-2">
-                    {[1, 2, 3, 4, 5].map((dot) => (
-                      <div
-                        key={dot}
-                        className={`w-2 h-2 rounded-full ${
-                          dot <= (skill.id % 5) + 1
-                            ? 'bg-futuristic-blue'
-                            : 'bg-gray-300'
-                        }`}
-                      />
-                    ))}
-                  </div>
-                </div>
-              </div>
+
             </motion.div>
           )
         })}
@@ -184,7 +156,7 @@ export default function SkillsSectionNew() {
         className="mt-12 text-center"
       >
         <p className="font-space-grotesk text-futuristic-text-muted max-w-3xl mx-auto">
-          Each skill represents years of hands-on experience and continuous learning in rapidly evolving technology landscapes.
+           每项技能都代表在项目管理与医疗信息化领域中多年的实践经验和专业积累。
         </p>
       </motion.div>
     </section>

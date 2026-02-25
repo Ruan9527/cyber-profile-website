@@ -13,7 +13,7 @@ export interface PersonalInfo {
 export interface Skill {
   name: string;
   level: number;
-  category: 'it_ops' | 'ai' | 'project_management';
+  category: 'it_ops' | 'ai' | 'project_management' | 'healthcare_it';
   description?: string;
 }
 
