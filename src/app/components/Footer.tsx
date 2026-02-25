@@ -42,8 +42,17 @@ export default function Footer() {
   ]
 
   return (
-    <footer className="border-t border-gray-200/50 bg-white/80 backdrop-blur-sm py-12 px-4">
-      <div className="max-w-6xl mx-auto">
+    <footer className="relative border-t border-gray-200/50 bg-cyber-grid bg-cyber-grid-dense animate-grid-move py-12 px-4 overflow-hidden">
+      {/* Background overlay for readability */}
+      <div className="absolute inset-0 bg-cyber-black/80 backdrop-blur-sm" />
+      {/* Dynamic scan line separator */}
+      <div className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyber-cyan to-transparent animate-scan" style={{ top: '50%' }} />
+      {/* Floating particles */}
+      <div className="absolute top-10 left-1/4 w-1 h-1 bg-cyber-cyan rounded-full animate-particle-float" />
+      <div className="absolute bottom-10 right-1/3 w-1 h-1 bg-cyber-purple rounded-full animate-particle-float" style={{ animationDelay: '1s' }} />
+      <div className="absolute top-1/3 right-1/4 w-1 h-1 bg-cyber-yellow rounded-full animate-particle-float" style={{ animationDelay: '2s' }} />
+      
+      <div className="relative z-10 max-w-6xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
           {/* Left: Brand */}
           <div className="text-center md:text-left">
@@ -64,7 +73,7 @@ export default function Footer() {
                   <button
                     key={link.name}
                     onClick={handleCopyEmail}
-                    className="p-3 bg-white border border-gray-200/60 rounded-xl hover:bg-futuristic-blue/5 hover:border-futuristic-blue/30 transition-all duration-300 hover:scale-110 shadow-sm hover:shadow-md relative group"
+                     className="p-3 bg-white border border-gray-200/60 rounded-xl hover:bg-futuristic-blue/5 hover:border-futuristic-blue/30 transition-all duration-300 hover:scale-110 shadow-sm hover:shadow-md hover:animate-pulse-glow relative group"
                     title="点击复制邮箱地址"
                   >
                     {copied ? (
@@ -85,7 +94,7 @@ export default function Footer() {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 bg-white border border-gray-200/60 rounded-xl hover:bg-futuristic-blue/5 hover:border-futuristic-blue/30 transition-all duration-300 hover:scale-110 shadow-sm hover:shadow-md"
+                   className="p-3 bg-white border border-gray-200/60 rounded-xl hover:bg-futuristic-blue/5 hover:border-futuristic-blue/30 transition-all duration-300 hover:scale-110 shadow-sm hover:shadow-md hover:animate-pulse-glow"
                 >
                   <Icon className="w-5 h-5 text-gray-600 hover:text-futuristic-blue transition-colors" />
                 </a>
@@ -95,20 +104,22 @@ export default function Footer() {
 
           {/* Right: Copyright */}
           <div className="text-center md:text-right">
-            <p className="font-space-grotesk text-gray-500 text-sm mb-2">
-              © 2025 Futuristic Portfolio. All rights reserved.
-            </p>
-            <p className="font-space-grotesk text-gray-400 text-xs flex items-center justify-center md:justify-end gap-1">
-              Made with 
-              <Heart className="w-3 h-3 text-futuristic-blue fill-futuristic-blue/30 inline mx-1" />
-              using Next.js & Tailwind
-            </p>
+             <p className="font-space-grotesk text-sm mb-2">
+               <span className="animate-gradient-shift bg-gradient-to-r from-cyber-cyan via-cyber-purple to-cyber-cyan bg-clip-text text-transparent">
+                 © 2025 Futuristic Portfolio. All rights reserved.
+               </span>
+             </p>
+             <p className="font-space-grotesk text-gray-400 text-xs flex items-center justify-center md:justify-end gap-1">
+               Made with 
+               <Heart className="w-3 h-3 text-cyber-red animate-pulse-red inline mx-1" />
+               using Next.js & Tailwind
+             </p>
           </div>
         </div>
 
-        {/* Minimal decorative line */}
-        <div className="mt-12 flex items-center justify-center">
-          <div className="w-32 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent" />
+        {/* Dynamic scan line separator */}
+        <div className="mt-12 relative h-px overflow-hidden">
+          <div className="scanline-horizontal w-full" />
         </div>
       </div>
     </footer>

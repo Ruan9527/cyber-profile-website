@@ -5,10 +5,14 @@ import ProjectsSectionNew from './components/ProjectsSectionNew'
 import Footer from './components/Footer'
 import BackToTop from './components/BackToTop'
 import ChatBot from './components/ChatBot'
+import MouseEffects from './components/MouseEffects'
+import MouseParallaxBackground from './components/MouseParallaxBackground'
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen relative">
+      <MouseParallaxBackground />
+      <MouseEffects />
       <Navbar />
       <Hero />
       <SkillsSectionNew />

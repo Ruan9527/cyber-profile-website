@@ -69,6 +69,15 @@ export default function Navbar() {
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
     >
+      {/* Data stream background layer */}
+      <div className="absolute inset-0 data-stream-container opacity-10 pointer-events-none" />
+      {/* Bottom scan line indicator */}
+      <div className="absolute bottom-0 left-0 right-0 h-1 scanline-horizontal" style={{ background: 'linear-gradient(to right, transparent, var(--cyber-cyan), transparent)' }} />
+      {/* Floating particles */}
+      <div className="absolute top-4 left-1/4 w-1 h-1 bg-cyber-cyan rounded-full animate-particle-float" />
+      <div className="absolute top-10 right-1/3 w-1 h-1 bg-cyber-purple rounded-full animate-particle-float" style={{ animationDelay: '1s' }} />
+      <div className="absolute top-6 left-2/3 w-1 h-1 bg-cyber-yellow rounded-full animate-particle-float" style={{ animationDelay: '2s' }} />
+      
       <div className="max-w-7xl mx-auto px-6 relative">
         <motion.div
           className="hidden md:flex items-center justify-between h-20"
@@ -76,13 +85,13 @@ export default function Navbar() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
         >
-          <motion.div
-            className="font-display font-bold text-2xl tracking-wider cursor-pointer"
-            whileHover={{ scale: 1.05 }}
-           >
-            <span className="text-futuristic-blue">Always</span>
-            <span className="text-futuristic-text">PiPi</span>
-          </motion.div>
+           <motion.div
+             className="font-display font-bold text-2xl tracking-wider cursor-pointer"
+             whileHover={{ scale: 1.05 }}
+            >
+             <span className="text-futuristic-blue hover:animate-text-glitch transition-all duration-300">Always</span>
+             <span className="text-futuristic-text hover:animate-text-glitch transition-all duration-300">PiPi</span>
+           </motion.div>
 
           <div className="flex items-center gap-8 flex-1 justify-center">
             {navLinks.map((link) => (
@@ -90,11 +99,11 @@ export default function Navbar() {
                 key={link.id}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className={`relative font-medium uppercase tracking-wider text-sm transition-all duration-300 px-4 py-2 ${
-                  activeSection === link.id
-                    ? 'text-futuristic-blue'
-                    : 'text-futuristic-text-muted hover:text-futuristic-blue'
-                }`}
+                 className={`relative font-medium uppercase tracking-wider text-sm transition-all duration-300 px-4 py-2 ${
+                   activeSection === link.id
+                     ? 'text-futuristic-blue animate-neon-flicker'
+                     : 'text-futuristic-text-muted hover:text-futuristic-blue'
+                 }`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -163,11 +172,11 @@ export default function Navbar() {
                     handleNavClick(e, link.href)
                     setMobileMenuOpen(false)
                   }}
-               className={`block px-6 py-3 font-medium uppercase tracking-wider text-sm transition-colors rounded-lg ${
-                 activeSection === link.id
-                   ? 'bg-futuristic-blue/20 text-futuristic-blue border border-futuristic-blue/50'
-                   : 'text-futuristic-text-muted hover:text-futuristic-blue hover:bg-futuristic-blue/10'
-               }`}
+                className={`block px-6 py-3 font-medium uppercase tracking-wider text-sm transition-colors rounded-lg ${
+                  activeSection === link.id
+                    ? 'bg-futuristic-blue/20 text-futuristic-blue border border-futuristic-blue/50 animate-neon-flicker'
+                    : 'text-futuristic-text-muted hover:text-futuristic-blue hover:bg-futuristic-blue/10'
+                }`}
                   whileTap={{ scale: 0.98 }}
                 >
                   {link.label}

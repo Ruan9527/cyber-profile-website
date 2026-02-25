@@ -88,8 +88,14 @@ export default function Hero() {
   return (
     <section id="home" className="relative min-h-screen flex items-center py-20 overflow-hidden bg-futuristic-light-gray">
 
-      <div className="absolute inset-0 bg-abstract-geometric opacity-50" />
-      <div className="absolute inset-0 bg-noise-texture opacity-[0.02]" />
+       <div className="absolute inset-0 bg-abstract-geometric opacity-50" />
+       <div className="absolute inset-0 bg-noise-texture opacity-[0.02]" />
+       {/* Floating particles */}
+       <div className="absolute top-1/4 left-1/5 w-1 h-1 bg-cyber-cyan rounded-full animate-particle-float" />
+       <div className="absolute top-1/3 right-1/4 w-1 h-1 bg-cyber-purple rounded-full animate-particle-float" style={{ animationDelay: '1s' }} />
+       <div className="absolute bottom-1/4 left-1/3 w-1 h-1 bg-cyber-yellow rounded-full animate-particle-float" style={{ animationDelay: '2s' }} />
+       <div className="absolute top-2/3 right-1/5 w-1 h-1 bg-cyber-red rounded-full animate-particle-float" style={{ animationDelay: '3s' }} />
+       <div className="absolute bottom-1/3 left-2/3 w-1 h-1 bg-cyber-green rounded-full animate-particle-float" style={{ animationDelay: '4s' }} />
 
       <motion.div
         className="relative z-10 max-w-7xl mx-auto px-4 w-full"
